@@ -1,0 +1,6 @@
+
+State Machine - |Rubikscam|CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|mSetup_ST
+Name mSetup_ST.st20_next_data mSetup_ST.st10_wait_ack mSetup_ST.st0_send_data 
+mSetup_ST.st0_send_data 0 0 0 
+mSetup_ST.st10_wait_ack 0 1 1 
+mSetup_ST.st20_next_data 1 0 1 

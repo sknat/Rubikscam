@@ -1,0 +1,87 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\author{Parakian Alexis, Skrzypczak Nathan}
+\title{Rubiks Cam Project PHY573a}
+\begin{document}
+\maketitle
+\begin{abstract}
+   Votre résumé commence ici...
+   ...
+\end{abstract}
+
+
+\section{Présentation}
+
+\section{Architecture}
+
+Choix de l'horloge
+
+\subsection{Contexte et Entrées Sorties}
+
+\subsubsection{Sortie VGA}
+La première partie du projet à être réalisée aura été la sortie VGA. Elle l'a été sous la forme d'un composant pour plus de facilité d'utilisation. Il est contenu dans le fichier VGA\_OUT.vhd
+
+Le point à observer en particulier est la fréquence d'horloge, en effet celle-ci conditionne la conception du reste du circuit.  On cherche à cadencer le rafraichissement à 60Hz. Une trame comprends 795 colonnes et 525 lignes (pour 640x480 utiles) soit 417900 points sur l'écran. Obtenir 60Hz par trame revient alors à \textbf{cadencer les points à 25.074Mhz}. On choisira ainsi une \textbf{fréquence utile de 25Mhz} pour rester en phase avec le reste du circuit, soit 59.82Hz par frame (on commet une erreur de 0.3\% qui est admise dans la norme VGA.
+\includegraphics[width=300pt]{gfx/vga_out.png}
+
+\begin{itemize}
+\item Ce composant est cadencé sur une horloge à 25Mhz (fréquence d'affichage d'un pixel)
+\item Il sort deux signaux entiers donnant la position du pixel courant :
+
+SCREEN\_X $\left[ 0 .. 479 \right]$ et SCREEN\_Y $\left[ 0 .. 639 \right]$ sur 9 et 10 bits respectivement.
+\item la couleur du pixel courant est donnée en entrée sur trois bus de 10 bits : VGA\_DATA\_R ; VGA\_DATA\_G ; VGA\_DATA\_B
+\end{itemize}
+
+\subsubsection{Entrées : Camera CMOS}
+
+\subsubsection{Mémoires}
+Le choix des mémoires aura posé de nombreuses difficultés, dans la mesure ou les composants présents fixent de nombreuses contraintes, et que le matériel disponible (pour les mémoires) possède également les siennes.
+On souhaite donc afficher sur la sortie VGA une figure 3D projetée dans le plan de l'écran. Les éléments qui seront donc sujet à une forte occupation mémoire, et qui ne pas se résoudre par l'utilisation de bascules sur la carte seront donc le stockage des points de cette figure et de l'affichage de l'écran si celui-ci doit être stocké dans un buffer.
+
+\begin{enumerate}
+\item \textbf{Figure 3D}
+\begin{itemize}
+\item Pour la représentation en 3D de la figure, la solution la plus simple est de la décomposer en triangles (dans la mesure ou ils sont nécessairement plans). Ces triangles (ensembles de 3 points, donc 9 coordonnées de l'espace) seront tout stockés indépendamment les uns des autres par souci de simplicité. Il est possible d'optimiser grandement le stockage en utilisant des recouvrements (dans la mesure ou ils partagent souvent des sommets), mais ceci génère de la complexité dans le calcul et la gestion de cette mémoire.
+
+\item La quantité de mémoire à prévoir pour afficher un Rubik's cube et donc en première approximation \textbf{de 108 triangles soit 972 coordonnées}. 
+
+\item Il faut également considérer que nous manipulons des points qui seront probablement sujet à des translations et des rotations. Il nous faut donc garantir une bonne précision pour éviter la divergence des données par approximations successives. Une précision de 32bits avec virgule fixe à 16bits semble raisonnable (Avec des coordonnées allant de -32768 à 32767 et une précision de $10^{-4}$, on peut exprimer des points à 'l'infini visuel' et se prémunir des erreurs d'approximation grossières) Cette précision reste ajustable en réduisant les coordonnées accessibles. 
+
+\item Avec ces observations, on atteint \textbf{32Kbits de données à stocker}, or le Cyclone II possède 100 puces M4K accessibles en lecture / écriture. On peut donc réaliser ce stockage directement sur la carte avec 8 telles puces.
+
+\end{itemize}
+\emph{Les triangles seront donc stockés sur une mémoire \textbf{double port} de \textbf{32bits de données} et de \textbf{10bits de bus d'adresses}.}
+
+Les coordonnées seront stockées de cette manière pour un triangle (en partant de l'adresse 0x000) :
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline 
+$\ldots$ & $x_1$ & $y_1$ & $z_1$ & $x_2$ & $y_2$ & $z_2$ & $x_3$ & $y_3$ & $z_3$ & $\ldots$ \\ 
+\hline 
+\end{tabular} 
+\end{center}
+
+\item \textbf{Ecran}
+\begin{itemize}
+\item Ayant vu ceci, il est nécessaire de parcourir l'ensemble des M4K occupés et de traiter les points présents pour obtenir l'image à afficher à l'écran. La fréquence d'affichage des pixels étant de 25Mhz et comme il est déraisonnable d'espérer faire fonctionner la mémoire interne à plus de 100Mhz, il est impossible de compter sur un traitement temps réel : \textbf{Nécessairement les différents pixels devront être stockés en mémoire}
+
+\item Reste donc à définir une telle mémoire pour un écran de 640x480 pixels. La mémoire la plus simple d'utilisation offrant tout de même une capacité raisonnable est la SRAM. En effet, pour rentrer dans les 100 x M4K de la mémoire on-chip avec une profondeur couleur de 10bits en niveaux de gris, il faudrait se limiter à 160x120...
+
+\item La SRAM permet de stocker 256 kilomots de 16 bits ce qui est largement suffisant pour une profondeur de 10bits (niveaux de gris ou couleurs réduites) sur 640x480 pixels. Cette mémoire peut également être accédée jusqu'à 100Mhz, ce qui permet une réactivité suffisante pour la sortie VGA.
+
+\item Pour ce qui est de la répartition des données, cette dernière est un peu subtile dans la mesure ou les plages d'adresses et de données ne sont pas paramétrables de la même façon que sur le carte.
+
+\end{itemize}
+\end{enumerate}
+
+
+\subsection{Acquisition}
+
+\subsection{Moteur d'affichage}
+
+
+\end{document}

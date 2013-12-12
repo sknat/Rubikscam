@@ -1,0 +1,86 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity main is
+    port (
+    CLOCK_50  : in std_logic;
+    KEY       : in std_logic_vector( 3 downto 0);
+    SW        : in std_logic_vector(15 downto 0);
+
+    VGA_CLK   : out std_logic; --Clock
+    VGA_HS    : out std_logic; --H_SYNC
+    VGA_VS    : out std_logic; --V_SYNC
+    VGA_BLANK : out std_logic; --BLANK
+    VGA_SYNC  : out std_logic; --SYNC
+    VGA_R     : out std_logic_vector(9 downto 0); --Red[9:0]
+    VGA_G     : out std_logic_vector(9 downto 0); --Green[9:0]
+    VGA_B     : out std_logic_vector(9 downto 0); --Blue[9:0]
+
+    GPIO_1     : inout std_logic_vector(15 downto 0) -- depuis CMOS
+    );
+end main;
+
+architecture main_arch of main is
+----------------------------------------------------------------------------------------
+-- PLL 25MHZ component declaration
+----------------------------------------------------------------------------------------
+component PLL_25 IS
+	PORT
+	(
+		inclk0	: IN STD_LOGIC  := '0';
+		c0			: OUT STD_LOGIC 
+	);
+END component;
+----------------------------------------------------------------------------------------
+-- VGA output device declaration
+----------------------------------------------------------------------------------------
+component VGA_OUT is
+    port (
+	 -- CLOCK
+    CLOCK_25  : in std_logic;
+	 -- material ports
+    VGA_CLK   : out std_logic; --Clock
+    VGA_HS    : out std_logic; --H_SYNC
+    VGA_VS    : out std_logic; --V_SYNC
+    VGA_BLANK : out std_logic; --BLANK
+    VGA_SYNC  : out std_logic; --SYNC
+    VGA_R     : out std_logic_vector(9 downto 0); --Red[9:0]
+    VGA_G     : out std_logic_vector(9 downto 0); --Green[9:0]
+    VGA_B     : out std_logic_vector(9 downto 0); --Blue[9:0]
+	 -- program used ports
+	 SCREEN_X  : out integer range 0 to 524 := 0;
+	 SCREEN_Y  : out integer range 0 to 795 := 0;
+	 VGA_DATA_R : in std_logic_vector(9 downto 0);
+	 VGA_DATA_G : in std_logic_vector(9 downto 0);
+	 VGA_DATA_B : in std_logic_vector(9 downto 0)
+    );
+end component;
+----------------------------------------------------------------------------------------
+-- Camera dialog declaration
+----------------------------------------------------------------------------------------
+component CMOS_LA is
+    port (
+	 -- CLOCK
+    CLOCK_25  : in std_logic;
+	 -- material ports
+    KEY       : in std_logic_vector( 3 downto 0);
+    SW        : in std_logic_vector(15 downto 0);
+    GPIO_1    : inout std_logic_vector(15 downto 0); -- direct link to CMOS (ie camera)
+	 -- program used ports
+	 CMOS_DATA : out std_logic_vector(9 downto 0) -- outgoing data from camera
+    );
+end component;
+----------------------------------------------------------------------------------------
+signal CLOCK_25 : std_logic;
+signal CMOS_DATA_m : std_logic_vector(9 downto 0);
+
+begin
+
+pll_inst : PLL_25 PORT MAP (inclk0  => CLOCK_50, c0 => CLOCK_25);
+--vga_inst : VGA_OUT
+CMOS_LA_inst : CMOS_LA PORT MAP (CLOCK_50 => CLOCK_50, CLOCK_25 => CLOCK_25, KEY => KEY, 
+SW => SW, GPIO_1 => GPIO_1, CMOS_DATA => CMOS_DATA_m);
+
+
+end main_arch;

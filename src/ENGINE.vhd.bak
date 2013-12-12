@@ -1,0 +1,21 @@
+ library IEEE;
+use IEEE.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity 3D_ENGINE is
+    port (
+	 -- CLOCK
+    CLOCK_25  : in std_logic;
+	 -- material ports
+    KEY       : in std_logic_vector( 3 downto 0);
+    SW        : in std_logic_vector(15 downto 0);
+    GPIO_1    : inout std_logic_vector(15 downto 0); -- direct link to CMOS (ie camera)
+	 -- program used ports
+	 CMOS_DATA : out std_logic_vector(9 downto 0); -- outgoing data from camera
+	 CAM_X : out integer range 0 to ((640*2)-1);
+	 CAM_Y : out integer range 0 to ((480*2)-1);
+	 PIX_CLOCK : out std_logic
+    );
+end CMOS_LA;
+
+architecture CMOS_LA_arch of CMOS_LA is
