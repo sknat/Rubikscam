@@ -16,11 +16,12 @@
 
 \section{Présentation}
 
+
+
 \section{Architecture}
 
-Choix de l'horloge
-
 \subsection{Contexte et Entrées Sorties}
+
 
 \subsubsection{Sortie VGA}
 La première partie du projet à être réalisée aura été la sortie VGA. Elle l'a été sous la forme d'un composant pour plus de facilité d'utilisation. Il est contenu dans le fichier VGA\_OUT.vhd
@@ -37,6 +38,31 @@ SCREEN\_X $\left[ 0 .. 479 \right]$ et SCREEN\_Y $\left[ 0 .. 639 \right]$ sur 9
 \end{itemize}
 
 \subsubsection{Entrées : Camera CMOS}
+Concernant l'entrée par la camera, nous nous sommes fortement inspirés d'un exemple de la bibliothèque, que nous avons quasi entièrement réécrit. Il s'agit du programme de dialogue avec le CMOS, paramétrage de la caméra et formatage des données.
+
+Un point particulièrement important dans l'utilisation de ce périphérique connecté au GPIO de la carte DE2 est \textbf{la gestion des horloges}. En effet, la caméra prends en entrée une horloge cadencée à 25Mhz, et retourne les données lues sur les pixels CMOS à cette même fréquence. Cependant, ce processus a une certaine durée d'exécution, surtout à cause de la présence de la nappe, et du câblage interne, qui ajoute un retard moyen de 10ns (soit $\frac{1}{4} de periode$ à 25Mhz). L'horloge générale utilisée pour le reste du circuit devra donc tenir compte de ce retard de 10ns de manière à assurer la synchronisation des données. (Voir la section Horloge pour plus de précisions)
+
+\includegraphics[width=300pt]{gfx/cmos_la.png}
+\begin{itemize}
+\item Ce composant est cadencé sur une horloge à 25Mhz (acquisition des pixels)
+\item Il sort deux signaux entiers donnant la position du pixel courant :
+
+CAM\_X $\left[ 0 .. (480*2-1) \right]$ et SCREEN\_Y $\left[ 0 .. (640*2-1) \right]$ sur 10 et 11 bits respectivement.
+\item la couleur du pixel courant est donnée par l'organisation du capteur
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline 
+G & R & $\ldots$ \\ 
+\hline 
+B & G & $\ldots$ \\ 
+\hline 
+$\vdots$ & $\vdots$ & $\ddots$  \\ 
+\hline 
+\end{tabular} 
+\end{center}
+
+\end{itemize}
 
 \subsubsection{Mémoires}
 Le choix des mémoires aura posé de nombreuses difficultés, dans la mesure ou les composants présents fixent de nombreuses contraintes, et que le matériel disponible (pour les mémoires) possède également les siennes.
@@ -73,11 +99,21 @@ $\ldots$ & $x_1$ & $y_1$ & $z_1$ & $x_2$ & $y_2$ & $z_2$ & $x_3$ & $y_3$ & $z_3$
 
 \item La SRAM permet de stocker 256 kilomots de 16 bits ce qui est largement suffisant pour une profondeur de 10bits (niveaux de gris ou couleurs réduites) sur 640x480 pixels. Cette mémoire peut également être accédée jusqu'à 100Mhz, ce qui permet une réactivité suffisante pour la sortie VGA.
 
-\item Pour ce qui est de la répartition des données, cette dernière est un peu subtile dans la mesure ou les plages d'adresses et de données ne sont pas paramétrables de la même façon que sur le carte.
+\item Pour ce qui est de la répartition des données, cette dernière est un peu subtile dans la mesure ou les plages d'adresses et de données ne sont pas paramétrables de la même façon que sur le carte. On se limite dans une première approximation à une plage de pixel de 320x240 pour simplification, mais la modification de la formule permettrait d'étendre à la résolution supérieure. L'adresse se calcule de la manière suivante:
+
+\[ Adresse_{18bits} = \frac{x}{2} + 320 . \frac{y}{2} \]
 
 \end{itemize}
 \end{enumerate}
 
+\subsection{Horloge}
+Étant donné les éléments en jeu dans ce circuit, \textbf{l'horloge principale sera donc cadencé à 100Mhz} (fréquence maximale de fonctionnement de la SRAM ), de manière à permettre à cette dernière une lecture et une écriture dans une étape de calcul à 25Mhz (Une écriture dure en effet 3 cycles de 10ns et une lecture un cycle de 10ns).
+
+La caméra induit un décalage de 10ns, on cadence donc cette dernière sur le la base 25Mhz alors que l'ensemble du circuit suit une cadence avec un cycle de 100Mhz de retard (donc 10ns)
+\begin{center}
+\includegraphics[width=300pt]{gfx/clock.png}
+\end{center}
+La synchronisation est réalisée par un signal comptant les fronts d'horloge dans chacun des composants, et agissant comme clock enable pour le front à sélectionner.
 
 \subsection{Acquisition}
 
