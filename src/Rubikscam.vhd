@@ -38,9 +38,9 @@ component PLL_25 IS
 	PORT
 	(
 		inclk0	: IN STD_LOGIC  := '0';
-		c0		: OUT STD_LOGIC ;
-		c1		: OUT STD_LOGIC ;
-		c2		: OUT STD_LOGIC 
+		c0		: OUT STD_LOGIC ; --100MHZ
+		c1		: OUT STD_LOGIC ; --25MHZ
+		c2		: OUT STD_LOGIC  -- 25Mhz + 10ns
 	);
 END component;
 ----------------------------------------------------------------------------------------
@@ -74,7 +74,6 @@ component CMOS_LA is
     port (
 	 -- CLOCK
     CLOCK_25  : in std_logic;
-    CLOCK_50  : in std_logic;
 	 -- material ports
     KEY       : in std_logic_vector( 3 downto 0);
     SW        : in std_logic_vector(15 downto 0);
@@ -117,59 +116,86 @@ signal engine_out_y : integer range 0 to 479;
 signal dqr : std_logic_vector(15 downto 0);
 signal dqw : std_logic_vector(15 downto 0);
 
+signal filled_sram : std_logic := '0';
+signal fill_address : integer range 0 to 262143 := 0;
 begin
 
-pll_inst : PLL_25 PORT MAP (inclk0  => CLOCK_50, c0 => CLOCK_25, c1 => CLOCK_100);
-engine_inst : ENGINE PORT MAP (CLOCK_25 => CLOCK_25, SCREEN_X => engine_out_x, SCREEN_Y => engine_out_y);
-vga_inst : VGA_OUT PORT MAP (SCREEN_X => screen_x,SCREEN_Y => screen_y,VGA_DATA_R => vga_data_r,
-VGA_DATA_G => vga_data_g,VGA_DATA_B => vga_data_b, CLOCK_25=>CLOCK_25,VGA_CLK=>VGA_CLK,VGA_HS=>VGA_HS,
-VGA_VS=>VGA_VS,VGA_BLANK=>VGA_BLANK,VGA_SYNC=>VGA_SYNC,VGA_R=>VGA_R,VGA_G=>VGA_G,VGA_B=>VGA_B);
-
-CMOS_LA_inst : CMOS_LA PORT MAP (CLOCK_25 => CLOCK_25, CLOCK_50 => CLOCK_50, KEY => KEY, SW => SW, GPIO_1 => GPIO_1, 
-CMOS_DATA => CMOS_DATA_m, CAM_X=>cam_x,CAM_Y=>cam_y);
+--PLL instance declaration
+pll_inst : PLL_25 PORT MAP (inclk0  => CLOCK_50, c0 => CLOCK_100, c1 => CLOCK_25, c2 => CLOCK_25d);
+--3D engine instance declaration
+engine_inst : ENGINE PORT MAP (CLOCK_25 => CLOCK_25d, 
+SCREEN_X => engine_out_x, SCREEN_Y => engine_out_y);
+--VGA output instance declaration
+vga_inst : VGA_OUT PORT MAP (CLOCK_25=>CLOCK_25d, 
+SCREEN_X => screen_x,SCREEN_Y => screen_y,
+VGA_DATA_R => vga_data_r, VGA_DATA_G => vga_data_g,VGA_DATA_B => vga_data_b, 
+VGA_CLK=>VGA_CLK, VGA_HS=>VGA_HS, VGA_VS=>VGA_VS,VGA_BLANK=>VGA_BLANK,VGA_SYNC=>VGA_SYNC,
+VGA_R => VGA_R, VGA_G => VGA_G, VGA_B => VGA_B);
+--CMOS driver instance declaration
+CMOS_LA_inst : CMOS_LA PORT MAP (CLOCK_25 => CLOCK_25, 
+KEY => KEY, SW => SW, GPIO_1 => GPIO_1,
+CMOS_DATA => CMOS_DATA_m, CAM_X => cam_x, CAM_Y => cam_y);
 
 process (CLOCK_100)
 begin
 	if rising_edge(CLOCK_100) then
-		if rw = 0 then 
+		if rw < 3 then rw <= rw + 1; else rw <= 0; end if;
+		
+		if rw = 1 then 
 			--read
+			SRAM_UB_N <= '0';
+			SRAM_LB_N <= '0';
+			--SRAM_WE_N <= '1';
 			SRAM_ADDR <= std_logic_vector(to_unsigned( (screen_x/2) + 320 * (screen_y/2)  ,18));
-			SRAM_OE_N <= '0';
-			SRAM_WE_N <= '1';
 			vga_data_b <= dqr(9 downto 0);
 			vga_data_r <= dqr(9 downto 0);
 			vga_data_g <= dqr(9 downto 0);
-			rw<=1;
-		elsif rw = 1 then
-			--write
-			SRAM_OE_N <= '1';
-			SRAM_WE_N <= '1';
-			SRAM_ADDR <= std_logic_vector(to_unsigned( (engine_out_x/2) + 320 * (engine_out_y/2) ,18));
-
-			dqw(9 downto 0) <= "1111111111";
-			dqw(15 downto 10) <= "000000";
-			
-			rw<=2;
-		elsif rw = 2 then
-			SRAM_WE_N <= '0';
-			rw<=3;
-		elsif rw = 3 then
-			SRAM_WE_N <= '1';
-			rw<=0;
 		end if;
+		
+		-------------------------------------------------------------------------
+		if rw = 2 then 
+			SRAM_WE_N <= '0';
+			SRAM_UB_N <= '0';
+			SRAM_LB_N <= '0';
+		
+			if filled_sram = '0' then
+				-- fill the screen in memory with black
+				if fill_address < 262143 then
+					fill_address <= fill_address + 1; 
+				else
+					fill_address <= 0;
+					filled_sram <= '0';
+				end if;
+				SRAM_ADDR <= std_logic_vector(to_unsigned(fill_address,18));
+				dqw <= "0000000000000000";
+			else
+				-- draw in memory the point given by the 3D engine
+				SRAM_ADDR <= std_logic_vector(to_unsigned( (engine_out_x/2) + 320 * (engine_out_y/2) ,18));
+				dqw(9 downto 0) <= "1111111111"; -- pixel color for the point to be drawn.
+				dqw(15 downto 10) <= "000000";
+			end if;
+		end if;
+		-------------------------------------------------------------------------
+		
+		
+		if rw = 0 then 
+			SRAM_WE_N <= '1';
+			SRAM_UB_N <= '1';
+			SRAM_LB_N <= '1';
+		end if;
+	
+	
 	end if;
 end process;
 
-
 dqr <= SRAM_DQ;
-SRAM_DQ <= dqw when (rw > 0) else "ZZZZZZZZZZZZZZZZ";
+SRAM_DQ <= dqw when (rw = 3 and rw = 2) else "ZZZZZZZZZZZZZZZZ" ;
 		
 
 --For logicport
 GPIO_0 <= GPIO_1;
 --Memory
+SRAM_OE_N <= '0';
 SRAM_CE_N <= '0';
-SRAM_UB_N <= '0';
-SRAM_LB_N <= '0';
 
 end Rubikscam_arch;

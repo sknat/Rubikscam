@@ -1,14 +1,14 @@
-Analysis & Synthesis Status : Successful - Tue Dec 10 18:45:14 2013
+Analysis & Synthesis Status : Successful - Fri Dec 13 18:01:40 2013
 Quartus II 32-bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Full Version
 Revision Name : Rubikscam
 Top-level Entity Name : Rubikscam
 Family : Cyclone II
-Total logic elements : 3,142
-    Total combinational functions : 2,967
-    Dedicated logic registers : 286
-Total registers : 286
+Total logic elements : 311
+    Total combinational functions : 256
+    Dedicated logic registers : 158
+Total registers : 158
 Total pins : 127
 Total virtual pins : 0
-Total memory bits : 2,048
-Embedded Multiplier 9-bit elements : 12
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
 Total PLLs : 1

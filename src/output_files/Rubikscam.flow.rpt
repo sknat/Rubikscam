@@ -1,5 +1,5 @@
 Flow report for Rubikscam
-Tue Dec 10 18:46:34 2013
+Fri Dec 13 18:02:26 2013
 Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
 
 
@@ -40,21 +40,21 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------------+
 ; Flow Summary                                                                          ;
 +------------------------------------+--------------------------------------------------+
-; Flow Status                        ; Successful - Tue Dec 10 18:46:25 2013            ;
+; Flow Status                        ; Successful - Fri Dec 13 18:02:19 2013            ;
 ; Quartus II 32-bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Full Version ;
 ; Revision Name                      ; Rubikscam                                        ;
 ; Top-level Entity Name              ; Rubikscam                                        ;
 ; Family                             ; Cyclone II                                       ;
 ; Device                             ; EP2C35F672C6                                     ;
 ; Timing Models                      ; Final                                            ;
-; Total logic elements               ; 3,042 / 33,216 ( 9 % )                           ;
-;     Total combinational functions  ; 2,967 / 33,216 ( 9 % )                           ;
-;     Dedicated logic registers      ; 286 / 33,216 ( < 1 % )                           ;
-; Total registers                    ; 286                                              ;
+; Total logic elements               ; 304 / 33,216 ( < 1 % )                           ;
+;     Total combinational functions  ; 256 / 33,216 ( < 1 % )                           ;
+;     Dedicated logic registers      ; 158 / 33,216 ( < 1 % )                           ;
+; Total registers                    ; 158                                              ;
 ; Total pins                         ; 127 / 475 ( 27 % )                               ;
 ; Total virtual pins                 ; 0                                                ;
-; Total memory bits                  ; 2,048 / 483,840 ( < 1 % )                        ;
-; Embedded Multiplier 9-bit elements ; 12 / 70 ( 17 % )                                 ;
+; Total memory bits                  ; 0 / 483,840 ( 0 % )                              ;
+; Embedded Multiplier 9-bit elements ; 0 / 70 ( 0 % )                                   ;
 ; Total PLLs                         ; 1 / 4 ( 25 % )                                   ;
 +------------------------------------+--------------------------------------------------+
 
@@ -64,28 +64,30 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 12/10/2013 18:44:59 ;
+; Start date & time ; 12/13/2013 18:01:31 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; Rubikscam           ;
 +-------------------+---------------------+
 
 
-+---------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                              ;
-+-------------------------------------+------------------------------+---------------+-------------+------------+
-; Assignment Name                     ; Value                        ; Default Value ; Entity Name ; Section Id ;
-+-------------------------------------+------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 114355995036.138669749903192 ; --            ; --          ; --         ;
-; IP_TOOL_NAME                        ; RAM: 2-PORT                  ; --            ; --          ; --         ;
-; IP_TOOL_VERSION                     ; 13.0                         ; --            ; --          ; --         ;
-; MAX_CORE_JUNCTION_TEMP              ; 85                           ; --            ; --          ; --         ;
-; MIN_CORE_JUNCTION_TEMP              ; 0                            ; --            ; --          ; --         ;
-; MISC_FILE                           ; triangle_ram.cmp             ; --            ; --          ; --         ;
-; PARTITION_COLOR                     ; 16764057                     ; --            ; --          ; Top        ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; PLACEMENT_AND_ROUTING        ; --            ; --          ; Top        ;
-; PARTITION_NETLIST_TYPE              ; SOURCE                       ; --            ; --          ; Top        ;
-; PROJECT_OUTPUT_DIRECTORY            ; output_files                 ; --            ; --          ; --         ;
-+-------------------------------------+------------------------------+---------------+-------------+------------+
++------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                       ;
++-------------------------------------+---------------------------------------+---------------+-------------+------------+
+; Assignment Name                     ; Value                                 ; Default Value ; Entity Name ; Section Id ;
++-------------------------------------+---------------------------------------+---------------+-------------+------------+
+; COMPILER_SIGNATURE_ID               ; 114355995036.138695409100516          ; --            ; --          ; --         ;
+; IP_TOOL_NAME                        ; RAM: 2-PORT                           ; --            ; --          ; --         ;
+; IP_TOOL_VERSION                     ; 13.0                                  ; --            ; --          ; --         ;
+; MAX_CORE_JUNCTION_TEMP              ; 85                                    ; --            ; --          ; --         ;
+; MIN_CORE_JUNCTION_TEMP              ; 0                                     ; --            ; --          ; --         ;
+; MISC_FILE                           ; triangle_ram.cmp                      ; --            ; --          ; --         ;
+; PARTITION_COLOR                     ; 16764057                              ; --            ; --          ; Top        ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; PLACEMENT_AND_ROUTING                 ; --            ; --          ; Top        ;
+; PARTITION_NETLIST_TYPE              ; SOURCE                                ; --            ; --          ; Top        ;
+; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                   ; --            ; --          ; --         ;
+; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW ; --            ; --          ; --         ;
+; PROJECT_OUTPUT_DIRECTORY            ; output_files                          ; --            ; --          ; --         ;
++-------------------------------------+---------------------------------------+---------------+-------------+------------+
 
 
 +-------------------------------------------------------------------------------------------------------------------------------+
@@ -93,11 +95,11 @@ applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:16     ; 1.0                     ; 379 MB              ; 00:00:15                           ;
-; Fitter                    ; 00:01:02     ; 1.4                     ; 508 MB              ; 00:01:22                           ;
-; Assembler                 ; 00:00:05     ; 1.0                     ; 334 MB              ; 00:00:05                           ;
-; TimeQuest Timing Analyzer ; 00:00:07     ; 1.0                     ; 359 MB              ; 00:00:07                           ;
-; Total                     ; 00:01:30     ; --                      ; --                  ; 00:01:49                           ;
+; Analysis & Synthesis      ; 00:00:10     ; 1.0                     ; 358 MB              ; 00:00:08                           ;
+; Fitter                    ; 00:00:17     ; 1.2                     ; 489 MB              ; 00:00:17                           ;
+; Assembler                 ; 00:00:14     ; 1.0                     ; 329 MB              ; 00:00:05                           ;
+; TimeQuest Timing Analyzer ; 00:00:04     ; 1.0                     ; 304 MB              ; 00:00:03                           ;
+; Total                     ; 00:00:45     ; --                      ; --                  ; 00:00:33                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

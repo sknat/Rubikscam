@@ -5,7 +5,6 @@ use ieee.numeric_std.all;
 entity CMOS_LA is
     port (
 	 -- CLOCK
-    CLOCK_50  : in std_logic;
 	 CLOCK_25  : in std_logic;
 	 -- material ports
     KEY       : in std_logic_vector( 3 downto 0);
@@ -66,7 +65,7 @@ GPIO_1(11) <= CLOCK_25; -- 25MHz
 
 I2C_CMOS_Config_inst : I2C_CMOS_Config
 port map (
-          clk        => CLOCK_50,
+          clk        => CLOCK_25,
           rst_n      => rst_n,
           exposition => exposition,
           I2C_SCLK   => GPIO_1(14), -- !!!! inout vers/depuis CMOS
