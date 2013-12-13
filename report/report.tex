@@ -1,3 +1,4 @@
+% !TEX encoding = UTF-8 Unicode
 \documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
@@ -33,7 +34,7 @@ Le point à observer en particulier est la fréquence d'horloge, en effet celle-
 \item Ce composant est cadencé sur une horloge à 25Mhz (fréquence d'affichage d'un pixel)
 \item Il sort deux signaux entiers donnant la position du pixel courant :
 
-SCREEN\_X $\left[ 0 .. 479 \right]$ et SCREEN\_Y $\left[ 0 .. 639 \right]$ sur 9 et 10 bits respectivement.
+SCREEN\_X $\left[ 0 .. 639 \right]$ et SCREEN\_Y $\left[ 0 .. 479 \right]$ sur 10 et 9 bits respectivement.
 \item la couleur du pixel courant est donnée en entrée sur trois bus de 10 bits : VGA\_DATA\_R ; VGA\_DATA\_G ; VGA\_DATA\_B
 \end{itemize}
 
