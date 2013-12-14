@@ -85,6 +85,22 @@ component CMOS_LA is
     );
 end component;
 ----------------------------------------------------------------------------------------
+-- motion sensing controler
+----------------------------------------------------------------------------------------
+
+component motion_sensing is 
+	port (
+	CLOCK_25  : in std_logic;
+	CLOCK_50  : in std_logic;
+	KEY       : in std_logic_vector( 3 downto 0);
+	CMOS_DATA : in std_logic_vector(9 downto 0);
+	CAM_X 	 : in integer range 0 to ((640*2)-1);
+	CAM_Y 	 : in integer range 0 to ((480*2)-1);
+    CMD      : out std_logic_vector 
+	);
+
+
+----------------------------------------------------------------------------------------
 
 component ENGINE is
     port (

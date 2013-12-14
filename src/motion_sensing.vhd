@@ -2,21 +2,19 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use ieee.numeric_std.all;
 
--- initialisation + un while Key1 qq part
-
-entity code is
+entity motion_sensing is
 	port (
 	CLOCK_25  : in std_logic;
 	CLOCK_50  : in std_logic;
 	KEY       : in std_logic_vector( 3 downto 0);
-	CMOS_DATA : in std_logic_vector(9 downto 0); -- outgoing data from camera
+	CMOS_DATA : in std_logic_vector(9 downto 0);
 	CAM_X 	 : in integer range 0 to ((640*2)-1);
 	CAM_Y 	 : in integer range 0 to ((480*2)-1);
-   CMD       : out std_logic_vector --??
+    CMD      : out std_logic_vector 
 	);
-end code;
+end motion_sensing;
 
-architecture code_arch of code is
+architecture motion_sensing_arch of motion_sensing is
 
 subtype bit_on is integer range 0 to 320*320-1;
 type somme_array is array(integer range 0 to 4, integer range 0 to 6) of bit_on;
@@ -174,4 +172,4 @@ end process;
 
 -- sortie d'un while, envoi du dplct vers la commande et remise à zéro des param
 
-end code_arch;
+end motion_sensing_arch;
