@@ -25,7 +25,7 @@ entity Rubikscam is
     VGA_G     : out std_logic_vector(9 downto 0); --Green[9:0]
     VGA_B     : out std_logic_vector(9 downto 0); --Blue[9:0]
     
-    LEDR	  : out std_logic_vector(16 downto 0);
+    LEDR	  : out std_logic_vector(17 downto 0);
 
     GPIO_1     : inout std_logic_vector(15 downto 0); -- depuis CMOS
 	GPIO_0     : out std_logic_vector(15 downto 0) -- depuis CMOS
