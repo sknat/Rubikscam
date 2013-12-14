@@ -24,9 +24,11 @@ entity Rubikscam is
     VGA_R     : out std_logic_vector(9 downto 0); --Red[9:0]
     VGA_G     : out std_logic_vector(9 downto 0); --Green[9:0]
     VGA_B     : out std_logic_vector(9 downto 0); --Blue[9:0]
+    
+    LEDR	  : out std_logic_vector(16 downto 0);
 
     GPIO_1     : inout std_logic_vector(15 downto 0); -- depuis CMOS
-	 GPIO_0     : out std_logic_vector(15 downto 0) -- depuis CMOS
+	GPIO_0     : out std_logic_vector(15 downto 0) -- depuis CMOS
     );
 end Rubikscam;
 
@@ -88,7 +90,7 @@ end component;
 -- motion sensing controler
 ----------------------------------------------------------------------------------------
 
-component motion_sensing is 
+component MOTION_SENSING is 
 	port (
 	CLOCK_25  : in std_logic;
 	CLOCK_50  : in std_logic;
@@ -100,6 +102,8 @@ component motion_sensing is
 	);
 
 
+----------------------------------------------------------------------------------------
+-- 3D Engine
 ----------------------------------------------------------------------------------------
 
 component ENGINE is
@@ -137,20 +141,41 @@ signal fill_address : integer range 0 to 262143 := 0;
 begin
 
 --PLL instance declaration
+
 pll_inst : PLL_25 PORT MAP (inclk0  => CLOCK_50, c0 => CLOCK_100, c1 => CLOCK_25, c2 => CLOCK_25d);
+
 --3D engine instance declaration
+
 engine_inst : ENGINE PORT MAP (CLOCK_25 => CLOCK_25d, 
 SCREEN_X => engine_out_x, SCREEN_Y => engine_out_y);
+
 --VGA output instance declaration
+
 vga_inst : VGA_OUT PORT MAP (CLOCK_25=>CLOCK_25d, 
 SCREEN_X => screen_x,SCREEN_Y => screen_y,
 VGA_DATA_R => vga_data_r, VGA_DATA_G => vga_data_g,VGA_DATA_B => vga_data_b, 
 VGA_CLK=>VGA_CLK, VGA_HS=>VGA_HS, VGA_VS=>VGA_VS,VGA_BLANK=>VGA_BLANK,VGA_SYNC=>VGA_SYNC,
 VGA_R => VGA_R, VGA_G => VGA_G, VGA_B => VGA_B);
+
 --CMOS driver instance declaration
+
 CMOS_LA_inst : CMOS_LA PORT MAP (CLOCK_25 => CLOCK_25, 
 KEY => KEY, SW => SW, GPIO_1 => GPIO_1,
 CMOS_DATA => CMOS_DATA_m, CAM_X => cam_x, CAM_Y => cam_y);
+
+--Motion sensing instance declaration
+
+MOTION_SENSING_inst : MOTION_SENSING PORT MAP (CLOCK_25 => CLOCK_25, CLOCK_50 => CLOCK_50, KEY => KEY, CMOS_DATA => CMOS_DATA, CAM_X => CAM_X, CAM_Y => CAM_Y, CMD => CMD);
+
+--test--
+process (CLOCK_25) 
+begin
+	if rising_edge(CLOCK_25) then
+		LEDR(to_integer(unsigned(CMD)) = 1;
+	end if;
+end process;
+
+--programme--
 
 process (CLOCK_100)
 begin

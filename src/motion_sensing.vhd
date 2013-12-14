@@ -2,19 +2,19 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity motion_sensing is
+entity MOTION_SENSING is
 	port (
 	CLOCK_25  : in std_logic;
 	CLOCK_50  : in std_logic;
-	KEY       : in std_logic_vector( 3 downto 0);
+	KEY       : in std_logic_vector(3 downto 0);
 	CMOS_DATA : in std_logic_vector(9 downto 0);
 	CAM_X 	 : in integer range 0 to ((640*2)-1);
 	CAM_Y 	 : in integer range 0 to ((480*2)-1);
-    CMD      : out std_logic_vector 
+    CMD      : out std_logic_vector (0 downto 3);
 	);
-end motion_sensing;
+end MOTION_SENSING;
 
-architecture motion_sensing_arch of motion_sensing is
+architecture MOTION_SENSING_arch of MOTION_SENSING is
 
 subtype bit_on is integer range 0 to 320*320-1;
 type somme_array is array(integer range 0 to 4, integer range 0 to 6) of bit_on;
@@ -170,6 +170,34 @@ begin
 	end if;
 end process;
 
--- sortie d'un while, envoi du dplct vers la commande et remise à zéro des param
+-- envoi du dplct vers la commande et remise à zéro des param
 
-end motion_sensing_arch;
+process (CLOCK_50)
+begin
+	if rising_edge(CLOCK_50) then
+		if dplct_gx = 0 and dplct_gy > 0 and dplct_dx = 0 and dplct_dy > 0 then
+			CMD = "0000";
+		elsif dplct_gx = 0 and dplct_gy < 0 and dplct_dx = 0 and dplct_dy < 0 then
+			CMD = "0001";
+		elsif dplct_gx > 0 and dplct_gy = 0 and dplct_dx > 0 and dplct_dy = 0 then
+			CMD = "0010";
+		elsif dplct_gx < 0 and dplct_gy = 0 and dplct_dx < 0 and dplct_dy = 0 then
+			CMD = "0011";
+		elsif dplct_gx = 0 and dplct_gy = 0 and dplct_dx = 0 and dplct_dy > 0 then
+			CMD = "0100";
+		elsif dplct_gx = 0 and dplct_gy = 0 and dplct_dx = 0 and dplct_dy < 0 then
+			CMD = "0101";
+		elsif dplct_gx = 0 and dplct_gy > 0 and dplct_dx = 0 and dplct_dy = 0 then
+			CMD = "0110";
+		elsif dplct_gx = 0 and dplct_gy < 0 and dplct_dx = 0 and dplct_dy = 0 then
+			CMD = "0111";
+		elsif dplct_gx > 0 and dplct_gy = 0 and dplct_dx = 0 and dplct_dy = 0 then
+			CMD = "1000";
+		elsif dplct_gx < 0 and dplct_gy = 0 and dplct_dx = 0 and dplct_dy = 0 then
+			CMD = "1001";
+		elsif dplct_gx = 0 and dplct_gy = 0 and dplct_dx > 0 and dplct_dy = 0 then
+			CMD = "1010";
+		elsif dplct_gx = 0 and dplct_gy = 0 and dplct_dx < 0 and dplct_dy = 0 then
+			CMD = "1011";
+
+end MOTION_SENSING_arch;
