@@ -7,10 +7,9 @@ entity ENGINE is
 	 -- CLOCK
     CLOCK_25  : in std_logic;
 	 -- material ports
-	 LEDR		  : out std_logic_vector(17 downto 0);
 	 -- program used ports
-	 SCREEN_X : out integer range 0 to 639 := 0;
-	 SCREEN_Y : out integer range 0 to 479 := 0;
+	 SCREEN_X : out integer range 0 to 639;
+	 SCREEN_Y : out integer range 0 to 479;
 	 VALID_OUT : out std_logic	 
     );
 end ENGINE;
@@ -84,8 +83,7 @@ begin
 			
 			--SCREEN_X <= to_integer(to_signed( result_screen_x ,32)(25 downto 16));
 			--SCREEN_Y <= to_integer(to_signed( result_screen_y ,32)(25 downto 16));
-			SCREEN_X <= 120;
-			SCREEN_Y <= 210;
+
 			
 			
 		end if;
@@ -93,7 +91,6 @@ begin
 	end if;	
 	
 end process;
-
-VALID_OUT <= point_reg_full;
+VALID_OUT <= '1';--point_reg_full;
 
 end ENGINE_arch;

@@ -39,9 +39,9 @@ SCREEN\_X $\left[ 0 .. 639 \right]$ et SCREEN\_Y $\left[ 0 .. 479 \right]$ sur 1
 \end{itemize}
 
 \subsubsection{Entrées : Camera CMOS}
-Concernant l'entrée par la camera, nous nous sommes fortement inspirés d'un exemple de la bibliothèque, que nous avons quasi entièrement réécrit. Il s'agit du programme de dialogue avec le CMOS, paramétrage de la caméra et formatage des données.
+Concernant l'entrée par la camera, nous nous sommes inspirés d'un exemple de la bibliothèque, que nous avons quasiment entièrement réécrit. Il s'agit du programme de dialogue avec le CMOS, paramétrage de la caméra et formatage des données.
 
-Un point particulièrement important dans l'utilisation de ce périphérique connecté au GPIO de la carte DE2 est \textbf{la gestion des horloges}. En effet, la caméra prends en entrée une horloge cadencée à 25Mhz, et retourne les données lues sur les pixels CMOS à cette même fréquence. Cependant, ce processus a une certaine durée d'exécution, surtout à cause de la présence de la nappe, et du câblage interne, qui ajoute un retard moyen de 10ns (soit $\frac{1}{4} de periode$ à 25Mhz). L'horloge générale utilisée pour le reste du circuit devra donc tenir compte de ce retard de 10ns de manière à assurer la synchronisation des données. (Voir la section Horloge pour plus de précisions)
+Un point particulièrement important dans l'utilisation de ce périphérique connecté au GPIO de la carte DE2 est \textbf{la gestion des horloges}. En effet, la caméra prends en entrée une horloge cadencée à 25Mhz, et retourne les données lues sur les pixels CMOS à cette même fréquence. Cependant, ce processus a une certaine durée d'exécution, surtout à cause de la présence de la nappe, et du câblage interne, qui ajoute un retard moyen de 10ns (soit $\frac{1}{4}$ de periode à 25Mhz). L'horloge générale utilisée pour le reste du circuit devra donc tenir compte de ce retard de 10ns de manière à assurer la synchronisation des données. (Voir la section Horloge pour plus de précisions)
 
 \includegraphics[width=300pt]{gfx/cmos_la.png}
 \begin{itemize}
@@ -66,8 +66,8 @@ $\vdots$ & $\vdots$ & $\ddots$  \\
 \end{itemize}
 
 \subsubsection{Mémoires}
-Le choix des mémoires aura posé de nombreuses difficultés, dans la mesure ou les composants présents fixent de nombreuses contraintes, et que le matériel disponible (pour les mémoires) possède également les siennes.
-On souhaite donc afficher sur la sortie VGA une figure 3D projetée dans le plan de l'écran. Les éléments qui seront donc sujet à une forte occupation mémoire, et qui ne pas se résoudre par l'utilisation de bascules sur la carte seront donc le stockage des points de cette figure et de l'affichage de l'écran si celui-ci doit être stocké dans un buffer.
+Le choix des mémoires aura posé de nombreuses difficultés, dans la mesure où les composants présents fixent de nombreuses contraintes, et que le matériel disponible (pour les mémoires) possède également les siennes.
+On souhaite donc afficher sur la sortie VGA une figure 3D projetée dans le plan de l'écran. Les éléments qui seront donc sujet à une forte occupation mémoire, et qui ne peuvent pas se résoudre par l'utilisation de bascules sur la carte seront donc le stockage des points de cette figure et de l'affichage de l'écran si celui-ci doit être stocké dans un buffer.
 
 \begin{enumerate}
 \item \textbf{Figure 3D}
@@ -96,7 +96,7 @@ $\ldots$ & $x_1$ & $y_1$ & $z_1$ & $x_2$ & $y_2$ & $z_2$ & $x_3$ & $y_3$ & $z_3$
 \begin{itemize}
 \item Ayant vu ceci, il est nécessaire de parcourir l'ensemble des M4K occupés et de traiter les points présents pour obtenir l'image à afficher à l'écran. La fréquence d'affichage des pixels étant de 25Mhz et comme il est déraisonnable d'espérer faire fonctionner la mémoire interne à plus de 100Mhz, il est impossible de compter sur un traitement temps réel : \textbf{Nécessairement les différents pixels devront être stockés en mémoire}
 
-\item Reste donc à définir une telle mémoire pour un écran de 640x480 pixels. La mémoire la plus simple d'utilisation offrant tout de même une capacité raisonnable est la SRAM. En effet, pour rentrer dans les 100 x M4K de la mémoire on-chip avec une profondeur couleur de 10bits en niveaux de gris, il faudrait se limiter à 160x120...
+\item Reste donc à définir une telle mémoire pour un écran de 640x480 pixels. La mémoire la plus simple d'utilisation offrant tout de même une capacité raisonnable est la SRAM. En effet, pour rentrer dans les 100 x M4K de la mémoire on-chip avec une profondeur de couleur de 10bits en niveaux de gris, il faudrait se limiter à 160x120...
 
 \item La SRAM permet de stocker 256 kilomots de 16 bits ce qui est largement suffisant pour une profondeur de 10bits (niveaux de gris ou couleurs réduites) sur 640x480 pixels. Cette mémoire peut également être accédée jusqu'à 100Mhz, ce qui permet une réactivité suffisante pour la sortie VGA.
 
