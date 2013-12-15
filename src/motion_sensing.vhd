@@ -20,24 +20,22 @@ subtype bit_on is integer range 0 to 320*320-1;
 type somme_array is array(integer range 0 to 4, integer range 0 to 6) of bit_on;
 signal somme : somme_array;
 signal somme_traitement : somme_array;
-signal main_s : integer range 0 to 320*320-1;
+signal main_s : integer range 0 to 320*320-1:=0;
 signal flag : std_logic := '0';
-signal x : integer range 0 to 7;
-signal main_gx : integer range 0 to 7;
-signal main_gx_prev : integer range 0 to 7;
-signal main_dx : integer range 0 to 7;
-signal main_dx_prev : integer range 0 to 7;
-signal y : integer range 0 to 5;
-signal main_gy : integer range 0 to 5;
-signal main_gy_prev : integer range 0 to 5;
-signal main_dy : integer range 0 to 5;
-signal main_dy_prev : integer range 0 to 5;
-signal trans_x : integer range 0 to 7;
-signal trans_y : integer range 0 to 5;
-signal dplct_dx : integer range 0 to 100;
-signal dplct_dy : integer range 0 to 100;
-signal dplct_gx : integer range 0 to 100;
-signal dplct_gy : integer range 0 to 100;
+signal x : integer range 0 to 7:=0;
+signal main_gx : integer range 0 to 7:=0;
+signal main_gx_prev : integer range 0 to 7:=0;
+signal main_dx : integer range 0 to 7:=0;
+signal main_dx_prev : integer range 0 to 7:=0;
+signal y : integer range 0 to 5:=0;
+signal main_gy : integer range 0 to 5:=0;
+signal main_gy_prev : integer range 0 to 5:=0;
+signal main_dy : integer range 0 to 5 :=0;
+signal main_dy_prev : integer range 0 to 5:=0;
+signal dplct_dx : integer range 0 to 100:=0;
+signal dplct_dy : integer range 0 to 100:=0;
+signal dplct_gx : integer range 0 to 100:=0;
+signal dplct_gy : integer range 0 to 100:=0;
 constant seuil : std_logic_vector(9 downto 0) := "0001000000";
 
 -- boucle de traitement des données cam en temps réel
@@ -77,7 +75,7 @@ begin
 			if flag = '0' then
 				if y < 5 then
 					if x < 7 then
-						if somme(x, y) > main_s then
+						if somme_traitement(x, y) > main_s then
 							main_gx <= x;
 							main_gy <= y;
 							main_s <= somme_traitement(x, y);
@@ -102,7 +100,7 @@ begin
 				if y < 5 then
 					if x < 7 then
 						if not (x > main_gx - 2 and x < main_gx + 2 and y > main_gy - 2 and y < main_gy + 2) then
-							if somme(x, y) > main_s then
+							if somme_traitement(x, y) > main_s then
 								main_dx <= x;
 								main_dy <= y;
 								main_s <= somme_traitement(x, y);
