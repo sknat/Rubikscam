@@ -120,16 +120,17 @@ end component;
 
 signal CLOCK_25 : std_logic;
 signal CLOCK_25d : std_logic;
-signal CLOCK_100 : std_logic;
+signal CLOCK_50d : std_logic;
 signal CMOS_DATA_m : std_logic_vector(9 downto 0);
 signal screen_x : integer range 0 to 639 := 0;
 signal screen_y : integer range 0 to 479 := 0;
 signal vga_data_r : std_logic_vector(9 downto 0);
 signal vga_data_g : std_logic_vector(9 downto 0);
 signal vga_data_b : std_logic_vector(9 downto 0);
+signal vga_in_blank : std_logic;
 signal cam_x : integer range 0 to ((640*2)-1);
 signal cam_y : integer range 0 to ((480*2)-1);
-signal rw : std_logic;
+signal rw : std_logic := '0';
 
 signal engine_out_x : integer range 0 to 639;
 signal engine_out_y : integer range 0 to 479;
@@ -148,7 +149,7 @@ begin
 
 --PLL instance declaration
 
-pll_inst : PLL_25 PORT MAP (inclk0  => CLOCK_50, c0 => CLOCK_100, c1 => CLOCK_25, c2 => CLOCK_25d);
+pll_inst : PLL_25 PORT MAP (inclk0  => CLOCK_50, c0 => CLOCK_50d, c1 => CLOCK_25, c2 => CLOCK_25d);
 
 --3D engine instance declaration
 
@@ -159,7 +160,7 @@ SCREEN_X => engine_out_x, SCREEN_Y => engine_out_y, VALID_OUT => engine_valid_ou
 vga_inst : VGA_OUT PORT MAP (CLOCK_25=>CLOCK_25d, 
 SCREEN_X => screen_x,SCREEN_Y => screen_y,
 VGA_DATA_R => vga_data_r, VGA_DATA_G => vga_data_g,VGA_DATA_B => vga_data_b, 
-VGA_CLK=>VGA_CLK, VGA_HS=>VGA_HS, VGA_VS=>VGA_VS,VGA_BLANK=>VGA_BLANK,VGA_SYNC=>VGA_SYNC,
+VGA_CLK=>VGA_CLK, VGA_HS=>VGA_HS, VGA_VS=>VGA_VS,VGA_BLANK=>vga_in_blank,VGA_SYNC=>VGA_SYNC,
 VGA_R => VGA_R, VGA_G => VGA_G, VGA_B => VGA_B);
 
 --CMOS driver instance declaration
@@ -174,34 +175,39 @@ MOTION_SENSING_inst : MOTION_SENSING PORT MAP (CLOCK_25 => CLOCK_25, CLOCK_50 =>
 KEY => KEY, CMOS_DATA => CMOS_DATA_m, CAM_X => cam_x, CAM_Y => cam_y, CMD => CMD);
 
 --test--
-process (CLOCK_25) 
-begin
-	if rising_edge(CLOCK_25) then
-		LEDR(5 downto 0) <= CMD;
-	end if;
-end process;
+
+LEDR(5 downto 0) <= CMD;
+LEDR(17) <= engine_valid_out;
 
 --programme--
 
-process (CLOCK_50)
+process (CLOCK_50d)
 begin
-	if rising_edge(CLOCK_50) then
+	if rising_edge(CLOCK_50d) then
 		rw <= not rw;
 		
 		--Reading from sram
-		if rw = '0' then
-			SRAM_WE_N <= '1';
+		if rw = '0' and vga_in_blank = '1' then
+			SRAM_WE_N <= '1' after 2ns;
 			sram_data_driver <= '0' after 2ns; --wait for the write to be effective
 
-			SRAM_ADDR <= std_logic_vector(to_unsigned( (screen_x/2) + 320 * (screen_y/2)  ,18));
-			vga_data_r(9 downto 7) <= dqr(9 downto 7);
-			vga_data_r(6 downto 0) <= "0000000";
-			vga_data_g(9 downto 7) <= dqr(6 downto 4);
-			vga_data_g(6 downto 0) <= "0000000";
-			vga_data_b(9 downto 6) <= dqr(3 downto 0);
-			vga_data_b(5 downto 0) <= "000000";
-		
-		
+			SRAM_ADDR(9 downto 0) <= std_logic_vector(to_unsigned(screen_x,10));
+			SRAM_ADDR(17 downto 10) <= std_logic_vector(to_unsigned(screen_y/2,8));
+			if screen_y mod 2 = 0 then 
+				vga_data_r(9 downto 7) <= dqr(15 downto 13);
+				vga_data_g(9 downto 8) <= dqr(12 downto 11);
+				vga_data_b(9 downto 7) <= dqr(10 downto 8);
+				vga_data_r(6 downto 0) <= (others=>'0');
+				vga_data_g(7 downto 0) <= (others=>'0');
+				vga_data_b(6 downto 0) <= (others=>'0');
+			else
+				vga_data_r(9 downto 7) <= dqr(7 downto 5);
+				vga_data_g(9 downto 8) <= dqr(4 downto 3);
+				vga_data_b(9 downto 7) <= dqr(2 downto 0);
+				vga_data_r(6 downto 0) <= (others=>'0');
+				vga_data_g(7 downto 0) <= (others=>'0');
+				vga_data_b(6 downto 0) <= (others=>'0');
+			end if;		
 		end if;		
 		--Writing to sram
 		----------------------------------------------------------
@@ -213,37 +219,40 @@ begin
 					fill_address <= fill_address + 1; 
 				else
 					fill_address <= 0;
-					--filled_sram <= '1';
+					filled_sram <= '1';
 				end if;
 				
 				SRAM_ADDR <= std_logic_vector(to_unsigned(fill_address,18));
-				if fill_address mod 2 = 0 then 
 				dqw <= "0000000000000000";
-				else 
-				dqw <= "0000000000001111";
-				end if;
+
 			elsif engine_valid_out = '1' then
 				-- draw in memory the point given by the 3D engine
-				SRAM_ADDR <= std_logic_vector(to_unsigned( (engine_out_x/2) + 320 * (engine_out_y/2) ,18));
-				dqw <= "0000001110000000"; -- pixel color for the point to be drawn.
+				--SRAM_ADDR <= std_logic_vector(to_unsigned( (engine_out_x/2) + 320 * (engine_out_y/2) ,18));
+				SRAM_ADDR(9 downto 0) <= std_logic_vector(to_unsigned(10,10));
+				SRAM_ADDR(17 downto 10) <= std_logic_vector(to_unsigned(10/2,8));
+				
+				dqw <= "1110000000011000"; -- pixel color for the point to be drawn.
 			end if;
 			SRAM_WE_N <= '0';
-			sram_data_driver <= '1';
+			sram_data_driver <= '1' after 3ns;
 		end if;
 	
 	end if;
 end process;
 
-dqr <= SRAM_DQ;
+-- inout driver for SRAM data
+dqr <= SRAM_DQ when (sram_data_driver = '0') else dqr;
 SRAM_DQ <= dqw when (sram_data_driver = '1') else "ZZZZZZZZZZZZZZZZ" ;
 		
 
---For logicport
+--For logicport analysis of the camera
 GPIO_0 <= GPIO_1;
 --Memory
 SRAM_UB_N <= '0';
 SRAM_LB_N <= '0';
 SRAM_OE_N <= '0';
 SRAM_CE_N <= '0';
+--
+VGA_BLANK <= vga_in_blank;
 
 end Rubikscam_arch;

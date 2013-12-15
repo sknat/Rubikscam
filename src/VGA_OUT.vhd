@@ -27,16 +27,16 @@ end VGA_OUT;
 architecture VGA_OUT_arch of VGA_OUT is
 
 signal v_pos : integer range 0 to 524 := 0;
+constant v_pixel_end : natural := 480;
 constant v_sync_low : natural := 493;
 constant v_sync_high : natural := 494;
-constant v_pixel_end : natural := 680;
 constant v_end : natural := 524;
 
 
-signal h_pos : integer range 0 to 795 := 0;
+signal h_pos : integer range 0 to 799 := 0;
+constant h_pixel_end : natural := 640;
 constant h_sync_low : natural := 659;
 constant h_sync_high : natural := 755;
-constant h_pixel_end : natural := 640;
 constant h_end : natural := 799;
 
 
@@ -75,8 +75,8 @@ process (CLOCK_25)
 		end if;
 end process ;
 
-SCREEN_X <= h_pos - 140;
-SCREEN_Y <= v_pos - 35;
+SCREEN_X <= h_pos when h_pos < 640 else 0;
+SCREEN_Y <= v_pos when v_pos < 480 else 0;
 
 VGA_CLK <= CLOCK_25;
 VGA_SYNC <= '0'; -- signal to keep to zero, overwise, synchronisation makes on green 

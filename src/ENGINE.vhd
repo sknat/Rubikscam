@@ -53,25 +53,22 @@ process (CLOCK_25)
 begin
 	if rising_edge(CLOCK_25) then
 		if current_point_address < 9*1 then --number of stored points
-			-- read corresponding data from memory
-			ram_rdaddress <= std_logic_vector(to_unsigned(current_point_address,10));
-			point_reg(2) <= ram_q;
-			--shift data in shiftregister
-			point_reg(0) <= point_reg(1);
-			point_reg(1) <= point_reg(2);
-			if (current_point_address mod 3) = 2 then
-				point_reg_full <= '1';
-			else
-				point_reg_full <= '0';
-			end if;
-			--increment counter
 			current_point_address <= current_point_address + 1;
 		else
 			current_point_address <= 0;
 		end if;
 		
+		if (current_point_address mod 3) = 2 then point_reg_full <= '1'; else point_reg_full <= '0'; end if;
+		
+		-- read corresponding data from memory
+		ram_rdaddress <= std_logic_vector(to_unsigned(current_point_address,10));
+		point_reg(2) <= ram_q;
+		--shift data in shiftregister
+		point_reg(0) <= point_reg(1);
+		point_reg(1) <= point_reg(2);
+		
 		--processing the triangles as soon as the register is full
-		if point_reg_full = '1' then
+		if (current_point_address mod 3) = 2 then
 			--projection on the plane x->reg(0) ; y->reg(1) ; z->reg(2)
 			---------------------------------------------------------------TODO
 			
@@ -81,8 +78,8 @@ begin
 			result_screen_y <= 480/2 + (to_integer(signed(point_reg(1)))-480/2) * (to_integer(signed(point_reg(2)))) /
 		((to_integer(signed(point_reg(2)))) + 655360);
 			
-			--SCREEN_X <= to_integer(to_signed( result_screen_x ,32)(25 downto 16));
-			--SCREEN_Y <= to_integer(to_signed( result_screen_y ,32)(25 downto 16));
+			SCREEN_X <= 100;--to_integer(to_signed( result_screen_x ,32)(25 downto 16));
+			SCREEN_Y <= 100;--to_integer(to_signed( result_screen_y ,32)(25 downto 16));
 
 			
 			
@@ -91,6 +88,6 @@ begin
 	end if;	
 	
 end process;
-VALID_OUT <= '1';--point_reg_full;
+VALID_OUT <= point_reg_full;
 
 end ENGINE_arch;
