@@ -5,8 +5,9 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage[frenchb]{babel}
 \author{Parakian Alexis, Skrzypczak Nathan}
-\title{Rubiks Cam Project PHY573a}
+\title{Rubik's Cam Project PHY573a}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -17,14 +18,14 @@
 
 \section{Présentation}
 
-
+Rubik's cam est un projet développé au cours de l'Enseignement d'Approfondissement : "Conception expérimentale micro et nanoélectronique" partie FPGA. Le but étant comme son nom l'indique, d'afficher un rubik's cube à l'écran en 3 dimensions et de le résoudre à l'aide de mouvements effectués devant la caméra. Ce projet ambitieux nécessite alors la réalisation de deux parties bien distinctes qui nous permirent de se départager le travail. Nathan Skrzypczak prit en charge la réalisation d'un moteur 3D et Alexis Parakian, celle de la détection de mouvements via la caméra.
 
 \section{Architecture}
 
 \subsection{Contexte et Entrées Sorties}
 
-
 \subsubsection{Sortie VGA}
+
 La première partie du projet à être réalisée aura été la sortie VGA. Elle l'a été sous la forme d'un composant pour plus de facilité d'utilisation. Il est contenu dans le fichier VGA\_OUT.vhd
 
 Le point à observer en particulier est la fréquence d'horloge, en effet celle-ci conditionne la conception du reste du circuit.  On cherche à cadencer le rafraichissement à 60Hz. Une trame comprends 795 colonnes et 525 lignes (pour 640x480 utiles) soit 417900 points sur l'écran. Obtenir 60Hz par trame revient alors à \textbf{cadencer les points à 25.074Mhz}. On choisira ainsi une \textbf{fréquence utile de 25Mhz} pour rester en phase avec le reste du circuit, soit 59.82Hz par frame (on commet une erreur de 0.3\% qui est admise dans la norme VGA.
@@ -119,6 +120,14 @@ La synchronisation est réalisée par un signal comptant les fronts d'horloge da
 \subsection{Acquisition}
 
 \subsection{Moteur d'affichage}
+
+\subsection{Détection de mouvement}
+
+Le programme de détection de mouvement est assez simpliste comparé à ce qui existe déjà mais l'idée principale était de faire quelque chose d'assez léger qui puisse tourner en temps réel et sans trop utiliser de mémoire (La SRAM et les M4K étant déjà mises à rude épreuves par le moteur 3D). Nous nous sommes principalement inspirés de l'algorithme de Viola et Jones de détection d'objet dans une image numérique. Cette méthode est l'une des plus connues et plus utilisées dans la détection de visages et de personnes. 
+
+Elle consiste au parcours de l'ensemble d'une image en calculant un certain nombre de caractéristiques dans des zones rectangulaires qui se chevauchent. Pour calculer rapidement et efficacement ces caractéristiques sur une image, les auteurs proposent également une nouvelle méthode, qu'ils appellent "image intégrale. C'est une représentation sous la forme d'une image de même taille que l'image d'origine, qui en chacun de ses points contient la somme des pixels situés au-dessus de lui et à sa gauche.
+
+Les caractéristiques sont calculées à toutes les positions et à toutes les échelles dans une fenêtre de détection de petite taille, typiquement de 24 x 24 pixels. 
 
 
 \end{document}
