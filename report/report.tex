@@ -50,7 +50,7 @@ Un point particulièrement important dans l'utilisation de ce périphérique con
 \item Ce composant est cadencé sur une horloge à 25Mhz (acquisition des pixels)
 \item Il sort deux signaux entiers donnant la position du pixel courant :
 
-CAM\_X $\left[ 0 .. (480*2-1) \right]$ et SCREEN\_Y $\left[ 0 .. (640*2-1) \right]$ sur 10 et 11 bits respectivement.
+CAM\_X $\left[ 0 .. (640*2-1) \right]$ et CAM\_Y $\left[ 0 .. (480*2-1) \right]$ sur 11 et 10 bits respectivement.
 \item la couleur du pixel courant est donnée par l'organisation du capteur
 
 \begin{center}
@@ -188,9 +188,39 @@ Nous nous sommes principalement inspirés de l'algorithme de Viola et Jones de d
 Elle consiste au parcours de l'ensemble d'une image en calculant un certain nombre de caractéristiques dans des zones rectangulaires qui se chevauchent. Pour calculer rapidement et efficacement ces caractéristiques sur une image, les auteurs proposent également une nouvelle méthode, qu'ils appellent "image intégrale. C'est une représentation sous la forme d'une image de même taille que l'image d'origine, qui en chacun de ses points contient la somme des pixels situés au-dessus de lui et à sa gauche.
 
 
-Les caractéristiques sont calculées à toutes les positions (LESQUELLES?) et à toutes les échelles (LESQUELLES?) dans une fenêtre de détection de petite taille, typiquement de 24 x 24 pixels. En phase de détection, l'ensemble de l'image est parcouru en déplaçant la fenêtre de détection d'un certain pas dans le sens horizontal et vertical. Les changements d'échelle se font en modifiant successivement la taille de la fenêtre de détection. Viola et Jones utilisent un facteur multiplicatif de 1,25, jusqu'à ce que la fenêtre couvre la totalité de l'image.
+Les caractéristiques sont calculées à toutes les positions et à toutes les échelles dans une fenêtre de détection de petite taille, typiquement de 24 x 24 pixels. En phase de détection, l'ensemble de l'image est parcouru en déplaçant la fenêtre de détection d'un certain pas dans le sens horizontal et vertical. Les changements d'échelle se font en modifiant successivement la taille de la fenêtre de détection. Viola et Jones utilisent un facteur multiplicatif de 1,25, jusqu'à ce que la fenêtre couvre la totalité de l'image. Les caractéristiques étant ensuite définies par machine learning sur le type d'image considéré (visage, personnes, etc.). \newpage
 
-Dans notre cas, nous avons du simplifier largement le programme afin qu'il corresponde aux contraintes temporelles de notre carte. En effet, les pixels de la caméra sont reçus en continus à une fréquence de 25MHz. Deux solutions s'offrent à nous.
+\begin{figure}
+\centering
+\includegraphics[width=200pt]{gfx/caract_VJ.png}
+\caption{Exemples de caractéristiques calculées par différences des sommes de pixels sur deux ou plusieurs zones adjacentes}
+\label{VJ}
+\end{figure}
+
+Dans notre cas, étant donné que nous ne voulions pas stocker l'intégralité de l'image et que les caractéristiques cherchées étaient moins complexes que pour la détection de visage, nous avons agi différemment : Tout d'abord nous avons simplifié le problème en se disant que l'objet à trouver serait deux mains sur un fond noir. Donc la caractéristique à trouver est une simple caractéristique de contraste. 
+
+Ensuite, le concept de parcours d'une image par une fenêtre de taille définie devait être revu car cela impliquait de sauvegarder en mémoire une image, de la traiter, puis de faire la même chose pour l'image suivante et par différence des deux de définir un mouvement. Mais comme nous ne voulions pas utiliser la mémoire et tout faire en temps réel, nous avons défini un quadrillage fixe de l'image qui contenait dans chaque fenêtre, la somme des pixels présents à l'intérieur. L'avantage étant qu'à la lecture d'un pixel, étant donné que la position était connue, il suffisait d'incrémenter les fenêtres correspondantes.
+
+Le quadrillage fut définit par une taille de fenêtre fixe de 160x160 pixels et un pas de 80 pixels, ce qui donnait 35 fenêtre à analyser sur l'image. Ce quadrillage était largement suffisant au vu des commandes à envoyer au moteur 3D : rotation du rubik's cube et rotation d'une couronne du rubik's cube soit un total de 12 commandes possibles.
+
+\begin{center}
+\includegraphics[width=310pt]{gfx/schema_motion_sensing.png}
+\end{center}
+
+\begin{enumerate}
+\item rotation du rubik's cube vers le haut
+\item rotation du rubik's cube vers le bas
+\item rotation du rubik's cub vers la gauche
+\item rotation du rubik's cube vers la droite
+\item rotation de la couronne de gauche vers le haut
+\item rotation de la couronne de gauche vers le bas
+\item rotation de la couronne de droite vers les haut
+\item rotation de la couronne de droite vers le bas
+\item rotation de la couronne du bas vers la gauche
+\item rotation de la couronne du bas vers la droite
+\item rotation de la couronne du haut vers la gauche
+\item rotation de la couronne du haut vers la droite
+\end{enumerate}
 
 \chapter{Connexion des blocs}
 

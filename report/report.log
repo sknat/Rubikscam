@@ -1,14 +1,26 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (MiKTeX 2.8) (preloaded format=pdflatex 2010.11.7)  16 DEC 2013 12:38
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  16 DEC 2013 18:08
 entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
 **report.tex
-(C:\cygwin\home\Skw\Rubikscam\report\report.tex
-LaTeX2e <2005/12/01>
-Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, ge
-rman, ngerman, german-x-2009-06-19, ngerman-x-2009-06-19, french, loaded.
-("C:\Program Files\MiKTeX 2.8\tex\latex\base\report.cls"
-Document Class: report 2005/09/16 v1.4f Standard LaTeX document class
-("C:\Program Files\MiKTeX 2.8\tex\latex\base\size10.clo"
-File: size10.clo 2005/09/16 v1.4f Standard LaTeX file (size option)
+(./report.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, ge
+rman-x-2012-05-30, ngerman-x-2012-05-30, afrikaans, ancientgreek, ibycus, arabi
+c, armenian, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danis
+h, dutch, ukenglish, usenglishmax, esperanto, estonian, ethiopic, farsi, finnis
+h, french, friulan, galician, german, ngerman, swissgerman, monogreek, greek, h
+ungarian, icelandic, assamese, bengali, gujarati, hindi, kannada, malayalam, ma
+rathi, oriya, panjabi, tamil, telugu, indonesian, interlingua, irish, italian, 
+kurmanji, latin, latvian, lithuanian, mongolian, mongolianlmc, bokmal, nynorsk,
+ polish, portuguese, romanian, romansh, russian, sanskrit, serbian, serbianc, s
+lovak, slovenian, spanish, swedish, turkish, turkmen, ukrainian, uppersorbian, 
+welsh, loaded.
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/report.cls
+Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@chapter=\count80
@@ -23,20 +35,20 @@ File: size10.clo 2005/09/16 v1.4f Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-("C:\Program Files\MiKTeX 2.8\tex\latex\base\inputenc.sty"
-Package: inputenc 2006/05/05 v1.1b Input encoding file
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2008/03/30 v1.1d Input encoding file
 \inpenc@prehook=\toks14
 \inpenc@posthook=\toks15
 
-("C:\Program Files\MiKTeX 2.8\tex\latex\base\utf8.def"
-File: utf8.def 2006/03/30 v1.1i UTF-8 support for inputenc
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/utf8.def
+File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
 Now handling font encoding OML ...
 ... no UTF-8 mapping file for font encoding OML
 Now handling font encoding T1 ...
-... processing UTF-8 mapping file for font encodingT1
+... processing UTF-8 mapping file for font encoding T1
 
-("C:\Program Files\MiKTeX 2.8\tex\latex\base\t1enc.dfu"
-File: t1enc.dfu 2006/03/30 v1.1i UTF-8 support for inputenc
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/t1enc.dfu
+File: t1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
    defining Unicode char U+00AB (decimal 171)
@@ -183,10 +195,10 @@ File: t1enc.dfu 2006/03/30 v1.1i UTF-8 support for inputenc
    defining Unicode char U+2423 (decimal 9251)
 )
 Now handling font encoding OT1 ...
-... processing UTF-8 mapping file for font encodingOT1
+... processing UTF-8 mapping file for font encoding OT1
 
-("C:\Program Files\MiKTeX 2.8\tex\latex\base\ot1enc.dfu"
-File: ot1enc.dfu 2006/03/30 v1.1i UTF-8 support for inputenc
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/ot1enc.dfu
+File: ot1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
    defining Unicode char U+00B8 (decimal 184)
@@ -214,10 +226,10 @@ File: ot1enc.dfu 2006/03/30 v1.1i UTF-8 support for inputenc
    defining Unicode char U+201D (decimal 8221)
 )
 Now handling font encoding OMS ...
-... processing UTF-8 mapping file for font encodingOMS
+... processing UTF-8 mapping file for font encoding OMS
 
-("C:\Program Files\MiKTeX 2.8\tex\latex\base\omsenc.dfu"
-File: omsenc.dfu 2006/03/30 v1.1i UTF-8 support for inputenc
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/omsenc.dfu
+File: omsenc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
    defining Unicode char U+00A7 (decimal 167)
    defining Unicode char U+00B6 (decimal 182)
    defining Unicode char U+00B7 (decimal 183)
@@ -240,24 +252,24 @@ Now handling font encoding U ...
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
 ))
-("C:\Program Files\MiKTeX 2.8\tex\latex\ams\math\amsmath.sty"
+(/usr/local/texlive/2012/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2000/07/18 v2.13 AMS math features
 \@mathmargin=\skip43
 
 For additional information on amsmath, use the `?' option.
-("C:\Program Files\MiKTeX 2.8\tex\latex\ams\math\amstext.sty"
+(/usr/local/texlive/2012/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01
 
-("C:\Program Files\MiKTeX 2.8\tex\latex\ams\math\amsgen.sty"
+(/usr/local/texlive/2012/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks16
 \ex@=\dimen103
 ))
-("C:\Program Files\MiKTeX 2.8\tex\latex\ams\math\amsbsy.sty"
+(/usr/local/texlive/2012/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
 \pmbraise@=\dimen104
 )
-("C:\Program Files\MiKTeX 2.8\tex\latex\ams\math\amsopn.sty"
+(/usr/local/texlive/2012/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
 \inf@bad=\count88
@@ -298,62 +310,63 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
 LaTeX Info: Redefining \[ on input line 2666.
 LaTeX Info: Redefining \] on input line 2667.
 )
-("C:\Program Files\MiKTeX 2.8\tex\latex\amsfonts\amsfonts.sty"
+(/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
 )
-("C:\Program Files\MiKTeX 2.8\tex\latex\amsfonts\amssymb.sty"
+(/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2009/06/22 v3.00
 )
-("C:\Program Files\MiKTeX 2.8\tex\latex\graphics\graphicx.sty"
+(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
-("C:\Program Files\MiKTeX 2.8\tex\latex\graphics\keyval.sty"
+(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks21
 )
-("C:\Program Files\MiKTeX 2.8\tex\latex\graphics\graphics.sty"
-Package: graphics 2006/02/20 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
-("C:\Program Files\MiKTeX 2.8\tex\latex\graphics\trig.sty"
+(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-("C:\Program Files\MiKTeX 2.8\tex\latex\00miktex\graphics.cfg"
-File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+(/usr/local/texlive/2012/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
-Package graphics Info: Driver file: pdftex.def on input line 90.
+Package graphics Info: Driver file: pdftex.def on input line 91.
 
-("C:\Program Files\MiKTeX 2.8\tex\latex\pdftex-def\pdftex.def"
-File: pdftex.def 2009/08/25 v0.04m Graphics/color for pdfTeX
+(/usr/local/texlive/2012/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
 \Gread@gobject=\count100
 ))
 \Gin@req@height=\dimen112
 \Gin@req@width=\dimen113
 )
-("C:\Program Files\MiKTeX 2.8\tex\generic\babel\babel.sty"
-Package: babel 2008/07/06 v3.8l The Babel package
+(/usr/local/texlive/2012/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2008/07/08 v3.8m The Babel package
 
-*************************************
-* Local config file bblopts.cfg used
-*
-("C:\Program Files\MiKTeX 2.8\tex\latex\00miktex\bblopts.cfg"
-File: bblopts.cfg 2006/07/31 v1.0 MiKTeX 'babel' configuration
-)
-("C:\Program Files\MiKTeX 2.8\tex\generic\babel\frenchb.ldf"
-Language: frenchb 2008/05/08 v2.2a French support from the babel system
+(/usr/local/texlive/2012/texmf-dist/tex/generic/babel/frenchb.ldf
+Language: frenchb 2010/08/21 v2.5a French support from the babel system
 
-("C:\Program Files\MiKTeX 2.8\tex\generic\babel\babel.def"
-File: babel.def 2008/07/06 v3.8l Babel common definitions
+(/usr/local/texlive/2012/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2008/07/08 v3.8m Babel common definitions
 \babel@savecnt=\count101
 \U@D=\dimen114
 )
-Package babel Info: Making : an active character on input line 119.
-Package babel Info: Making ; an active character on input line 120.
-Package babel Info: Making ! an active character on input line 121.
-Package babel Info: Making ? an active character on input line 122.
+Package babel Info: Making : an active character on input line 234.
+Package babel Info: Making ; an active character on input line 235.
+Package babel Info: Making ! an active character on input line 236.
+Package babel Info: Making ? an active character on input line 237.
 \FB@Mht=\dimen115
 \std@mcc=\count102
 \dec@mcc=\count103
@@ -362,9 +375,11 @@ Package babel Info: Making ? an active character on input line 122.
 *************************************
 * Local config file frenchb.cfg used
 *
-("C:\Program Files\MiKTeX 2.8\tex\generic\babel\frenchb.cfg")))
-("C:\Program Files\MiKTeX 2.8\tex\latex\carlisle\scalefnt.sty")
-(C:\cygwin\home\Skw\Rubikscam\report\report.aux)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/babel/frenchb.cfg)))
+(/usr/local/texlive/2012/texmf-dist/tex/latex/carlisle/scalefnt.sty)
+(./report.aux)
+\openout1 = `report.aux'.
+
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
 LaTeX Font Info:    ... okay on input line 10.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
@@ -378,7 +393,7 @@ LaTeX Font Info:    ... okay on input line 10.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
 LaTeX Font Info:    ... okay on input line 10.
 
-("C:\Program Files\MiKTeX 2.8\tex\context\base\supp-pdf.tex"
+(/usr/local/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count104
 \scratchdimen=\dimen117
@@ -389,8 +404,56 @@ LaTeX Font Info:    ... okay on input line 10.
 \MPscratchCnt=\count107
 \MPscratchDim=\dimen118
 \MPnumerator=\count108
+\makeMPintoPDFobject=\count109
 \everyMPtoPDFconversion=\toks23
+) (/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
+
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+))
+(/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
 LaTeX Info: Redefining \degres on input line 10.
 LaTeX Info: Redefining \dots on input line 10.
 LaTeX Info: Redefining \up on input line 10.
@@ -401,19 +464,22 @@ Package frenchb.ldf Warning: OT1 encoding should not be used for French.
 (frenchb.ldf)                of your document, on input line 10.
 
 LaTeX Font Info:    Try loading font information for U+msa on input line 11.
-("C:\Program Files\MiKTeX 2.8\tex\latex\amsfonts\umsa.fd"
+(/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 11.
 
-("C:\Program Files\MiKTeX 2.8\tex\latex\amsfonts\umsb.fd"
+(/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 ) [1
 
-{C:/ProgramData/MiKTeX/2.8/pdftex/config/pdftex.map}] [1]
-(C:\cygwin\home\Skw\Rubikscam\report\report.toc)
+{/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [1] (./
+report.toc)
 \tf@toc=\write3
- [1
+\openout3 = `report.toc'.
+
+
+[1
 
 ]
 Chapitre 1.
@@ -421,68 +487,102 @@ Chapitre 1.
 
 ]
 Chapitre 2.
-<gfx/vga_out.png, id=19, 803.0pt x 602.25pt>
+<gfx/vga_out.png, id=20, 803.0pt x 602.25pt>
 File: gfx/vga_out.png Graphic file (type png)
- <use gfx/vga_out.png> [3
+ <use gfx/vga_out.png>
+Package pdftex.def Info: gfx/vga_out.png used on input line 32.
+(pdftex.def)             Requested size: 300.0pt x 225.00694pt.
+ [3
 
- <C:/cygwin/home/Skw/Rubikscam/report/gfx/vga_out.png (PNG copy)>]
-<gfx/cmos_la.png, id=23, 803.0pt x 602.25pt>
+ <./gfx/vga_out.png (PNG copy)>] <gfx/cmos_la.png, id=24, 803.0pt x 602.25pt>
 File: gfx/cmos_la.png Graphic file (type png)
- <use gfx/cmos_la.png> [4 <C:/cygwin/home/Skw/Rubikscam/report/gfx/cmos_la.png 
-(PNG copy)>] [5]
-<gfx/clock.png, id=37, 767.86874pt x 301.125pt>
+
+<use gfx/cmos_la.png>
+Package pdftex.def Info: gfx/cmos_la.png used on input line 47.
+(pdftex.def)             Requested size: 300.0pt x 225.00694pt.
+ [4 <./gfx/cmos_la.png (PNG copy)>] [5]
+<gfx/clock.png, id=38, 767.86874pt x 301.125pt>
 File: gfx/clock.png Graphic file (type png)
- <use gfx/clock.png> [6]
-<gfx/proj.png, id=42, 1204.5pt x 1204.5pt>
+ <use gfx/clock.png>
+Package pdftex.def Info: gfx/clock.png used on input line 132.
+(pdftex.def)             Requested size: 300.0pt x 117.64963pt.
+ [6]
+<gfx/proj.png, id=43, 1204.5pt x 1204.5pt>
 File: gfx/proj.png Graphic file (type png)
- <use gfx/proj.png> [7 <C:/cygwin/home/Skw/Rubikscam/report/gfx/clock.png (PNG 
-copy)>]
-<gfx/engine.png, id=47, 803.0pt x 602.25pt>
+ <use gfx/proj.png>
+Package pdftex.def Info: gfx/proj.png used on input line 159.
+(pdftex.def)             Requested size: 300.0pt x 300.00313pt.
+ [7 <./gfx/clock.png (PNG copy)>] <gfx/engine.png, id=48, 803.0pt x 602.25pt>
 File: gfx/engine.png Graphic file (type png)
- <use gfx/engine.png> [8 <C:/cygwin/home/Skw/Rubikscam/report/gfx/proj.png (PNG
- copy)>] [9 <C:/cygwin/home/Skw/Rubikscam/report/gfx/engine.png (PNG copy)>]
+
+<use gfx/engine.png>
+Package pdftex.def Info: gfx/engine.png used on input line 174.
+(pdftex.def)             Requested size: 300.0pt x 225.00694pt.
+ [8 <./gfx/proj.png (PNG copy)>] [9 <./gfx/engine.png (PNG copy)>] <gfx/caract_
+VJ.png, id=55, 2007.5pt x 652.4375pt>
+File: gfx/caract_VJ.png Graphic file (type png)
+
+<use gfx/caract_VJ.png>
+Package pdftex.def Info: gfx/caract_VJ.png used on input line 190.
+(pdftex.def)             Requested size: 200.0pt x 64.99867pt.
+
+<gfx/schema_motion_sensing.png, id=57, 455.7025pt x 341.275pt>
+File: gfx/schema_motion_sensing.png Graphic file (type png)
+
+<use gfx/schema_motion_sensing.png>
+Package pdftex.def Info: gfx/schema_motion_sensing.png used on input line 202.
+(pdftex.def)             Requested size: 310.0pt x 232.16286pt.
+ [10 <./gfx/caract_VJ.png> <./gfx/schema_motion_sensing.png>] [11]
 Chapitre 3.
-[10
+[12
 
 ]
 Chapitre 4.
-<gfx/sram.png, id=57, 803.0pt x 602.25pt>
+<gfx/sram.png, id=70, 803.0pt x 602.25pt>
 File: gfx/sram.png Graphic file (type png)
- <use gfx/sram.png> [11
+ <use gfx/sram.png>
+Package pdftex.def Info: gfx/sram.png used on input line 234.
+(pdftex.def)             Requested size: 300.0pt x 225.00694pt.
+ [13
 
 ]
-<gfx/pong.png, id=62, 803.0pt x 602.25pt>
+<gfx/pong.png, id=74, 803.0pt x 602.25pt>
 File: gfx/pong.png Graphic file (type png)
- <use gfx/pong.png> [12 <C:/cygwin/home/Skw/Rubikscam/report/gfx/sram.png (PNG 
-copy)>] [13 <C:/cygwin/home/Skw/Rubikscam/report/gfx/pong.png (PNG copy)>]
+ <use gfx/pong.png>
+Package pdftex.def Info: gfx/pong.png used on input line 244.
+(pdftex.def)             Requested size: 300.0pt x 225.00694pt.
+ [14 <./gfx/sram.png (PNG copy)>] [15 <./gfx/pong.png (PNG copy)>]
 Chapitre 5.
-[14
+[16
 
-] (C:\cygwin\home\Skw\Rubikscam\report\report.aux) ) 
+] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 2730 strings out of 495285
- 33202 string characters out of 3180400
- 95462 words of memory out of 3000000
- 5896 multiletter control sequences out of 15000+200000
- 13420 words of font info for 51 fonts, out of 3000000 for 9000
- 14 hyphenation exceptions out of 8191
- 27i,10n,24p,1049b,289s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.
-8/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.8/fonts/
-type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.8/fonts/type1/pu
-blic/amsfonts/cm/cmbxti10.pfb><C:/Program Files/MiKTeX 2.8/fonts/type1/public/a
-msfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.8/fonts/type1/public/amsfonts/
-cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.8/fonts/type1/public/amsfonts/cm/cmmi7
-.pfb><C:/Program Files/MiKTeX 2.8/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/
-Program Files/MiKTeX 2.8/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program F
-iles/MiKTeX 2.8/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKT
-eX 2.8/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.8/fon
-ts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.8/fonts/type1
-/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.8/fonts/type1/public/a
-msfonts/cm/cmti10.pfb>
-Output written on report.pdf (16 pages, 356516 bytes).
+ 3358 strings out of 493488
+ 44121 string characters out of 3141326
+ 108056 words of memory out of 3000000
+ 6592 multiletter control sequences out of 15000+200000
+ 13721 words of font info for 52 fonts, out of 3000000 for 9000
+ 957 hyphenation exceptions out of 8191
+ 38i,10n,24p,1049b,289s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmbx10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmbx12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmbxti10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmcsc10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmex10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmmi10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmmi7.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+17.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.
+pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.p
+fb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
+></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+
+Output written on report.pdf (18 pages, 384422 bytes).
 PDF statistics:
- 113 PDF objects out of 1000 (max. 8388607)
+ 129 PDF objects out of 1000 (max. 8388607)
+ 84 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 36 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -8,12 +8,12 @@
 \contentsline {subsection}{\numberline {2.1.4}Horloge}{6}
 \contentsline {section}{\numberline {2.2}Moteur d'affichage}{7}
 \contentsline {section}{\numberline {2.3}D\IeC {\'e}tection de mouvement}{9}
-\contentsline {chapter}{\numberline {3}Connexion des blocs}{10}
-\contentsline {chapter}{\numberline {4}Difficult\IeC {\'e}s}{11}
-\contentsline {section}{\numberline {4.1}Bus SRAM}{11}
-\contentsline {section}{\numberline {4.2}Developpement d'un "Pong" de test}{12}
-\contentsline {chapter}{\numberline {5}Possibilit\IeC {\'e}s d'am\IeC {\'e}lioration}{14}
-\contentsline {section}{\numberline {5.1}M\IeC {\'e}moires}{14}
-\contentsline {section}{\numberline {5.2}Affichage}{14}
-\contentsline {section}{\numberline {5.3}Acquisition}{14}
-\contentsline {section}{\numberline {5.4}Reconnaissance des formes}{14}
+\contentsline {chapter}{\numberline {3}Connexion des blocs}{12}
+\contentsline {chapter}{\numberline {4}Difficult\IeC {\'e}s}{13}
+\contentsline {section}{\numberline {4.1}Bus SRAM}{13}
+\contentsline {section}{\numberline {4.2}Developpement d'un "Pong" de test}{14}
+\contentsline {chapter}{\numberline {5}Possibilit\IeC {\'e}s d'am\IeC {\'e}lioration}{16}
+\contentsline {section}{\numberline {5.1}M\IeC {\'e}moires}{16}
+\contentsline {section}{\numberline {5.2}Affichage}{16}
+\contentsline {section}{\numberline {5.3}Acquisition}{16}
+\contentsline {section}{\numberline {5.4}Reconnaissance des formes}{16}
