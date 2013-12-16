@@ -176,11 +176,16 @@ Ceci donne un composant chargé des calculs de la forme ci-dessous, avec une sor
 
 \section{Détection de mouvement}
 
-Le programme de détection de mouvement est assez simpliste comparé à ce qui existe déjà mais l'idée principale était de faire quelque chose d'assez léger qui puisse tourner en temps réel et sans trop utiliser de mémoire (La SRAM et les M4K étant déjà mises à rude épreuves par le moteur 3D). Nous nous sommes principalement inspirés de l'algorithme de Viola et Jones de détection d'objet dans une image numérique. Cette méthode est l'une des plus connues et plus utilisées dans la détection de visages et de personnes. 
+Le programme de détection de mouvement est assez simpliste comparé à ce qui existe déjà mais l'idée principale était de faire quelque chose d'assez léger qui puisse tourner en temps réel et sans trop utiliser de mémoire (La SRAM et les M4K étant déjà mises à rude épreuves par le moteur 3D). 
+
+Nous nous sommes principalement inspirés de l'algorithme de Viola et Jones de détection d'objet dans une image numérique. Cette méthode est l'une des plus connues et plus utilisées dans la détection de visages et de personnes. 
 
 Elle consiste au parcours de l'ensemble d'une image en calculant un certain nombre de caractéristiques dans des zones rectangulaires qui se chevauchent. Pour calculer rapidement et efficacement ces caractéristiques sur une image, les auteurs proposent également une nouvelle méthode, qu'ils appellent "image intégrale. C'est une représentation sous la forme d'une image de même taille que l'image d'origine, qui en chacun de ses points contient la somme des pixels situés au-dessus de lui et à sa gauche.
 
-Les caractéristiques sont calculées à toutes les positions (LESQUELLES?) et à toutes les échelles (LESQUELLES?) dans une fenêtre de détection de petite taille, typiquement de 24 x 24 pixels. 
+
+Les caractéristiques sont calculées à toutes les positions (LESQUELLES?) et à toutes les échelles (LESQUELLES?) dans une fenêtre de détection de petite taille, typiquement de 24 x 24 pixels. En phase de détection, l'ensemble de l'image est parcouru en déplaçant la fenêtre de détection d'un certain pas dans le sens horizontal et vertical. Les changements d'échelle se font en modifiant successivement la taille de la fenêtre de détection. Viola et Jones utilisent un facteur multiplicatif de 1,25, jusqu'à ce que la fenêtre couvre la totalité de l'image.
+
+Dans notre cas, nous avons du simplifier largement le programme afin qu'il corresponde aux contraintes temporelles de notre carte. En effet, les pixels de la caméra sont reçus en continus à une fréquence de 25MHz. Deux solutions s'offrent à nous.
 
 \chapter{Connexion des blocs}
 
