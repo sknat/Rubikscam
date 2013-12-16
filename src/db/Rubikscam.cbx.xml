@@ -1,6 +1,9 @@
 <?xml version="1.0" ?>
 <LOG_ROOT>
 	<PROJECT NAME="Rubikscam">
+		<CBX_INST_ENTRY INSTANCE_NAME="|Rubikscam|ENGINE:engine_inst|lpm_divide:Mod0" CBX_FILE_NAME="lpm_divide_q7m.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|Rubikscam|ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_4vr1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|lpm_divide:Div0" CBX_FILE_NAME="lpm_divide_fem.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|lpm_divide:Div1" CBX_FILE_NAME="lpm_divide_eem.tdf"/>
 	</PROJECT>
 </LOG_ROOT>

@@ -138,13 +138,14 @@ signal engine_valid_out : std_logic;
 
 signal dqr : std_logic_vector(15 downto 0);
 signal dqw : std_logic_vector(15 downto 0);
-signal sram_data_driver : std_logic := '0';
+signal sram_data_write_driver : std_logic := '0';
+signal sram_data_read_driver : std_logic := '0';
 
-signal filled_sram : std_logic := '0';
+signal filled_sram : std_logic := '1';
 signal fill_address : integer range 0 to 262143 := 0;
 
 signal CMD : std_logic_vector (5 downto 0);
-
+signal SRAM_WE_N_cp : std_logic;
 begin
 
 --PLL instance declaration
@@ -175,9 +176,12 @@ MOTION_SENSING_inst : MOTION_SENSING PORT MAP (CLOCK_25 => CLOCK_25, CLOCK_50 =>
 KEY => KEY, CMOS_DATA => CMOS_DATA_m, CAM_X => cam_x, CAM_Y => cam_y, CMD => CMD);
 
 --test--
-
+SRAM_WE_N <= SRAM_WE_N_cp;
 LEDR(5 downto 0) <= CMD;
 LEDR(17) <= engine_valid_out;
+LEDR(16) <= SRAM_WE_N_cp;
+LEDR(15) <= sram_data_read_driver;
+LEDR(14) <= sram_data_write_driver;
 
 --programme--
 
@@ -188,26 +192,24 @@ begin
 		
 		--Reading from sram
 		if rw = '0' and vga_in_blank = '1' then
-			SRAM_WE_N <= '1' after 2ns;
-			sram_data_driver <= '0' after 2ns; --wait for the write to be effective
-
+			SRAM_WE_N_cp <= '1';
+			sram_data_write_driver <= '0';-- after 2ns; --wait for the write to be effective
+			sram_data_read_driver <= '1' after 10ns;
+			
 			SRAM_ADDR(9 downto 0) <= std_logic_vector(to_unsigned(screen_x,10));
 			SRAM_ADDR(17 downto 10) <= std_logic_vector(to_unsigned(screen_y/2,8));
 			if screen_y mod 2 = 0 then 
 				vga_data_r(9 downto 7) <= dqr(15 downto 13);
 				vga_data_g(9 downto 8) <= dqr(12 downto 11);
 				vga_data_b(9 downto 7) <= dqr(10 downto 8);
-				vga_data_r(6 downto 0) <= (others=>'0');
-				vga_data_g(7 downto 0) <= (others=>'0');
-				vga_data_b(6 downto 0) <= (others=>'0');
 			else
 				vga_data_r(9 downto 7) <= dqr(7 downto 5);
 				vga_data_g(9 downto 8) <= dqr(4 downto 3);
 				vga_data_b(9 downto 7) <= dqr(2 downto 0);
+			end if;
 				vga_data_r(6 downto 0) <= (others=>'0');
 				vga_data_g(7 downto 0) <= (others=>'0');
 				vga_data_b(6 downto 0) <= (others=>'0');
-			end if;		
 		end if;		
 		--Writing to sram
 		----------------------------------------------------------
@@ -233,16 +235,17 @@ begin
 				
 				dqw <= "1110000000011000"; -- pixel color for the point to be drawn.
 			end if;
-			SRAM_WE_N <= '0';
-			sram_data_driver <= '1' after 3ns;
+			SRAM_WE_N_cp <= '0';
+			sram_data_write_driver <= '1';
+			sram_data_read_driver <= '0';
 		end if;
 	
 	end if;
 end process;
 
 -- inout driver for SRAM data
-dqr <= SRAM_DQ when (sram_data_driver = '0') else dqr;
-SRAM_DQ <= dqw when (sram_data_driver = '1') else "ZZZZZZZZZZZZZZZZ" ;
+dqr <= SRAM_DQ when (sram_data_read_driver = '1') else dqr;
+SRAM_DQ <= dqw when (sram_data_write_driver = '1') else "ZZZZZZZZZZZZZZZZ" ;
 		
 
 --For logicport analysis of the camera

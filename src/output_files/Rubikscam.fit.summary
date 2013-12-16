@@ -1,15 +1,15 @@
-Fitter Status : Successful - Fri Dec 13 18:01:58 2013
-Quartus II 32-bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Full Version
+Fitter Status : Successful - Mon Dec 16 10:27:28 2013
+Quartus II 32-bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition
 Revision Name : Rubikscam
 Top-level Entity Name : Rubikscam
 Family : Cyclone II
 Device : EP2C35F672C6
 Timing Models : Final
-Total logic elements : 304 / 33,216 ( < 1 % )
-    Total combinational functions : 256 / 33,216 ( < 1 % )
-    Dedicated logic registers : 158 / 33,216 ( < 1 % )
-Total registers : 158
-Total pins : 127 / 475 ( 27 % )
+Total logic elements : 5,145 / 33,216 ( 15 % )
+    Total combinational functions : 4,700 / 33,216 ( 14 % )
+    Dedicated logic registers : 2,164 / 33,216 ( 7 % )
+Total registers : 2164
+Total pins : 145 / 475 ( 31 % )
 Total virtual pins : 0
 Total memory bits : 0 / 483,840 ( 0 % )
 Embedded Multiplier 9-bit elements : 0 / 70 ( 0 % )

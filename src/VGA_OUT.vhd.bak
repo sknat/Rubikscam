@@ -16,55 +16,69 @@ entity VGA_OUT is
     VGA_G     : out std_logic_vector(9 downto 0); --Green[9:0]
     VGA_B     : out std_logic_vector(9 downto 0); --Blue[9:0]
 	 -- program used ports
-	 SCREEN_X  : out integer range 0 to 524 := 0;
-	 SCREEN_Y  : out integer range 0 to 795 := 0;
+	 SCREEN_X  : out integer range 0 to 639 := 0;
+	 SCREEN_Y  : out integer range 0 to 479 := 0;
 	 VGA_DATA_R : in std_logic_vector(9 downto 0);
 	 VGA_DATA_G : in std_logic_vector(9 downto 0);
-	 VGA_DATA_B : in std_logic_vector(9 downto 0);
+	 VGA_DATA_B : in std_logic_vector(9 downto 0)
     );
 end VGA_OUT;
 
 architecture VGA_OUT_arch of VGA_OUT is
 
-signal screen_pos_y : integer range 0 to 524 := 0;
-signal screen_pos_x : integer range 0 to 795 := 0;
+signal v_pos : integer range 0 to 524 := 0;
+constant v_pixel_end : natural := 480;
+constant v_sync_low : natural := 493;
+constant v_sync_high : natural := 494;
+constant v_end : natural := 524;
+
+
+signal h_pos : integer range 0 to 799 := 0;
+constant h_pixel_end : natural := 640;
+constant h_sync_low : natural := 659;
+constant h_sync_high : natural := 755;
+constant h_end : natural := 799;
+
 
 begin
-
 process (CLOCK_25)
-begin
+	begin
 	 	if rising_edge(CLOCK_25) then
-			screen_pos_x <= screen_pos_x + 1;
+			--count pixels
+			if h_pos < h_end then
+				h_pos <= h_pos + 1;
+			else
+				-- end of line
+				h_pos <= 0;
+				if v_pos < v_end then
+					v_pos <= v_pos + 1;
+				else
+					-- end of screen
+					v_pos <= 0;
+				end if;				
+			end if;
+			
+			-- synchronisation signals generation
+			if h_sync_low <= h_pos and h_pos <= h_sync_high then VGA_HS <= '0'; else VGA_HS <= '1'; end if;
+			if v_sync_low <= v_pos and v_pos <= v_sync_high then VGA_VS <= '0'; else VGA_VS <= '1'; end if;
+			
 			-- update pixel
-			if screen_pos_x = 0 then VGA_HS <= '0'; end if;
-			if screen_pos_x = 95 then VGA_HS <= '1'; end if;
-			if screen_pos_x = 139 and screen_pos_y > 34 and screen_pos_y < 514 then VGA_BLANK <= '1'; end if;
-			if screen_pos_x > 139 and screen_pos_x < 780 and screen_pos_y > 34 and screen_pos_y < 514 then 
-				-- write pixels
+			if h_pos < h_pixel_end and v_pos < v_pixel_end then 
 				VGA_B <= VGA_DATA_B;
 				VGA_R <= VGA_DATA_R;
 				VGA_G <= VGA_DATA_G;
-				-- end of pixel writing
+				VGA_BLANK <= '1';
+			else
+				VGA_BLANK <= '0';
 			end if;
-			if screen_pos_x = 780 then VGA_BLANK <= '0'; end if;
-		
-		if screen_pos_x = 795 then
-			if screen_pos_y = 0 then VGA_VS <= '0'; end if;
-			if screen_pos_y = 2 then VGA_VS <= '1'; end if;
-			screen_pos_y <= screen_pos_y + 1;
-			screen_pos_x <= 0;
-			-- end of line
+			
 		end if;
-		
-		if screen_pos_y = 524 then 
-			screen_pos_y <= 0;
-			-- end of screen
-		end if;
-		
-
-	end if;
 end process ;
 
+SCREEN_X <= h_pos;
+SCREEN_Y <= v_pos;
+
 VGA_CLK <= CLOCK_25;
+VGA_SYNC <= '0'; -- signal to keep to zero, overwise, synchronisation makes on green 
 
 end VGA_OUT_arch;

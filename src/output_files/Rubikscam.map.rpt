@@ -1,6 +1,6 @@
 Analysis & Synthesis report for Rubikscam
-Fri Dec 13 18:01:40 2013
-Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
+Mon Dec 16 10:25:42 2013
+Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
 ---------------------
@@ -15,22 +15,24 @@ Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Ver
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Analysis & Synthesis IP Cores Summary
   9. State Machine - |Rubikscam|CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|mSetup_ST
- 10. Registers Removed During Synthesis
- 11. Removed Registers Triggering Further Register Optimizations
- 12. General Register Statistics
- 13. Inverted Register Statistics
- 14. Multiplexer Restructuring Statistics (Restructuring Performed)
- 15. Source assignments for ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated
- 16. Parameter Settings for User Entity Instance: PLL_25:pll_inst|altpll:altpll_component
- 17. Parameter Settings for User Entity Instance: ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component
- 18. altpll Parameter Settings by Entity Instance
- 19. altsyncram Parameter Settings by Entity Instance
- 20. Port Connectivity Checks: "CMOS_LA:CMOS_LA_inst"
- 21. Port Connectivity Checks: "VGA_OUT:vga_inst"
- 22. Port Connectivity Checks: "ENGINE:engine_inst|triangle_ram:triangle_ram_inst"
- 23. Port Connectivity Checks: "ENGINE:engine_inst"
- 24. Elapsed Time Per Partition
- 25. Analysis & Synthesis Messages
+ 10. User-Specified and Inferred Latches
+ 11. Registers Removed During Synthesis
+ 12. Removed Registers Triggering Further Register Optimizations
+ 13. General Register Statistics
+ 14. Inverted Register Statistics
+ 15. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 16. Source assignments for ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated
+ 17. Parameter Settings for User Entity Instance: PLL_25:pll_inst|altpll:altpll_component
+ 18. Parameter Settings for User Entity Instance: ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component
+ 19. Parameter Settings for Inferred Entity Instance: ENGINE:engine_inst|lpm_divide:Mod0
+ 20. Parameter Settings for Inferred Entity Instance: MOTION_SENSING:MOTION_SENSING_inst|lpm_divide:Div0
+ 21. Parameter Settings for Inferred Entity Instance: MOTION_SENSING:MOTION_SENSING_inst|lpm_divide:Div1
+ 22. altpll Parameter Settings by Entity Instance
+ 23. altsyncram Parameter Settings by Entity Instance
+ 24. Port Connectivity Checks: "ENGINE:engine_inst|triangle_ram:triangle_ram_inst"
+ 25. Port Connectivity Checks: "ENGINE:engine_inst"
+ 26. Elapsed Time Per Partition
+ 27. Analysis & Synthesis Messages
 
 
 
@@ -53,24 +55,24 @@ applicable agreement for further details.
 
 
 
-+---------------------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                                          ;
-+------------------------------------+--------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Dec 13 18:01:40 2013            ;
-; Quartus II 32-bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Full Version ;
-; Revision Name                      ; Rubikscam                                        ;
-; Top-level Entity Name              ; Rubikscam                                        ;
-; Family                             ; Cyclone II                                       ;
-; Total logic elements               ; 311                                              ;
-;     Total combinational functions  ; 256                                              ;
-;     Dedicated logic registers      ; 158                                              ;
-; Total registers                    ; 158                                              ;
-; Total pins                         ; 127                                              ;
-; Total virtual pins                 ; 0                                                ;
-; Total memory bits                  ; 0                                                ;
-; Embedded Multiplier 9-bit elements ; 0                                                ;
-; Total PLLs                         ; 1                                                ;
-+------------------------------------+--------------------------------------------------+
++--------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                         ;
++------------------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Mon Dec 16 10:25:42 2013           ;
+; Quartus II 32-bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
+; Revision Name                      ; Rubikscam                                       ;
+; Top-level Entity Name              ; Rubikscam                                       ;
+; Family                             ; Cyclone II                                      ;
+; Total logic elements               ; 5,713                                           ;
+;     Total combinational functions  ; 4,700                                           ;
+;     Dedicated logic registers      ; 2,164                                           ;
+; Total registers                    ; 2164                                            ;
+; Total pins                         ; 145                                             ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 0                                               ;
+; Embedded Multiplier 9-bit elements ; 0                                               ;
+; Total PLLs                         ; 1                                               ;
++------------------------------------+-------------------------------------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------+
@@ -158,21 +160,15 @@ applicable agreement for further details.
 +----------------------------------------------------------------------------+--------------------+--------------------+
 
 
-+------------------------------------------+
-; Parallel Compilation                     ;
-+----------------------------+-------------+
-; Processors                 ; Number      ;
-+----------------------------+-------------+
-; Number detected on machine ; 2           ;
-; Maximum allowed            ; 2           ;
-;                            ;             ;
-; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
-;                            ;             ;
-; Usage by Processor         ; % Time Used ;
-;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
-+----------------------------+-------------+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 4      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -180,20 +176,21 @@ applicable agreement for further details.
 +----------------------------------+-----------------+----------------------------------+-------------------------------------------------------------------------+---------+
 ; File Name with User-Entered Path ; Used in Netlist ; File Type                        ; File Name with Absolute Path                                            ; Library ;
 +----------------------------------+-----------------+----------------------------------+-------------------------------------------------------------------------+---------+
-; Rubikscam.vhd                    ; yes             ; User VHDL File                   ; C:/cygwin/home/élèves/git/Rubikscam/src/Rubikscam.vhd                   ;         ;
-; I2C_Controller.vhd               ; yes             ; User VHDL File                   ; C:/cygwin/home/élèves/git/Rubikscam/src/I2C_Controller.vhd              ;         ;
-; I2C_CMOS_Config.vhd              ; yes             ; User VHDL File                   ; C:/cygwin/home/élèves/git/Rubikscam/src/I2C_CMOS_Config.vhd             ;         ;
-; CMOS_LA.vhd                      ; yes             ; User VHDL File                   ; C:/cygwin/home/élèves/git/Rubikscam/src/CMOS_LA.vhd                     ;         ;
-; VGA_OUT.vhd                      ; yes             ; User VHDL File                   ; C:/cygwin/home/élèves/git/Rubikscam/src/VGA_OUT.vhd                     ;         ;
-; PLL_25.vhd                       ; yes             ; User Wizard-Generated File       ; C:/cygwin/home/élèves/git/Rubikscam/src/PLL_25.vhd                      ;         ;
-; triangle_ram.vhd                 ; yes             ; User Wizard-Generated File       ; C:/cygwin/home/élèves/git/Rubikscam/src/triangle_ram.vhd                ;         ;
-; ../triangles_init.mif            ; yes             ; User Memory Initialization File  ; C:/cygwin/home/élèves/git/Rubikscam/src/triangles_init.mif              ;         ;
+; motion_sensing.vhd               ; yes             ; User VHDL File                   ; C:/cygwin/home/Skw/Rubikscam/src/motion_sensing.vhd                     ;         ;
+; ENGINE.vhd                       ; yes             ; User VHDL File                   ; C:/cygwin/home/Skw/Rubikscam/src/ENGINE.vhd                             ;         ;
+; Rubikscam.vhd                    ; yes             ; User VHDL File                   ; C:/cygwin/home/Skw/Rubikscam/src/Rubikscam.vhd                          ;         ;
+; I2C_Controller.vhd               ; yes             ; User VHDL File                   ; C:/cygwin/home/Skw/Rubikscam/src/I2C_Controller.vhd                     ;         ;
+; I2C_CMOS_Config.vhd              ; yes             ; User VHDL File                   ; C:/cygwin/home/Skw/Rubikscam/src/I2C_CMOS_Config.vhd                    ;         ;
+; CMOS_LA.vhd                      ; yes             ; User VHDL File                   ; C:/cygwin/home/Skw/Rubikscam/src/CMOS_LA.vhd                            ;         ;
+; VGA_OUT.vhd                      ; yes             ; User VHDL File                   ; C:/cygwin/home/Skw/Rubikscam/src/VGA_OUT.vhd                            ;         ;
+; PLL_25.vhd                       ; yes             ; User Wizard-Generated File       ; C:/cygwin/home/Skw/Rubikscam/src/PLL_25.vhd                             ;         ;
+; triangle_ram.vhd                 ; yes             ; User Wizard-Generated File       ; C:/cygwin/home/Skw/Rubikscam/src/triangle_ram.vhd                       ;         ;
+; ../triangles_init.mif            ; yes             ; User Memory Initialization File  ; C:/cygwin/home/Skw/Rubikscam/src/triangles_init.mif                     ;         ;
 ; altpll.tdf                       ; yes             ; Megafunction                     ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altpll.tdf            ;         ;
 ; aglobal130.inc                   ; yes             ; Megafunction                     ; c:/altera/13.0sp1/quartus/libraries/megafunctions/aglobal130.inc        ;         ;
 ; stratix_pll.inc                  ; yes             ; Megafunction                     ; c:/altera/13.0sp1/quartus/libraries/megafunctions/stratix_pll.inc       ;         ;
 ; stratixii_pll.inc                ; yes             ; Megafunction                     ; c:/altera/13.0sp1/quartus/libraries/megafunctions/stratixii_pll.inc     ;         ;
 ; cycloneii_pll.inc                ; yes             ; Megafunction                     ; c:/altera/13.0sp1/quartus/libraries/megafunctions/cycloneii_pll.inc     ;         ;
-; engine.vhd                       ; yes             ; Auto-Found VHDL File             ; C:/cygwin/home/élèves/git/Rubikscam/src/engine.vhd                      ;         ;
 ; altsyncram.tdf                   ; yes             ; Megafunction                     ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altsyncram.tdf        ;         ;
 ; stratix_ram_block.inc            ; yes             ; Megafunction                     ; c:/altera/13.0sp1/quartus/libraries/megafunctions/stratix_ram_block.inc ;         ;
 ; lpm_mux.inc                      ; yes             ; Megafunction                     ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_mux.inc           ;         ;
@@ -202,7 +199,21 @@ applicable agreement for further details.
 ; altrom.inc                       ; yes             ; Megafunction                     ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altrom.inc            ;         ;
 ; altram.inc                       ; yes             ; Megafunction                     ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altram.inc            ;         ;
 ; altdpram.inc                     ; yes             ; Megafunction                     ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altdpram.inc          ;         ;
-; db/altsyncram_4vr1.tdf           ; yes             ; Auto-Generated Megafunction      ; C:/cygwin/home/élèves/git/Rubikscam/src/db/altsyncram_4vr1.tdf          ;         ;
+; db/altsyncram_4vr1.tdf           ; yes             ; Auto-Generated Megafunction      ; C:/cygwin/home/Skw/Rubikscam/src/db/altsyncram_4vr1.tdf                 ;         ;
+; lpm_divide.tdf                   ; yes             ; Megafunction                     ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_divide.tdf        ;         ;
+; abs_divider.inc                  ; yes             ; Megafunction                     ; c:/altera/13.0sp1/quartus/libraries/megafunctions/abs_divider.inc       ;         ;
+; sign_div_unsign.inc              ; yes             ; Megafunction                     ; c:/altera/13.0sp1/quartus/libraries/megafunctions/sign_div_unsign.inc   ;         ;
+; db/lpm_divide_q7m.tdf            ; yes             ; Auto-Generated Megafunction      ; C:/cygwin/home/Skw/Rubikscam/src/db/lpm_divide_q7m.tdf                  ;         ;
+; db/sign_div_unsign_1nh.tdf       ; yes             ; Auto-Generated Megafunction      ; C:/cygwin/home/Skw/Rubikscam/src/db/sign_div_unsign_1nh.tdf             ;         ;
+; db/alt_u_div_45f.tdf             ; yes             ; Auto-Generated Megafunction      ; C:/cygwin/home/Skw/Rubikscam/src/db/alt_u_div_45f.tdf                   ;         ;
+; db/add_sub_lkc.tdf               ; yes             ; Auto-Generated Megafunction      ; C:/cygwin/home/Skw/Rubikscam/src/db/add_sub_lkc.tdf                     ;         ;
+; db/add_sub_mkc.tdf               ; yes             ; Auto-Generated Megafunction      ; C:/cygwin/home/Skw/Rubikscam/src/db/add_sub_mkc.tdf                     ;         ;
+; db/lpm_divide_fem.tdf            ; yes             ; Auto-Generated Megafunction      ; C:/cygwin/home/Skw/Rubikscam/src/db/lpm_divide_fem.tdf                  ;         ;
+; db/sign_div_unsign_plh.tdf       ; yes             ; Auto-Generated Megafunction      ; C:/cygwin/home/Skw/Rubikscam/src/db/sign_div_unsign_plh.tdf             ;         ;
+; db/alt_u_div_k2f.tdf             ; yes             ; Auto-Generated Megafunction      ; C:/cygwin/home/Skw/Rubikscam/src/db/alt_u_div_k2f.tdf                   ;         ;
+; db/lpm_divide_eem.tdf            ; yes             ; Auto-Generated Megafunction      ; C:/cygwin/home/Skw/Rubikscam/src/db/lpm_divide_eem.tdf                  ;         ;
+; db/sign_div_unsign_olh.tdf       ; yes             ; Auto-Generated Megafunction      ; C:/cygwin/home/Skw/Rubikscam/src/db/sign_div_unsign_olh.tdf             ;         ;
+; db/alt_u_div_i2f.tdf             ; yes             ; Auto-Generated Megafunction      ; C:/cygwin/home/Skw/Rubikscam/src/db/alt_u_div_i2f.tdf                   ;         ;
 +----------------------------------+-----------------+----------------------------------+-------------------------------------------------------------------------+---------+
 
 
@@ -211,58 +222,72 @@ applicable agreement for further details.
 +---------------------------------------------+-----------------------------------------------+
 ; Resource                                    ; Usage                                         ;
 +---------------------------------------------+-----------------------------------------------+
-; Estimated Total logic elements              ; 311                                           ;
+; Estimated Total logic elements              ; 5,713                                         ;
 ;                                             ;                                               ;
-; Total combinational functions               ; 256                                           ;
+; Total combinational functions               ; 4700                                          ;
 ; Logic element usage by number of LUT inputs ;                                               ;
-;     -- 4 input functions                    ; 106                                           ;
-;     -- 3 input functions                    ; 41                                            ;
-;     -- <=2 input functions                  ; 109                                           ;
+;     -- 4 input functions                    ; 4020                                          ;
+;     -- 3 input functions                    ; 383                                           ;
+;     -- <=2 input functions                  ; 297                                           ;
 ;                                             ;                                               ;
 ; Logic elements by mode                      ;                                               ;
-;     -- normal mode                          ; 176                                           ;
-;     -- arithmetic mode                      ; 80                                            ;
+;     -- normal mode                          ; 4428                                          ;
+;     -- arithmetic mode                      ; 272                                           ;
 ;                                             ;                                               ;
-; Total registers                             ; 158                                           ;
-;     -- Dedicated logic registers            ; 158                                           ;
+; Total registers                             ; 2164                                          ;
+;     -- Dedicated logic registers            ; 2164                                          ;
 ;     -- I/O registers                        ; 0                                             ;
 ;                                             ;                                               ;
-; I/O pins                                    ; 127                                           ;
+; I/O pins                                    ; 145                                           ;
 ; Embedded Multiplier 9-bit elements          ; 0                                             ;
 ; Total PLLs                                  ; 1                                             ;
 ;     -- PLLs                                 ; 1                                             ;
 ;                                             ;                                               ;
 ; Maximum fan-out node                        ; PLL_25:pll_inst|altpll:altpll_component|_clk0 ;
-; Maximum fan-out                             ; 161                                           ;
-; Total fan-out                               ; 1353                                          ;
-; Average fan-out                             ; 2.50                                          ;
+; Maximum fan-out                             ; 2136                                          ;
+; Total fan-out                               ; 25380                                         ;
+; Average fan-out                             ; 3.62                                          ;
 +---------------------------------------------+-----------------------------------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                ;
-+-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------+--------------+
-; Compilation Hierarchy Node                    ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                     ; Library Name ;
-+-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------+--------------+
-; |Rubikscam                                    ; 256 (58)          ; 158 (50)     ; 0           ; 0            ; 0       ; 0         ; 127  ; 0            ; |Rubikscam                                                                                              ; work         ;
-;    |CMOS_LA:CMOS_LA_inst|                     ; 116 (0)           ; 55 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Rubikscam|CMOS_LA:CMOS_LA_inst                                                                         ; work         ;
-;       |I2C_CMOS_Config:I2C_CMOS_Config_inst|  ; 116 (59)          ; 55 (28)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Rubikscam|CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst                                    ; work         ;
-;          |I2C_Controller:I2C_Controller_inst| ; 57 (57)           ; 27 (27)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Rubikscam|CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst ; work         ;
-;    |PLL_25:pll_inst|                          ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Rubikscam|PLL_25:pll_inst                                                                              ; work         ;
-;       |altpll:altpll_component|               ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Rubikscam|PLL_25:pll_inst|altpll:altpll_component                                                      ; work         ;
-;    |VGA_OUT:vga_inst|                         ; 82 (82)           ; 53 (53)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Rubikscam|VGA_OUT:vga_inst                                                                             ; work         ;
-+-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------+--------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                      ;
++-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                    ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                           ; Library Name ;
++-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------------------+--------------+
+; |Rubikscam                                    ; 4700 (50)         ; 2164 (29)    ; 0           ; 0            ; 0       ; 0         ; 145  ; 0            ; |Rubikscam                                                                                                                                    ; work         ;
+;    |CMOS_LA:CMOS_LA_inst|                     ; 139 (25)          ; 80 (25)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Rubikscam|CMOS_LA:CMOS_LA_inst                                                                                                               ; work         ;
+;       |I2C_CMOS_Config:I2C_CMOS_Config_inst|  ; 114 (60)          ; 55 (28)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Rubikscam|CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst                                                                          ; work         ;
+;          |I2C_Controller:I2C_Controller_inst| ; 54 (54)           ; 27 (27)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Rubikscam|CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst                                       ; work         ;
+;    |ENGINE:engine_inst|                       ; 171 (25)          ; 11 (11)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Rubikscam|ENGINE:engine_inst                                                                                                                 ; work         ;
+;       |lpm_divide:Mod0|                       ; 146 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Rubikscam|ENGINE:engine_inst|lpm_divide:Mod0                                                                                                 ; work         ;
+;          |lpm_divide_q7m:auto_generated|      ; 146 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Rubikscam|ENGINE:engine_inst|lpm_divide:Mod0|lpm_divide_q7m:auto_generated                                                                   ; work         ;
+;             |sign_div_unsign_1nh:divider|     ; 146 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Rubikscam|ENGINE:engine_inst|lpm_divide:Mod0|lpm_divide_q7m:auto_generated|sign_div_unsign_1nh:divider                                       ; work         ;
+;                |alt_u_div_45f:divider|        ; 146 (146)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Rubikscam|ENGINE:engine_inst|lpm_divide:Mod0|lpm_divide_q7m:auto_generated|sign_div_unsign_1nh:divider|alt_u_div_45f:divider                 ; work         ;
+;    |MOTION_SENSING:MOTION_SENSING_inst|       ; 4303 (4221)       ; 2013 (2013)  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst                                                                                                 ; work         ;
+;       |lpm_divide:Div0|                       ; 52 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|lpm_divide:Div0                                                                                 ; work         ;
+;          |lpm_divide_fem:auto_generated|      ; 52 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|lpm_divide:Div0|lpm_divide_fem:auto_generated                                                   ; work         ;
+;             |sign_div_unsign_plh:divider|     ; 52 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|lpm_divide:Div0|lpm_divide_fem:auto_generated|sign_div_unsign_plh:divider                       ; work         ;
+;                |alt_u_div_k2f:divider|        ; 52 (52)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|lpm_divide:Div0|lpm_divide_fem:auto_generated|sign_div_unsign_plh:divider|alt_u_div_k2f:divider ; work         ;
+;       |lpm_divide:Div1|                       ; 30 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|lpm_divide:Div1                                                                                 ; work         ;
+;          |lpm_divide_eem:auto_generated|      ; 30 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|lpm_divide:Div1|lpm_divide_eem:auto_generated                                                   ; work         ;
+;             |sign_div_unsign_olh:divider|     ; 30 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|lpm_divide:Div1|lpm_divide_eem:auto_generated|sign_div_unsign_olh:divider                       ; work         ;
+;                |alt_u_div_i2f:divider|        ; 30 (30)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|lpm_divide:Div1|lpm_divide_eem:auto_generated|sign_div_unsign_olh:divider|alt_u_div_i2f:divider ; work         ;
+;    |PLL_25:pll_inst|                          ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Rubikscam|PLL_25:pll_inst                                                                                                                    ; work         ;
+;       |altpll:altpll_component|               ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Rubikscam|PLL_25:pll_inst|altpll:altpll_component                                                                                            ; work         ;
+;    |VGA_OUT:vga_inst|                         ; 37 (37)           ; 31 (31)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Rubikscam|VGA_OUT:vga_inst                                                                                                                   ; work         ;
++-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis IP Cores Summary                                                                                                                                                   ;
-+--------+--------------+---------+--------------+--------------+--------------------------------------------------------------+----------------------------------------------------------+
-; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance                                              ; IP Include File                                          ;
-+--------+--------------+---------+--------------+--------------+--------------------------------------------------------------+----------------------------------------------------------+
-; Altera ; RAM: 2-PORT  ; 13.0    ; N/A          ; N/A          ; |Rubikscam|ENGINE:engine_inst|triangle_ram:triangle_ram_inst ; C:/cygwin/home/élèves/git/Rubikscam/src/triangle_ram.vhd ;
-; Altera ; ALTPLL       ; N/A     ; N/A          ; N/A          ; |Rubikscam|PLL_25:pll_inst                                   ; C:/cygwin/home/élèves/git/Rubikscam/src/PLL_25.vhd       ;
-+--------+--------------+---------+--------------+--------------+--------------------------------------------------------------+----------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis IP Cores Summary                                                                                                                                            ;
++--------+--------------+---------+--------------+--------------+--------------------------------------------------------------+---------------------------------------------------+
+; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance                                              ; IP Include File                                   ;
++--------+--------------+---------+--------------+--------------+--------------------------------------------------------------+---------------------------------------------------+
+; Altera ; RAM: 2-PORT  ; 13.0    ; N/A          ; N/A          ; |Rubikscam|ENGINE:engine_inst|triangle_ram:triangle_ram_inst ; C:/cygwin/home/Skw/Rubikscam/src/triangle_ram.vhd ;
+; Altera ; ALTPLL       ; N/A     ; N/A          ; N/A          ; |Rubikscam|PLL_25:pll_inst                                   ; C:/cygwin/home/Skw/Rubikscam/src/PLL_25.vhd       ;
++--------+--------------+---------+--------------+--------------+--------------------------------------------------------------+---------------------------------------------------+
 
 
 Encoding Type:  One-Hot
@@ -277,256 +302,124 @@ Encoding Type:  One-Hot
 +--------------------------+--------------------------+-------------------------+-------------------------+
 
 
++------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                  ;
++-----------------------------------------------------+-----------------------+------------------------+
+; Latch Name                                          ; Latch Enable Signal   ; Free of Timing Hazards ;
++-----------------------------------------------------+-----------------------+------------------------+
+; dqr[13]                                             ; sram_data_read_driver ; yes                    ;
+; dqr[5]                                              ; sram_data_read_driver ; yes                    ;
+; dqr[14]                                             ; sram_data_read_driver ; yes                    ;
+; dqr[6]                                              ; sram_data_read_driver ; yes                    ;
+; dqr[15]                                             ; sram_data_read_driver ; yes                    ;
+; dqr[7]                                              ; sram_data_read_driver ; yes                    ;
+; dqr[11]                                             ; sram_data_read_driver ; yes                    ;
+; dqr[3]                                              ; sram_data_read_driver ; yes                    ;
+; dqr[12]                                             ; sram_data_read_driver ; yes                    ;
+; dqr[4]                                              ; sram_data_read_driver ; yes                    ;
+; dqr[8]                                              ; sram_data_read_driver ; yes                    ;
+; dqr[0]                                              ; sram_data_read_driver ; yes                    ;
+; dqr[9]                                              ; sram_data_read_driver ; yes                    ;
+; dqr[1]                                              ; sram_data_read_driver ; yes                    ;
+; dqr[10]                                             ; sram_data_read_driver ; yes                    ;
+; dqr[2]                                              ; sram_data_read_driver ; yes                    ;
+; Number of user-specified and inferred latches = 16  ;                       ;                        ;
++-----------------------------------------------------+-----------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Registers Removed During Synthesis                                                                                                                                                                                           ;
 +------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------+
 ; Register name                                                                                              ; Reason for Removal                                                                                              ;
 +------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------+
-; dqw[10..15]                                                                                                ; Stuck at GND due to stuck port data_in                                                                          ;
+; ENGINE:engine_inst|ram_rdaddress[0..9]                                                                     ; Lost fanout                                                                                                     ;
+; vga_data_b[0..6]                                                                                           ; Stuck at GND due to stuck port data_in                                                                          ;
+; vga_data_g[0..7]                                                                                           ; Stuck at GND due to stuck port data_in                                                                          ;
+; vga_data_r[0..6]                                                                                           ; Stuck at GND due to stuck port data_in                                                                          ;
+; VGA_OUT:vga_inst|VGA_G[0..7]                                                                               ; Stuck at GND due to stuck port data_in                                                                          ;
+; VGA_OUT:vga_inst|VGA_R[0..6]                                                                               ; Stuck at GND due to stuck port data_in                                                                          ;
+; VGA_OUT:vga_inst|VGA_B[0..6]                                                                               ; Stuck at GND due to stuck port data_in                                                                          ;
 ; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|mI2C_DATA[16]                                    ; Stuck at GND due to stuck port data_in                                                                          ;
 ; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|mI2C_DATA[17]                                    ; Stuck at VCC due to stuck port data_in                                                                          ;
 ; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|mI2C_DATA[18]                                    ; Stuck at GND due to stuck port data_in                                                                          ;
 ; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|mI2C_DATA[19..21]                                ; Stuck at VCC due to stuck port data_in                                                                          ;
 ; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|mI2C_DATA[22]                                    ; Stuck at GND due to stuck port data_in                                                                          ;
 ; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|mI2C_DATA[23]                                    ; Stuck at VCC due to stuck port data_in                                                                          ;
-; vga_data_r[0]                                                                                              ; Merged with vga_data_g[0]                                                                                       ;
-; vga_data_b[0]                                                                                              ; Merged with vga_data_g[0]                                                                                       ;
-; vga_data_r[1]                                                                                              ; Merged with vga_data_g[1]                                                                                       ;
-; vga_data_b[1]                                                                                              ; Merged with vga_data_g[1]                                                                                       ;
-; vga_data_r[2]                                                                                              ; Merged with vga_data_g[2]                                                                                       ;
-; vga_data_b[2]                                                                                              ; Merged with vga_data_g[2]                                                                                       ;
-; vga_data_r[3]                                                                                              ; Merged with vga_data_g[3]                                                                                       ;
-; vga_data_b[3]                                                                                              ; Merged with vga_data_g[3]                                                                                       ;
-; vga_data_r[4]                                                                                              ; Merged with vga_data_g[4]                                                                                       ;
-; vga_data_b[4]                                                                                              ; Merged with vga_data_g[4]                                                                                       ;
-; vga_data_r[5]                                                                                              ; Merged with vga_data_g[5]                                                                                       ;
-; vga_data_b[5]                                                                                              ; Merged with vga_data_g[5]                                                                                       ;
-; vga_data_r[6]                                                                                              ; Merged with vga_data_g[6]                                                                                       ;
-; vga_data_b[6]                                                                                              ; Merged with vga_data_g[6]                                                                                       ;
-; vga_data_r[7]                                                                                              ; Merged with vga_data_g[7]                                                                                       ;
-; vga_data_b[7]                                                                                              ; Merged with vga_data_g[7]                                                                                       ;
-; vga_data_r[8]                                                                                              ; Merged with vga_data_g[8]                                                                                       ;
-; vga_data_b[8]                                                                                              ; Merged with vga_data_g[8]                                                                                       ;
-; vga_data_r[9]                                                                                              ; Merged with vga_data_g[9]                                                                                       ;
-; vga_data_b[9]                                                                                              ; Merged with vga_data_g[9]                                                                                       ;
-; SRAM_UB_N~reg0                                                                                             ; Merged with SRAM_LB_N~reg0                                                                                      ;
+; dqw[1,2,5..12]                                                                                             ; Merged with dqw[0]                                                                                              ;
+; dqw[4,13..15]                                                                                              ; Merged with dqw[3]                                                                                              ;
+; SRAM_WE_N_cp                                                                                               ; Merged with sram_data_read_driver                                                                               ;
 ; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|mI2C_DATA[14,15]                                 ; Merged with CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|mI2C_DATA[12]                             ;
 ; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst|SD[19..21,23] ; Merged with CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst|SD[17] ;
 ; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst|SD[18,22]     ; Merged with CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst|SD[16] ;
 ; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst|SD[14,15]     ; Merged with CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst|SD[12] ;
+; dqw[0]                                                                                                     ; Stuck at GND due to stuck port data_in                                                                          ;
 ; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst|SD[16]        ; Stuck at GND due to stuck port data_in                                                                          ;
 ; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst|SD[17]        ; Stuck at VCC due to stuck port data_in                                                                          ;
-; filled_sram                                                                                                ; Stuck at GND due to stuck port clock_enable                                                                     ;
-; ENGINE:engine_inst|SCREEN_X[1]                                                                             ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|result_screen_x[17]                                                                     ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|SCREEN_X[2]                                                                             ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|result_screen_x[18]                                                                     ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|SCREEN_X[3]                                                                             ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|result_screen_x[19]                                                                     ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|SCREEN_X[4]                                                                             ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|result_screen_x[20]                                                                     ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|SCREEN_X[5]                                                                             ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|result_screen_x[21]                                                                     ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|SCREEN_X[6]                                                                             ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|result_screen_x[22]                                                                     ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|SCREEN_X[7]                                                                             ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|result_screen_x[23]                                                                     ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|SCREEN_X[8]                                                                             ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|result_screen_x[24]                                                                     ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|SCREEN_X[9]                                                                             ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|result_screen_x[25]                                                                     ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][6]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][7]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][8]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][9]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][10]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][11]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][12]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][13]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][14]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][15]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][16]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][17]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][18]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][19]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][20]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][21]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][22]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][23]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][24]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][25]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][26]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][27]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][28]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][29]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][30]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][31]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][5]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][4]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][3]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][2]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][1]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[0][0]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|SCREEN_Y[8]                                                                             ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|result_screen_y[24]                                                                     ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|SCREEN_Y[7]                                                                             ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|result_screen_y[23]                                                                     ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|SCREEN_Y[2]                                                                             ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|result_screen_y[18]                                                                     ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|SCREEN_Y[6]                                                                             ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|result_screen_y[22]                                                                     ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|SCREEN_Y[1]                                                                             ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|result_screen_y[17]                                                                     ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|SCREEN_Y[5]                                                                             ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|result_screen_y[21]                                                                     ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|SCREEN_Y[4]                                                                             ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|result_screen_y[20]                                                                     ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|SCREEN_Y[3]                                                                             ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|result_screen_y[19]                                                                     ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][4]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][5]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][6]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][7]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][8]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][9]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][10]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][11]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][12]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][13]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][14]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][15]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][16]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][17]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][18]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][19]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][20]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][21]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][22]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][23]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][24]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][25]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][26]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][27]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][28]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][29]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][30]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][31]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][31]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][30]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][29]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][28]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][27]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][26]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][25]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][24]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][23]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][22]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][21]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][20]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][19]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][18]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][17]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][3]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][2]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][1]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[1][0]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][16]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][15]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][14]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][13]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][12]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][11]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][10]                                                                        ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][9]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][8]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][7]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][6]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][5]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][4]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][3]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][2]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][1]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg[2][0]                                                                         ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|ram_rdaddress[0..9]                                                                     ; Lost fanout                                                                                                     ;
-; ENGINE:engine_inst|point_reg_full                                                                          ; Lost fanout                                                                                                     ;
-; dqw[0..9]                                                                                                  ; Stuck at GND due to stuck port data_in                                                                          ;
-; ENGINE:engine_inst|current_point_address[0..9]                                                             ; Lost fanout                                                                                                     ;
-; Total Number of Removed Registers = 209                                                                    ;                                                                                                                 ;
+; filled_sram                                                                                                ; Stuck at VCC due to stuck port data_in                                                                          ;
+; fill_address[0..17]                                                                                        ; Stuck at GND due to stuck port clock_enable                                                                     ;
+; dqw[3]                                                                                                     ; Stuck at VCC due to stuck port data_in                                                                          ;
+; Total Number of Removed Registers = 110                                                                    ;                                                                                                                 ;
 +------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                                                                                                    ;
-+-------------------------------------------------------------------------+--------------------------------+-----------------------------------------------------------------------------------------------------+
-; Register name                                                           ; Reason for Removal             ; Registers Removed due to This Register                                                              ;
-+-------------------------------------------------------------------------+--------------------------------+-----------------------------------------------------------------------------------------------------+
-; filled_sram                                                             ; Stuck at GND                   ; ENGINE:engine_inst|SCREEN_X[1], ENGINE:engine_inst|result_screen_x[17],                             ;
-;                                                                         ; due to stuck port clock_enable ; ENGINE:engine_inst|SCREEN_X[2], ENGINE:engine_inst|result_screen_x[18],                             ;
-;                                                                         ;                                ; ENGINE:engine_inst|SCREEN_X[3], ENGINE:engine_inst|result_screen_x[19],                             ;
-;                                                                         ;                                ; ENGINE:engine_inst|SCREEN_X[4], ENGINE:engine_inst|result_screen_x[20],                             ;
-;                                                                         ;                                ; ENGINE:engine_inst|SCREEN_X[5], ENGINE:engine_inst|result_screen_x[21],                             ;
-;                                                                         ;                                ; ENGINE:engine_inst|SCREEN_X[6], ENGINE:engine_inst|result_screen_x[22],                             ;
-;                                                                         ;                                ; ENGINE:engine_inst|SCREEN_X[7], ENGINE:engine_inst|result_screen_x[23],                             ;
-;                                                                         ;                                ; ENGINE:engine_inst|SCREEN_X[8], ENGINE:engine_inst|result_screen_x[24],                             ;
-;                                                                         ;                                ; ENGINE:engine_inst|SCREEN_X[9], ENGINE:engine_inst|result_screen_x[25],                             ;
-;                                                                         ;                                ; ENGINE:engine_inst|point_reg[0][6], ENGINE:engine_inst|point_reg[0][7],                             ;
-;                                                                         ;                                ; ENGINE:engine_inst|point_reg[0][8], ENGINE:engine_inst|SCREEN_Y[8],                                 ;
-;                                                                         ;                                ; ENGINE:engine_inst|result_screen_y[24], ENGINE:engine_inst|SCREEN_Y[2],                             ;
-;                                                                         ;                                ; ENGINE:engine_inst|result_screen_y[18], ENGINE:engine_inst|SCREEN_Y[1],                             ;
-;                                                                         ;                                ; ENGINE:engine_inst|result_screen_y[17], ENGINE:engine_inst|point_reg[1][6],                         ;
-;                                                                         ;                                ; ENGINE:engine_inst|point_reg[1][7], ENGINE:engine_inst|point_reg[1][8],                             ;
-;                                                                         ;                                ; ENGINE:engine_inst|point_reg[2][8], ENGINE:engine_inst|point_reg[2][7],                             ;
-;                                                                         ;                                ; ENGINE:engine_inst|point_reg[2][6], ENGINE:engine_inst|point_reg_full, dqw[0], dqw[1],              ;
-;                                                                         ;                                ; dqw[2], dqw[3], dqw[4], dqw[5], dqw[6], dqw[7], dqw[8], dqw[9],                                     ;
-;                                                                         ;                                ; ENGINE:engine_inst|current_point_address[9],                                                        ;
-;                                                                         ;                                ; ENGINE:engine_inst|current_point_address[8],                                                        ;
-;                                                                         ;                                ; ENGINE:engine_inst|current_point_address[7],                                                        ;
-;                                                                         ;                                ; ENGINE:engine_inst|current_point_address[6],                                                        ;
-;                                                                         ;                                ; ENGINE:engine_inst|current_point_address[5]                                                         ;
-; ENGINE:engine_inst|point_reg[0][11]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][11], ENGINE:engine_inst|point_reg[2][11]                            ;
-; ENGINE:engine_inst|point_reg[0][1]                                      ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][1], ENGINE:engine_inst|point_reg[2][1]                              ;
-; ENGINE:engine_inst|point_reg[0][9]                                      ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][9], ENGINE:engine_inst|point_reg[2][9]                              ;
-; ENGINE:engine_inst|point_reg[0][10]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][10], ENGINE:engine_inst|point_reg[2][10]                            ;
-; ENGINE:engine_inst|point_reg[0][16]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][16], ENGINE:engine_inst|point_reg[2][16]                            ;
-; ENGINE:engine_inst|point_reg[0][12]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][12], ENGINE:engine_inst|point_reg[2][12]                            ;
-; ENGINE:engine_inst|point_reg[0][13]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][13], ENGINE:engine_inst|point_reg[2][13]                            ;
-; ENGINE:engine_inst|point_reg[0][14]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][14], ENGINE:engine_inst|point_reg[2][14]                            ;
-; ENGINE:engine_inst|point_reg[0][15]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][15], ENGINE:engine_inst|point_reg[2][15]                            ;
-; ENGINE:engine_inst|point_reg[0][0]                                      ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][0], ENGINE:engine_inst|point_reg[2][0]                              ;
-; ENGINE:engine_inst|point_reg[0][17]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][17], ENGINE:engine_inst|point_reg[2][17]                            ;
-; ENGINE:engine_inst|point_reg[0][18]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][18], ENGINE:engine_inst|point_reg[2][18]                            ;
-; ENGINE:engine_inst|point_reg[0][19]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][19], ENGINE:engine_inst|point_reg[2][19]                            ;
-; ENGINE:engine_inst|point_reg[0][20]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][20], ENGINE:engine_inst|point_reg[2][20]                            ;
-; ENGINE:engine_inst|point_reg[0][21]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][21], ENGINE:engine_inst|point_reg[2][21]                            ;
-; ENGINE:engine_inst|point_reg[0][22]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][22], ENGINE:engine_inst|point_reg[2][22]                            ;
-; ENGINE:engine_inst|point_reg[0][23]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][23], ENGINE:engine_inst|point_reg[2][23]                            ;
-; ENGINE:engine_inst|point_reg[0][24]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][24], ENGINE:engine_inst|point_reg[2][24]                            ;
-; ENGINE:engine_inst|point_reg[0][25]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][25], ENGINE:engine_inst|point_reg[2][25]                            ;
-; ENGINE:engine_inst|point_reg[0][26]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][26], ENGINE:engine_inst|point_reg[2][26]                            ;
-; ENGINE:engine_inst|point_reg[0][27]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][27], ENGINE:engine_inst|point_reg[2][27]                            ;
-; ENGINE:engine_inst|point_reg[0][28]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][28], ENGINE:engine_inst|point_reg[2][28]                            ;
-; ENGINE:engine_inst|point_reg[0][29]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][29], ENGINE:engine_inst|point_reg[2][29]                            ;
-; ENGINE:engine_inst|point_reg[0][30]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][30], ENGINE:engine_inst|point_reg[2][30]                            ;
-; ENGINE:engine_inst|point_reg[0][31]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][31], ENGINE:engine_inst|point_reg[2][31]                            ;
-; ENGINE:engine_inst|point_reg[0][5]                                      ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][5], ENGINE:engine_inst|point_reg[2][5]                              ;
-; ENGINE:engine_inst|point_reg[0][4]                                      ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][4], ENGINE:engine_inst|point_reg[2][4]                              ;
-; ENGINE:engine_inst|point_reg[0][3]                                      ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][3], ENGINE:engine_inst|point_reg[2][3]                              ;
-; ENGINE:engine_inst|point_reg[0][2]                                      ; Lost Fanouts                   ; ENGINE:engine_inst|point_reg[1][2], ENGINE:engine_inst|point_reg[2][2]                              ;
-; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|mI2C_DATA[17] ; Stuck at VCC                   ; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst|SD[17] ;
-;                                                                         ; due to stuck port data_in      ;                                                                                                     ;
-; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|mI2C_DATA[16] ; Stuck at GND                   ; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst|SD[16] ;
-;                                                                         ; due to stuck port data_in      ;                                                                                                     ;
-; ENGINE:engine_inst|SCREEN_Y[7]                                          ; Lost Fanouts                   ; ENGINE:engine_inst|result_screen_y[23]                                                              ;
-; ENGINE:engine_inst|SCREEN_Y[6]                                          ; Lost Fanouts                   ; ENGINE:engine_inst|result_screen_y[22]                                                              ;
-; ENGINE:engine_inst|SCREEN_Y[5]                                          ; Lost Fanouts                   ; ENGINE:engine_inst|result_screen_y[21]                                                              ;
-; ENGINE:engine_inst|SCREEN_Y[4]                                          ; Lost Fanouts                   ; ENGINE:engine_inst|result_screen_y[20]                                                              ;
-; ENGINE:engine_inst|SCREEN_Y[3]                                          ; Lost Fanouts                   ; ENGINE:engine_inst|result_screen_y[19]                                                              ;
-; ENGINE:engine_inst|ram_rdaddress[0]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|current_point_address[0]                                                         ;
-; ENGINE:engine_inst|ram_rdaddress[1]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|current_point_address[1]                                                         ;
-; ENGINE:engine_inst|ram_rdaddress[2]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|current_point_address[2]                                                         ;
-; ENGINE:engine_inst|ram_rdaddress[3]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|current_point_address[3]                                                         ;
-; ENGINE:engine_inst|ram_rdaddress[4]                                     ; Lost Fanouts                   ; ENGINE:engine_inst|current_point_address[4]                                                         ;
-+-------------------------------------------------------------------------+--------------------------------+-----------------------------------------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                                                                               ;
++-------------------------------------------------------------------------+---------------------------+-----------------------------------------------------------------------------------------------------+
+; Register name                                                           ; Reason for Removal        ; Registers Removed due to This Register                                                              ;
++-------------------------------------------------------------------------+---------------------------+-----------------------------------------------------------------------------------------------------+
+; filled_sram                                                             ; Stuck at VCC              ; fill_address[0], fill_address[1], fill_address[2], fill_address[3], fill_address[4],                ;
+;                                                                         ; due to stuck port data_in ; fill_address[5], fill_address[6], fill_address[7], fill_address[8], fill_address[9],                ;
+;                                                                         ;                           ; fill_address[10], fill_address[11], fill_address[12], fill_address[13], dqw[3]                      ;
+; vga_data_b[0]                                                           ; Stuck at GND              ; VGA_OUT:vga_inst|VGA_B[0]                                                                           ;
+;                                                                         ; due to stuck port data_in ;                                                                                                     ;
+; vga_data_b[1]                                                           ; Stuck at GND              ; VGA_OUT:vga_inst|VGA_B[1]                                                                           ;
+;                                                                         ; due to stuck port data_in ;                                                                                                     ;
+; vga_data_b[2]                                                           ; Stuck at GND              ; VGA_OUT:vga_inst|VGA_B[2]                                                                           ;
+;                                                                         ; due to stuck port data_in ;                                                                                                     ;
+; vga_data_b[3]                                                           ; Stuck at GND              ; VGA_OUT:vga_inst|VGA_B[3]                                                                           ;
+;                                                                         ; due to stuck port data_in ;                                                                                                     ;
+; vga_data_b[4]                                                           ; Stuck at GND              ; VGA_OUT:vga_inst|VGA_B[4]                                                                           ;
+;                                                                         ; due to stuck port data_in ;                                                                                                     ;
+; vga_data_b[5]                                                           ; Stuck at GND              ; VGA_OUT:vga_inst|VGA_B[5]                                                                           ;
+;                                                                         ; due to stuck port data_in ;                                                                                                     ;
+; vga_data_b[6]                                                           ; Stuck at GND              ; VGA_OUT:vga_inst|VGA_B[6]                                                                           ;
+;                                                                         ; due to stuck port data_in ;                                                                                                     ;
+; vga_data_g[0]                                                           ; Stuck at GND              ; VGA_OUT:vga_inst|VGA_G[0]                                                                           ;
+;                                                                         ; due to stuck port data_in ;                                                                                                     ;
+; vga_data_g[1]                                                           ; Stuck at GND              ; VGA_OUT:vga_inst|VGA_G[1]                                                                           ;
+;                                                                         ; due to stuck port data_in ;                                                                                                     ;
+; vga_data_g[2]                                                           ; Stuck at GND              ; VGA_OUT:vga_inst|VGA_G[2]                                                                           ;
+;                                                                         ; due to stuck port data_in ;                                                                                                     ;
+; vga_data_g[3]                                                           ; Stuck at GND              ; VGA_OUT:vga_inst|VGA_G[3]                                                                           ;
+;                                                                         ; due to stuck port data_in ;                                                                                                     ;
+; vga_data_g[4]                                                           ; Stuck at GND              ; VGA_OUT:vga_inst|VGA_G[4]                                                                           ;
+;                                                                         ; due to stuck port data_in ;                                                                                                     ;
+; vga_data_g[5]                                                           ; Stuck at GND              ; VGA_OUT:vga_inst|VGA_G[5]                                                                           ;
+;                                                                         ; due to stuck port data_in ;                                                                                                     ;
+; vga_data_g[6]                                                           ; Stuck at GND              ; VGA_OUT:vga_inst|VGA_G[6]                                                                           ;
+;                                                                         ; due to stuck port data_in ;                                                                                                     ;
+; vga_data_g[7]                                                           ; Stuck at GND              ; VGA_OUT:vga_inst|VGA_G[7]                                                                           ;
+;                                                                         ; due to stuck port data_in ;                                                                                                     ;
+; vga_data_r[0]                                                           ; Stuck at GND              ; VGA_OUT:vga_inst|VGA_R[0]                                                                           ;
+;                                                                         ; due to stuck port data_in ;                                                                                                     ;
+; vga_data_r[1]                                                           ; Stuck at GND              ; VGA_OUT:vga_inst|VGA_R[1]                                                                           ;
+;                                                                         ; due to stuck port data_in ;                                                                                                     ;
+; vga_data_r[2]                                                           ; Stuck at GND              ; VGA_OUT:vga_inst|VGA_R[2]                                                                           ;
+;                                                                         ; due to stuck port data_in ;                                                                                                     ;
+; vga_data_r[3]                                                           ; Stuck at GND              ; VGA_OUT:vga_inst|VGA_R[3]                                                                           ;
+;                                                                         ; due to stuck port data_in ;                                                                                                     ;
+; vga_data_r[4]                                                           ; Stuck at GND              ; VGA_OUT:vga_inst|VGA_R[4]                                                                           ;
+;                                                                         ; due to stuck port data_in ;                                                                                                     ;
+; vga_data_r[5]                                                           ; Stuck at GND              ; VGA_OUT:vga_inst|VGA_R[5]                                                                           ;
+;                                                                         ; due to stuck port data_in ;                                                                                                     ;
+; vga_data_r[6]                                                           ; Stuck at GND              ; VGA_OUT:vga_inst|VGA_R[6]                                                                           ;
+;                                                                         ; due to stuck port data_in ;                                                                                                     ;
+; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|mI2C_DATA[16] ; Stuck at GND              ; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst|SD[16] ;
+;                                                                         ; due to stuck port data_in ;                                                                                                     ;
+; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|mI2C_DATA[17] ; Stuck at VCC              ; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst|SD[17] ;
+;                                                                         ; due to stuck port data_in ;                                                                                                     ;
++-------------------------------------------------------------------------+---------------------------+-----------------------------------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -534,12 +427,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 158   ;
-; Number of registers using Synchronous Clear  ; 32    ;
-; Number of registers using Synchronous Load   ; 25    ;
+; Total registers                              ; 2164  ;
+; Number of registers using Synchronous Clear  ; 1045  ;
+; Number of registers using Synchronous Load   ; 15    ;
 ; Number of registers using Asynchronous Clear ; 7     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 120   ;
+; Number of registers using Clock Enable       ; 2113  ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -550,12 +443,12 @@ Encoding Type:  One-Hot
 ; Inverted Register                                                                                 ; Fan out ;
 +---------------------------------------------------------------------------------------------------+---------+
 ; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst|SCLK ; 3       ;
+; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst|SDO  ; 3       ;
+; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst|DIR  ; 2       ;
 ; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst|ACK1 ; 3       ;
 ; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst|ACK2 ; 3       ;
 ; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst|ACK3 ; 3       ;
-; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst|FIN  ; 5       ;
-; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst|SDO  ; 3       ;
-; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst|DIR  ; 3       ;
+; CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst|FIN  ; 4       ;
 ; Total number of inverted registers = 7                                                            ;         ;
 +---------------------------------------------------------------------------------------------------+---------+
 
@@ -565,13 +458,60 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                            ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------+
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |Rubikscam|VGA_OUT:vga_inst|screen_pos_y[9]                                                                           ;
-; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |Rubikscam|CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|mI2C_CLK_DIV[4]                                  ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|x[0]                                                                    ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|y[0]                                                                    ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |Rubikscam|CMOS_LA:CMOS_LA_inst|cam_pos_x[9]                                                                          ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |Rubikscam|CMOS_LA:CMOS_LA_inst|cam_pos_y[0]                                                                          ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |Rubikscam|CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|mI2C_CLK_DIV[3]                                  ;
 ; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |Rubikscam|CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|LUT_INDEX[1]                                     ;
-; 5:1                ; 6 bits    ; 18 LEs        ; 12 LEs               ; 6 LEs                  ; Yes        ; |Rubikscam|CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst|SD_COUNTER[5] ;
-; 4:1                ; 17 bits   ; 34 LEs        ; 34 LEs               ; 0 LEs                  ; Yes        ; |Rubikscam|SRAM_ADDR[6]~reg0                                                                                          ;
-; 25:1               ; 8 bits    ; 128 LEs       ; 96 LEs               ; 32 LEs                 ; Yes        ; |Rubikscam|CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|mI2C_DATA[2]                                     ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 12 LEs               ; 6 LEs                  ; Yes        ; |Rubikscam|CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst|SD_COUNTER[4] ;
+; 25:1               ; 8 bits    ; 128 LEs       ; 96 LEs               ; 32 LEs                 ; Yes        ; |Rubikscam|CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|mI2C_DATA[7]                                     ;
+; 6:1                ; 5 bits    ; 20 LEs        ; 5 LEs                ; 15 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|main_gx[2]                                                              ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 6 LEs                ; 18 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|main_dy[0]                                                              ;
+; 5:1                ; 10 bits   ; 30 LEs        ; 20 LEs               ; 10 LEs                 ; Yes        ; |Rubikscam|SRAM_ADDR[9]~reg0                                                                                          ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |Rubikscam|SRAM_ADDR[14]~reg0                                                                                         ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 28 LEs               ; 84 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|main_s[16]                                                              ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[0][0][11]                                                         ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[0][1][15]                                                         ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[0][2][9]                                                          ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[0][3][25]                                                         ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[0][4][6]                                                          ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[0][5][9]                                                          ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[0][6][12]                                                         ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[1][0][15]                                                         ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[1][1][15]                                                         ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[1][2][23]                                                         ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[1][3][17]                                                         ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[1][4][22]                                                         ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[1][5][19]                                                         ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[1][6][27]                                                         ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[2][0][19]                                                         ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[2][1][24]                                                         ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[2][2][12]                                                         ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[2][3][14]                                                         ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[2][4][0]                                                          ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[2][5][13]                                                         ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[2][6][5]                                                          ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[3][0][5]                                                          ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[3][1][1]                                                          ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[3][2][23]                                                         ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[3][3][26]                                                         ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[3][4][5]                                                          ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[3][5][5]                                                          ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[3][6][27]                                                         ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[4][0][7]                                                          ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[4][1][3]                                                          ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[4][2][3]                                                          ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[4][3][3]                                                          ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[4][4][3]                                                          ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[4][5][5]                                                          ;
+; 7:1                ; 28 bits   ; 112 LEs       ; 84 LEs               ; 28 LEs                 ; Yes        ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|somme[4][6][6]                                                          ;
+; 7:1                ; 140 bits  ; 560 LEs       ; 560 LEs              ; 0 LEs                  ; No         ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|Mux308                                                                  ;
+; 7:1                ; 140 bits  ; 560 LEs       ; 560 LEs              ; 0 LEs                  ; No         ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|Mux126                                                                  ;
+; 5:1                ; 56 bits   ; 168 LEs       ; 168 LEs              ; 0 LEs                  ; No         ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|Mux376                                                                  ;
+; 5:1                ; 56 bits   ; 168 LEs       ; 168 LEs              ; 0 LEs                  ; No         ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|Mux141                                                                  ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |Rubikscam|CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|mSetup_ST                                        ;
+; 35:1               ; 28 bits   ; 644 LEs       ; 644 LEs              ; 0 LEs                  ; No         ; |Rubikscam|MOTION_SENSING:MOTION_SENSING_inst|Mux547                                                                  ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------+
 
 
@@ -626,7 +566,7 @@ Encoding Type:  One-Hot
 ; CLK3_MULTIPLY_BY              ; 1                        ; Untyped                   ;
 ; CLK2_MULTIPLY_BY              ; 1                        ; Signed Integer            ;
 ; CLK1_MULTIPLY_BY              ; 1                        ; Signed Integer            ;
-; CLK0_MULTIPLY_BY              ; 2                        ; Signed Integer            ;
+; CLK0_MULTIPLY_BY              ; 1                        ; Signed Integer            ;
 ; CLK9_DIVIDE_BY                ; 0                        ; Untyped                   ;
 ; CLK8_DIVIDE_BY                ; 0                        ; Untyped                   ;
 ; CLK7_DIVIDE_BY                ; 0                        ; Untyped                   ;
@@ -646,7 +586,7 @@ Encoding Type:  One-Hot
 ; CLK3_PHASE_SHIFT              ; 0                        ; Untyped                   ;
 ; CLK2_PHASE_SHIFT              ; 10000                    ; Untyped                   ;
 ; CLK1_PHASE_SHIFT              ; 0                        ; Untyped                   ;
-; CLK0_PHASE_SHIFT              ; 0                        ; Untyped                   ;
+; CLK0_PHASE_SHIFT              ; 10000                    ; Untyped                   ;
 ; CLK5_TIME_DELAY               ; 0                        ; Untyped                   ;
 ; CLK4_TIME_DELAY               ; 0                        ; Untyped                   ;
 ; CLK3_TIME_DELAY               ; 0                        ; Untyped                   ;
@@ -1019,6 +959,75 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
++-------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: ENGINE:engine_inst|lpm_divide:Mod0 ;
++------------------------+----------------+-------------------------------------------+
+; Parameter Name         ; Value          ; Type                                      ;
++------------------------+----------------+-------------------------------------------+
+; LPM_WIDTHN             ; 10             ; Untyped                                   ;
+; LPM_WIDTHD             ; 10             ; Untyped                                   ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                   ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                   ;
+; LPM_PIPELINE           ; 0              ; Untyped                                   ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                   ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                   ;
+; CBXI_PARAMETER         ; lpm_divide_q7m ; Untyped                                   ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                   ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                   ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                              ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                              ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                            ;
++------------------------+----------------+-------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: MOTION_SENSING:MOTION_SENSING_inst|lpm_divide:Div0 ;
++------------------------+----------------+-----------------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                                      ;
++------------------------+----------------+-----------------------------------------------------------+
+; LPM_WIDTHN             ; 11             ; Untyped                                                   ;
+; LPM_WIDTHD             ; 8              ; Untyped                                                   ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                                   ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                                   ;
+; LPM_PIPELINE           ; 0              ; Untyped                                                   ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                                   ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                                   ;
+; CBXI_PARAMETER         ; lpm_divide_fem ; Untyped                                                   ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                                   ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                                   ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                                ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                              ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                              ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                            ;
++------------------------+----------------+-----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: MOTION_SENSING:MOTION_SENSING_inst|lpm_divide:Div1 ;
++------------------------+----------------+-----------------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                                      ;
++------------------------+----------------+-----------------------------------------------------------+
+; LPM_WIDTHN             ; 10             ; Untyped                                                   ;
+; LPM_WIDTHD             ; 8              ; Untyped                                                   ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                                   ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                                   ;
+; LPM_PIPELINE           ; 0              ; Untyped                                                   ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                                   ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                                   ;
+; CBXI_PARAMETER         ; lpm_divide_eem ; Untyped                                                   ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                                   ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                                   ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                                ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                              ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                              ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                            ;
++------------------------+----------------+-----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
 +-------------------------------------------------------------------------+
 ; altpll Parameter Settings by Entity Instance                            ;
 +-------------------------------+-----------------------------------------+
@@ -1056,44 +1065,24 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------------------------------------------+-----------------------------------------------------------------------------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "CMOS_LA:CMOS_LA_inst"                                                                    ;
-+-----------+--------+----------+-------------------------------------------------------------------------------------+
-; Port      ; Type   ; Severity ; Details                                                                             ;
-+-----------+--------+----------+-------------------------------------------------------------------------------------+
-; cmos_data ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; cam_x     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; cam_y     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-----------+--------+----------+-------------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ENGINE:engine_inst|triangle_ram:triangle_ram_inst"                                  ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; wren ; Input  ; Info     ; Stuck at GND                                                                        ;
+; q    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "VGA_OUT:vga_inst"                                                                          ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port        ; Type   ; Severity ; Details                                                                             ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-; screen_x[0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; screen_y[0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+-------------------------------------------------------------------------------+
-; Port Connectivity Checks: "ENGINE:engine_inst|triangle_ram:triangle_ram_inst" ;
-+------+-------+----------+-----------------------------------------------------+
-; Port ; Type  ; Severity ; Details                                             ;
-+------+-------+----------+-----------------------------------------------------+
-; wren ; Input ; Info     ; Stuck at GND                                        ;
-+------+-------+----------+-----------------------------------------------------+
-
-
-+-----------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "ENGINE:engine_inst"                                                                        ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port        ; Type   ; Severity ; Details                                                                             ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-; screen_x[0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; screen_y[0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ENGINE:engine_inst"                                                                     ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; screen_x ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; screen_y ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +-------------------------------+
@@ -1101,7 +1090,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:04     ;
+; Top            ; 00:00:28     ;
 +----------------+--------------+
 
 
@@ -1110,10 +1099,16 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Analysis & Synthesis
-    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
-    Info: Processing started: Fri Dec 13 18:01:29 2013
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+    Info: Processing started: Mon Dec 16 10:25:08 2013
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Rubikscam -c Rubikscam
-Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 2 design units, including 1 entities, in source file motion_sensing.vhd
+    Info (12022): Found design unit 1: MOTION_SENSING-MOTION_SENSING_arch
+    Info (12023): Found entity 1: MOTION_SENSING
+Info (12021): Found 2 design units, including 1 entities, in source file engine.vhd
+    Info (12022): Found design unit 1: ENGINE-ENGINE_arch
+    Info (12023): Found entity 1: ENGINE
 Info (12021): Found 2 design units, including 1 entities, in source file rubikscam.vhd
     Info (12022): Found design unit 1: Rubikscam-Rubikscam_arch
     Info (12023): Found entity 1: Rubikscam
@@ -1135,18 +1130,53 @@ Info (12021): Found 2 design units, including 1 entities, in source file pll_25.
 Info (12021): Found 2 design units, including 1 entities, in source file triangle_ram.vhd
     Info (12022): Found design unit 1: triangle_ram-SYN
     Info (12023): Found entity 1: triangle_ram
+Info (12021): Found 2 design units, including 1 entities, in source file pong.vhd
+    Info (12022): Found design unit 1: Pong-Pong_arch
+    Info (12023): Found entity 1: Pong
 Info (12127): Elaborating entity "Rubikscam" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at Rubikscam.vhd(103): object "CMOS_DATA_m" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at Rubikscam.vhd(109): object "cam_x" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at Rubikscam.vhd(110): object "cam_y" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at Rubikscam.vhd(135): object "engine_out_x" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at Rubikscam.vhd(136): object "engine_out_y" assigned a value but never read
+Warning (10873): Using initial value X (don't care) for net "LEDR[13..6]" at Rubikscam.vhd(28)
+Info (10041): Inferred latch for "dqr[0]" at Rubikscam.vhd(247)
+Info (10041): Inferred latch for "dqr[1]" at Rubikscam.vhd(247)
+Info (10041): Inferred latch for "dqr[2]" at Rubikscam.vhd(247)
+Info (10041): Inferred latch for "dqr[3]" at Rubikscam.vhd(247)
+Info (10041): Inferred latch for "dqr[4]" at Rubikscam.vhd(247)
+Info (10041): Inferred latch for "dqr[5]" at Rubikscam.vhd(247)
+Info (10041): Inferred latch for "dqr[6]" at Rubikscam.vhd(247)
+Info (10041): Inferred latch for "dqr[7]" at Rubikscam.vhd(247)
+Info (10041): Inferred latch for "dqr[8]" at Rubikscam.vhd(247)
+Info (10041): Inferred latch for "dqr[9]" at Rubikscam.vhd(247)
+Info (10041): Inferred latch for "dqr[10]" at Rubikscam.vhd(247)
+Info (10041): Inferred latch for "dqr[11]" at Rubikscam.vhd(247)
+Info (10041): Inferred latch for "dqr[12]" at Rubikscam.vhd(247)
+Info (10041): Inferred latch for "dqr[13]" at Rubikscam.vhd(247)
+Info (10041): Inferred latch for "dqr[14]" at Rubikscam.vhd(247)
+Info (10041): Inferred latch for "dqr[15]" at Rubikscam.vhd(247)
+Warning (10665): Bidirectional port "GPIO_1[15]" at Rubikscam.vhd(30) has a one-way connection to bidirectional port "GPIO_0[15]"
+Warning (10665): Bidirectional port "GPIO_1[14]" at Rubikscam.vhd(30) has a one-way connection to bidirectional port "GPIO_0[14]"
+Warning (10665): Bidirectional port "GPIO_1[13]" at Rubikscam.vhd(30) has a one-way connection to bidirectional port "GPIO_0[13]"
+Warning (10665): Bidirectional port "GPIO_1[12]" at Rubikscam.vhd(30) has a one-way connection to bidirectional port "GPIO_0[12]"
+Warning (10665): Bidirectional port "GPIO_1[11]" at Rubikscam.vhd(30) has a one-way connection to bidirectional port "GPIO_0[11]"
+Warning (10665): Bidirectional port "GPIO_1[10]" at Rubikscam.vhd(30) has a one-way connection to bidirectional port "GPIO_0[10]"
+Warning (10665): Bidirectional port "GPIO_1[9]" at Rubikscam.vhd(30) has a one-way connection to bidirectional port "GPIO_0[9]"
+Warning (10665): Bidirectional port "GPIO_1[8]" at Rubikscam.vhd(30) has a one-way connection to bidirectional port "GPIO_0[8]"
+Warning (10665): Bidirectional port "GPIO_1[7]" at Rubikscam.vhd(30) has a one-way connection to bidirectional port "GPIO_0[7]"
+Warning (10665): Bidirectional port "GPIO_1[6]" at Rubikscam.vhd(30) has a one-way connection to bidirectional port "GPIO_0[6]"
+Warning (10665): Bidirectional port "GPIO_1[5]" at Rubikscam.vhd(30) has a one-way connection to bidirectional port "GPIO_0[5]"
+Warning (10665): Bidirectional port "GPIO_1[4]" at Rubikscam.vhd(30) has a one-way connection to bidirectional port "GPIO_0[4]"
+Warning (10665): Bidirectional port "GPIO_1[3]" at Rubikscam.vhd(30) has a one-way connection to bidirectional port "GPIO_0[3]"
+Warning (10665): Bidirectional port "GPIO_1[2]" at Rubikscam.vhd(30) has a one-way connection to bidirectional port "GPIO_0[2]"
+Warning (10665): Bidirectional port "GPIO_1[1]" at Rubikscam.vhd(30) has a one-way connection to bidirectional port "GPIO_0[1]"
+Warning (10665): Bidirectional port "GPIO_1[0]" at Rubikscam.vhd(30) has a one-way connection to bidirectional port "GPIO_0[0]"
 Info (12128): Elaborating entity "PLL_25" for hierarchy "PLL_25:pll_inst"
 Info (12128): Elaborating entity "altpll" for hierarchy "PLL_25:pll_inst|altpll:altpll_component"
 Info (12130): Elaborated megafunction instantiation "PLL_25:pll_inst|altpll:altpll_component"
 Info (12133): Instantiated megafunction "PLL_25:pll_inst|altpll:altpll_component" with the following parameter:
     Info (12134): Parameter "clk0_divide_by" = "1"
     Info (12134): Parameter "clk0_duty_cycle" = "50"
-    Info (12134): Parameter "clk0_multiply_by" = "2"
-    Info (12134): Parameter "clk0_phase_shift" = "0"
+    Info (12134): Parameter "clk0_multiply_by" = "1"
+    Info (12134): Parameter "clk0_phase_shift" = "10000"
     Info (12134): Parameter "clk1_divide_by" = "2"
     Info (12134): Parameter "clk1_duty_cycle" = "50"
     Info (12134): Parameter "clk1_multiply_by" = "1"
@@ -1202,13 +1232,12 @@ Info (12133): Instantiated megafunction "PLL_25:pll_inst|altpll:altpll_component
     Info (12134): Parameter "port_extclk1" = "PORT_UNUSED"
     Info (12134): Parameter "port_extclk2" = "PORT_UNUSED"
     Info (12134): Parameter "port_extclk3" = "PORT_UNUSED"
-Warning (12125): Using design file engine.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
-    Info (12022): Found design unit 1: ENGINE-ENGINE_arch
-    Info (12023): Found entity 1: ENGINE
 Info (12128): Elaborating entity "ENGINE" for hierarchy "ENGINE:engine_inst"
-Warning (10541): VHDL Signal Declaration warning at engine.vhd(30): used implicit default value for signal "ram_data" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at engine.vhd(32): used implicit default value for signal "ram_wraddress" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10540): VHDL Signal Declaration warning at engine.vhd(33): used explicit default value for signal "ram_wren" because signal was never assigned a value
+Warning (10541): VHDL Signal Declaration warning at ENGINE.vhd(31): used implicit default value for signal "ram_data" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at ENGINE.vhd(33): used implicit default value for signal "ram_wraddress" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10540): VHDL Signal Declaration warning at ENGINE.vhd(34): used explicit default value for signal "ram_wren" because signal was never assigned a value
+Warning (10036): Verilog HDL or VHDL warning at ENGINE.vhd(42): object "result_screen_x" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at ENGINE.vhd(43): object "result_screen_y" assigned a value but never read
 Info (12128): Elaborating entity "triangle_ram" for hierarchy "ENGINE:engine_inst|triangle_ram:triangle_ram_inst"
 Info (12128): Elaborating entity "altsyncram" for hierarchy "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component"
 Info (12130): Elaborated megafunction instantiation "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component"
@@ -1240,40 +1269,87 @@ Info (12128): Elaborating entity "VGA_OUT" for hierarchy "VGA_OUT:vga_inst"
 Info (12128): Elaborating entity "CMOS_LA" for hierarchy "CMOS_LA:CMOS_LA_inst"
 Info (12128): Elaborating entity "I2C_CMOS_Config" for hierarchy "CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst"
 Info (12128): Elaborating entity "I2C_Controller" for hierarchy "CMOS_LA:CMOS_LA_inst|I2C_CMOS_Config:I2C_CMOS_Config_inst|I2C_Controller:I2C_Controller_inst"
+Info (12128): Elaborating entity "MOTION_SENSING" for hierarchy "MOTION_SENSING:MOTION_SENSING_inst"
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "somme" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "somme_traitement" into its bus
 Warning (14284): Synthesized away the following node(s):
     Warning (14285): Synthesized away the following RAM node(s):
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[31]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[30]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[29]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[28]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[27]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[26]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[25]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[24]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[23]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[22]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[21]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[20]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[19]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[18]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[17]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[16]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[15]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[14]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[13]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[12]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[11]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[10]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[9]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[8]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[7]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[6]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[5]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[4]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[3]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[2]"
-        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[1]"
         Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[0]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[1]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[2]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[3]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[4]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[5]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[6]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[7]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[8]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[9]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[10]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[11]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[12]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[13]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[14]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[15]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[16]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[17]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[18]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[19]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[20]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[21]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[22]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[23]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[24]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[25]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[26]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[27]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[28]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[29]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[30]"
+        Warning (14320): Synthesized away node "ENGINE:engine_inst|triangle_ram:triangle_ram_inst|altsyncram:altsyncram_component|altsyncram_4vr1:auto_generated|q_b[31]"
+Info (278001): Inferred 3 megafunctions from design logic
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "ENGINE:engine_inst|Mod0"
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "MOTION_SENSING:MOTION_SENSING_inst|Div0"
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "MOTION_SENSING:MOTION_SENSING_inst|Div1"
+Info (12130): Elaborated megafunction instantiation "ENGINE:engine_inst|lpm_divide:Mod0"
+Info (12133): Instantiated megafunction "ENGINE:engine_inst|lpm_divide:Mod0" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHN" = "10"
+    Info (12134): Parameter "LPM_WIDTHD" = "10"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_q7m.tdf
+    Info (12023): Found entity 1: lpm_divide_q7m
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_1nh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_1nh
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_45f.tdf
+    Info (12023): Found entity 1: alt_u_div_45f
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_lkc.tdf
+    Info (12023): Found entity 1: add_sub_lkc
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_mkc.tdf
+    Info (12023): Found entity 1: add_sub_mkc
+Info (12130): Elaborated megafunction instantiation "MOTION_SENSING:MOTION_SENSING_inst|lpm_divide:Div0"
+Info (12133): Instantiated megafunction "MOTION_SENSING:MOTION_SENSING_inst|lpm_divide:Div0" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHN" = "11"
+    Info (12134): Parameter "LPM_WIDTHD" = "8"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_fem.tdf
+    Info (12023): Found entity 1: lpm_divide_fem
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_plh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_plh
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_k2f.tdf
+    Info (12023): Found entity 1: alt_u_div_k2f
+Info (12130): Elaborated megafunction instantiation "MOTION_SENSING:MOTION_SENSING_inst|lpm_divide:Div1"
+Info (12133): Instantiated megafunction "MOTION_SENSING:MOTION_SENSING_inst|lpm_divide:Div1" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHN" = "10"
+    Info (12134): Parameter "LPM_WIDTHD" = "8"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_eem.tdf
+    Info (12023): Found entity 1: lpm_divide_eem
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_olh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_olh
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_i2f.tdf
+    Info (12023): Found entity 1: alt_u_div_i2f
 Warning (13034): The following nodes have both tri-state and non-tri-state drivers
     Warning (13035): Inserted always-enabled tri-state buffer between "GPIO_1[11]" and its non-tri-state driver.
     Warning (13035): Inserted always-enabled tri-state buffer between "GPIO_1[14]" and its non-tri-state driver.
@@ -1299,41 +1375,75 @@ Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal 
 Warning (13009): TRI or OPNDRN buffers permanently enabled
     Warning (13010): Node "GPIO_1[11]~synth"
     Warning (13010): Node "GPIO_1[14]~synth"
+    Warning (13010): Node "GPIO_0[0]~synth"
+    Warning (13010): Node "GPIO_0[1]~synth"
+    Warning (13010): Node "GPIO_0[2]~synth"
+    Warning (13010): Node "GPIO_0[3]~synth"
+    Warning (13010): Node "GPIO_0[4]~synth"
+    Warning (13010): Node "GPIO_0[5]~synth"
+    Warning (13010): Node "GPIO_0[6]~synth"
+    Warning (13010): Node "GPIO_0[7]~synth"
+    Warning (13010): Node "GPIO_0[8]~synth"
+    Warning (13010): Node "GPIO_0[9]~synth"
+    Warning (13010): Node "GPIO_0[10]~synth"
+    Warning (13010): Node "GPIO_0[11]~synth"
+    Warning (13010): Node "GPIO_0[12]~synth"
+    Warning (13010): Node "GPIO_0[13]~synth"
+    Warning (13010): Node "GPIO_0[14]~synth"
+    Warning (13010): Node "GPIO_0[15]~synth"
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "SRAM_OE_N" is stuck at GND
+    Warning (13410): Pin "SRAM_UB_N" is stuck at GND
+    Warning (13410): Pin "SRAM_LB_N" is stuck at GND
     Warning (13410): Pin "SRAM_CE_N" is stuck at GND
     Warning (13410): Pin "VGA_SYNC" is stuck at GND
-Warning (18029): Output pin "GPIO_0[0]" driven by bidirectional pin "GPIO_1[0]" cannot be tri-stated
-Warning (18029): Output pin "GPIO_0[1]" driven by bidirectional pin "GPIO_1[1]" cannot be tri-stated
-Warning (18029): Output pin "GPIO_0[2]" driven by bidirectional pin "GPIO_1[2]" cannot be tri-stated
-Warning (18029): Output pin "GPIO_0[3]" driven by bidirectional pin "GPIO_1[3]" cannot be tri-stated
-Warning (18029): Output pin "GPIO_0[4]" driven by bidirectional pin "GPIO_1[4]" cannot be tri-stated
-Warning (18029): Output pin "GPIO_0[5]" driven by bidirectional pin "GPIO_1[5]" cannot be tri-stated
-Warning (18029): Output pin "GPIO_0[6]" driven by bidirectional pin "GPIO_1[6]" cannot be tri-stated
-Warning (18029): Output pin "GPIO_0[7]" driven by bidirectional pin "GPIO_1[7]" cannot be tri-stated
-Warning (18029): Output pin "GPIO_0[8]" driven by bidirectional pin "GPIO_1[8]" cannot be tri-stated
-Warning (18029): Output pin "GPIO_0[9]" driven by bidirectional pin "GPIO_1[9]" cannot be tri-stated
-Warning (18029): Output pin "GPIO_0[10]" driven by bidirectional pin "GPIO_1[10]" cannot be tri-stated
-Warning (18029): Output pin "GPIO_0[12]" driven by bidirectional pin "GPIO_1[12]" cannot be tri-stated
-Warning (18029): Output pin "GPIO_0[13]" driven by bidirectional pin "GPIO_1[13]" cannot be tri-stated
-Warning (18029): Output pin "GPIO_0[15]" driven by bidirectional pin "GPIO_1[15]" cannot be tri-stated
-Info (17049): 151 registers lost all their fanouts during netlist optimizations.
+    Warning (13410): Pin "VGA_R[0]" is stuck at GND
+    Warning (13410): Pin "VGA_R[1]" is stuck at GND
+    Warning (13410): Pin "VGA_R[2]" is stuck at GND
+    Warning (13410): Pin "VGA_R[3]" is stuck at GND
+    Warning (13410): Pin "VGA_R[4]" is stuck at GND
+    Warning (13410): Pin "VGA_R[5]" is stuck at GND
+    Warning (13410): Pin "VGA_R[6]" is stuck at GND
+    Warning (13410): Pin "VGA_G[0]" is stuck at GND
+    Warning (13410): Pin "VGA_G[1]" is stuck at GND
+    Warning (13410): Pin "VGA_G[2]" is stuck at GND
+    Warning (13410): Pin "VGA_G[3]" is stuck at GND
+    Warning (13410): Pin "VGA_G[4]" is stuck at GND
+    Warning (13410): Pin "VGA_G[5]" is stuck at GND
+    Warning (13410): Pin "VGA_G[6]" is stuck at GND
+    Warning (13410): Pin "VGA_G[7]" is stuck at GND
+    Warning (13410): Pin "VGA_B[0]" is stuck at GND
+    Warning (13410): Pin "VGA_B[1]" is stuck at GND
+    Warning (13410): Pin "VGA_B[2]" is stuck at GND
+    Warning (13410): Pin "VGA_B[3]" is stuck at GND
+    Warning (13410): Pin "VGA_B[4]" is stuck at GND
+    Warning (13410): Pin "VGA_B[5]" is stuck at GND
+    Warning (13410): Pin "VGA_B[6]" is stuck at GND
+    Warning (13410): Pin "LEDR[6]" is stuck at GND
+    Warning (13410): Pin "LEDR[7]" is stuck at GND
+    Warning (13410): Pin "LEDR[8]" is stuck at GND
+    Warning (13410): Pin "LEDR[9]" is stuck at GND
+    Warning (13410): Pin "LEDR[10]" is stuck at GND
+    Warning (13410): Pin "LEDR[11]" is stuck at GND
+    Warning (13410): Pin "LEDR[12]" is stuck at GND
+    Warning (13410): Pin "LEDR[13]" is stuck at GND
+Info (17049): 10 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 3 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "KEY[1]"
     Warning (15610): No output dependent on input pin "KEY[2]"
     Warning (15610): No output dependent on input pin "KEY[3]"
-Info (21057): Implemented 440 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 5860 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 21 input pins
-    Info (21059): Implemented 74 output pins
-    Info (21060): Implemented 32 bidirectional pins
-    Info (21061): Implemented 312 logic cells
+    Info (21059): Implemented 76 output pins
+    Info (21060): Implemented 48 bidirectional pins
+    Info (21061): Implemented 5714 logic cells
     Info (21065): Implemented 1 PLLs
-Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 83 warnings
-    Info: Peak virtual memory: 363 megabytes
-    Info: Processing ended: Fri Dec 13 18:01:40 2013
-    Info: Elapsed time: 00:00:11
-    Info: Total CPU time (on all processors): 00:00:09
+Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 135 warnings
+    Info: Peak virtual memory: 398 megabytes
+    Info: Processing ended: Mon Dec 16 10:25:42 2013
+    Info: Elapsed time: 00:00:34
+    Info: Total CPU time (on all processors): 00:00:35
 
 
