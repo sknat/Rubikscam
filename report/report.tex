@@ -3,6 +3,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{pdflscape}
 \usepackage{graphicx}
 \usepackage[frenchb]{babel}
 \author{Parakian Alexis, Skrzypczak Nathan}
@@ -178,6 +179,10 @@ Ceci donne un composant chargé des calculs de la forme ci-dessous, avec une sor
 
 Le programme de détection de mouvement est assez simpliste comparé à ce qui existe déjà mais l'idée principale était de faire quelque chose d'assez léger qui puisse tourner en temps réel et sans trop utiliser de mémoire (La SRAM et les M4K étant déjà mises à rude épreuves par le moteur 3D). 
 
+\begin{center}
+\includegraphics[width=300pt]{gfx/motionsensing.png}
+\end{center}
+
 Nous nous sommes principalement inspirés de l'algorithme de Viola et Jones de détection d'objet dans une image numérique. Cette méthode est l'une des plus connues et plus utilisées dans la détection de visages et de personnes. 
 
 Elle consiste au parcours de l'ensemble d'une image en calculant un certain nombre de caractéristiques dans des zones rectangulaires qui se chevauchent. Pour calculer rapidement et efficacement ces caractéristiques sur une image, les auteurs proposent également une nouvelle méthode, qu'ils appellent "image intégrale. C'est une représentation sous la forme d'une image de même taille que l'image d'origine, qui en chacun de ses points contient la somme des pixels situés au-dessus de lui et à sa gauche.
@@ -221,7 +226,12 @@ Le quadrillage fut définit par une taille de fenêtre fixe de 160x160 pixels et
 
 Maintenant que les différents modules du projet ont été présentés, leur agencement et leurs connexions réciproques s'effectuent de la manière suivante:
 
-IMAGE A METTRE 
+-\begin{landscape}
+
+\begin{center}
+\includegraphics[width=590pt]{gfx/whole.png}
+\end{center}
+\end{landscape}
 
 \chapter{Difficultés}
 
