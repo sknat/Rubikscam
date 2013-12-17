@@ -8,11 +8,20 @@
 \usepackage[frenchb]{babel}
 \author{Parakian Alexis, Skrzypczak Nathan}
 \title{Rubik's Cam Project PHY573a}
+\newenvironment*{remerciements}{%
+\renewcommand*{\abstractname}{Remerciements}
+\begin{abstract}
+}{\end{abstract}}
 \begin{document}
 \maketitle
+
 \begin{abstract}
 Rubik's cam est un projet développé au cours de l'Enseignement d'Approfondissement : "Conception expérimentale micro et nanoélectronique" partie FPGA. Le but étant comme son nom l'indique, d'afficher un rubik's cube à l'écran en 3 dimensions et de le résoudre à l'aide de mouvements effectués devant la caméra. Ce projet ambitieux nécessite alors la réalisation de deux parties bien distinctes qui nous permirent de se départager le travail. Nathan Skrzypczak prit en charge la réalisation d'un moteur 3D et Alexis Parakian, celle de la détection de mouvements via la caméra.
 \end{abstract}
+
+\begin{remerciements}
+Merci !
+\end{remerciements}
 
 \tableofcontents
 \newpage
@@ -30,7 +39,11 @@ Présentation Scientifique a faire
 La première partie du projet à être réalisée aura été la sortie VGA. Elle l'a été sous la forme d'un composant pour plus de facilité d'utilisation. Il est contenu dans le fichier VGA\_OUT.vhd
 
 Le point à observer en particulier est la fréquence d'horloge, en effet celle-ci conditionne la conception du reste du circuit.  On cherche à cadencer le rafraichissement à 60Hz. Une trame comprends 795 colonnes et 525 lignes (pour 640x480 utiles) soit 417900 points sur l'écran. Obtenir 60Hz par trame revient alors à \textbf{cadencer les points à 25.074Mhz}. On choisira ainsi une \textbf{fréquence utile de 25Mhz} pour rester en phase avec le reste du circuit, soit 59.82Hz par frame (on commet une erreur de 0.3\% qui est admise dans la norme VGA.
-\includegraphics[width=300pt]{gfx/vga_out.png}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=288pt]{gfx/vga_out.png}
+\caption{Description des entrées sorties du composant VGA\_OUT.vhd}
+\end{figure}
 
 \begin{itemize}
 \item Ce composant est cadencé sur une horloge à 25Mhz (fréquence d'affichage d'un pixel)
@@ -45,7 +58,12 @@ Concernant l'entrée par la camera, nous nous sommes inspirés d'un exemple de l
 
 Un point particulièrement important dans l'utilisation de ce périphérique connecté au GPIO de la carte DE2 est \textbf{la gestion des horloges}. En effet, la caméra prends en entrée une horloge cadencée à 25Mhz, et retourne les données lues sur les pixels CMOS à cette même fréquence. Cependant, ce processus a une certaine durée d'exécution, surtout à cause de la présence de la nappe, et du câblage interne, qui ajoute un retard moyen de 10ns (soit $\frac{1}{4}$ de periode à 25Mhz). L'horloge générale utilisée pour le reste du circuit devra donc tenir compte de ce retard de 10ns de manière à assurer la synchronisation des données. (Voir la section Horloge pour plus de précisions)
 
-\includegraphics[width=300pt]{gfx/cmos_la.png}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=255pt]{gfx/cmos_la.png}
+\caption{Description des entrées sorties du composant CMOS\_LA.vhd}
+\end{figure}
+
 \begin{itemize}
 \item Ce composant est cadencé sur une horloge à 25Mhz (acquisition des pixels)
 \item Il sort deux signaux entiers donnant la position du pixel courant :
@@ -129,9 +147,11 @@ On y trouve les données des pixels $\left(x,y\right)$ et $\left(x,y+1\right)$ c
 Étant donné les éléments en jeu dans ce circuit, \textbf{l'horloge principale sera donc cadencé à 100Mhz} (fréquence maximale de fonctionnement de la SRAM ), de manière à permettre à cette dernière une lecture et une écriture dans une étape de calcul à 25Mhz (Une écriture dure en effet 3 cycles de 10ns et une lecture un cycle de 10ns).
 
 La caméra induit un décalage de 10ns, on cadence donc cette dernière sur le la base 25Mhz alors que l'ensemble du circuit suit une cadence avec un cycle de 100Mhz de retard (donc 10ns)
-\begin{center}
+\begin{figure}[!h]
+\centering
 \includegraphics[width=300pt]{gfx/clock.png}
-\end{center}
+\caption{Cadençage des différentes horloges utilisées}
+\end{figure}
 
 Ces horloges seront donc générées par un PLL du circuit:
 
@@ -156,9 +176,11 @@ Son fonctionnement est donc fortement dépendant de toutes ces structures de don
 \[ Y = \frac{H}{2} + \left(y-\frac{L}{2}\right)\frac{f}{z+f} \]
 Où $\left(X,Y\right)$ sont les coordonnées projetées sur l'écran (de hauteur H, largeur L) ; $\left(x,y,z\right)$ les coordonnées 3D présentes dans le registre à décalage et f la focale de projection. On considère l'origine des espaces comme étant située au centre de l'écran et orientée vers l'avant comme sur la figure suivante.
 
-\begin{center}
-\includegraphics[width=300pt]{gfx/proj.png}
-\end{center}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=265pt]{gfx/proj.png}
+\caption{Schéma de la projection réalisée par le moteur 3D sur l'écran}
+\end{figure}
 
 Projection d'ou l'on tire la formule précédente.
 
@@ -171,9 +193,11 @@ Projection d'ou l'on tire la formule précédente.
 \end{enumerate}
 
 Ceci donne un composant chargé des calculs de la forme ci-dessous, avec une sortie 'couleurs' non encore définie, car dans des perspectives de test, ce composant ne sort que des points, colorés en blanc, pour ne pas surcharger la mémoire M4K et réduire la complexité du tout.
-\begin{center}
-\includegraphics[width=300pt]{gfx/engine.png}
-\end{center}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=265pt]{gfx/engine.png}
+\caption{Description des entrées sorties du composant ENGINE.vhd}
+\end{figure}
 
 \section{Détection de mouvement}
 
@@ -183,13 +207,12 @@ Nous nous sommes principalement inspirés de l'algorithme de Viola et Jones de d
 
 Elle consiste au parcours de l'ensemble d'une image en calculant un certain nombre de caractéristiques dans des zones rectangulaires qui se chevauchent. Pour calculer rapidement et efficacement ces caractéristiques sur une image, les auteurs proposent également une nouvelle méthode, qu'ils appellent "image intégrale. C'est une représentation sous la forme d'une image de même taille que l'image d'origine, qui en chacun de ses points contient la somme des pixels situés au-dessus de lui et à sa gauche.
 
-Les caractéristiques sont calculées à toutes les positions et à toutes les échelles dans une fenêtre de détection de petite taille, typiquement de 24 x 24 pixels. En phase de détection, l'ensemble de l'image est parcouru en déplaçant la fenêtre de détection d'un certain pas dans le sens horizontal et vertical. Les changements d'échelle se font en modifiant successivement la taille de la fenêtre de détection. Viola et Jones utilisent un facteur multiplicatif de 1,25, jusqu'à ce que la fenêtre couvre la totalité de l'image. Les caractéristiques étant ensuite définies par machine learning sur le type d'image considéré (visage, personnes, etc.).\newpage
+Les caractéristiques sont calculées à toutes les positions et à toutes les échelles dans une fenêtre de détection de petite taille, typiquement de 24 x 24 pixels. En phase de détection, l'ensemble de l'image est parcouru en déplaçant la fenêtre de détection d'un certain pas dans le sens horizontal et vertical. Les changements d'échelle se font en modifiant successivement la taille de la fenêtre de détection. Viola et Jones utilisent un facteur multiplicatif de 1,25, jusqu'à ce que la fenêtre couvre la totalité de l'image. Les caractéristiques étant ensuite définies par machine learning sur le type d'image considéré (visage, personnes, etc.).
 
-\begin{figure}
+\begin{figure}[!h]
 \centering
-\includegraphics[width=200pt]{gfx/caract_VJ.png}
+\includegraphics[width=300pt]{gfx/caract_VJ.png}
 \caption{Exemples de caractéristiques calculées par différences des sommes de pixels sur deux ou plusieurs zones adjacentes}
-\label{VJ}
 \end{figure}
 
 Dans notre cas, étant donné que nous ne voulions pas stocker l'intégralité de l'image (sa taille est de 1280x960x10 = 12 Mbits, il n'est donc pas concevable de stocker une image complète en utilisant simplement les bascules) et que les caractéristiques cherchées étaient moins complexes que pour la détection de visage, nous avons agi différemment : Tout d'abord nous avons simplifié le problème en se disant que l'objet à trouver serait deux mains sur un fond noir. Donc la caractéristique à trouver est une simple caractéristique de contraste. 
@@ -198,9 +221,11 @@ Ensuite, le concept de parcours d'une image par une fenêtre de taille croissant
 
 Le quadrillage fut définit par une taille de fenêtre fixe de 160x160 pixels et un pas de 80 pixels, ce qui donnait 35 fenêtre à analyser sur l'image. Ce quadrillage était largement suffisant au vu des commandes à envoyer au moteur 3D : rotation du rubik's cube et rotation d'une couronne du rubik's cube soit un total de 12 commandes possibles.
 
-\begin{center}
+\begin{figure}[!h]
+\centering
 \includegraphics[width=310pt]{gfx/schema_motion_sensing.png}
-\end{center}
+\caption{Différents types de déplacements pouvant être effectués devant la caméra et envoyant une commande au programme}
+\end{figure}
 
 \begin{enumerate}
 \item rotation du rubik's cube vers le haut
@@ -222,9 +247,11 @@ Une fois l'image entièrement parcourue, les mains sont repérées comme étant 
 
 Finalement le bloc général s'organise de la manière suivante :
 
-\begin{center}
+\begin{figure}[!h]
+\centering
 \includegraphics[width=300pt]{gfx/motionsensing.png}
-\end{center}
+\caption{Description des entrées sorties du composant motionsensing.vhd}
+\end{figure}
 
 \chapter{Connexion des blocs}
 
@@ -232,9 +259,12 @@ Maintenant que les différents modules du projet ont été présentés, leur age
 
 \begin{landscape}
 
-\begin{center}
+\begin{figure}[!h]
+\centering
 \includegraphics[width=590pt]{gfx/whole.png}
-\end{center}
+\caption{Schéma bloc complet du projet}
+\end{figure}
+
 \end{landscape}
 
 \chapter{Difficultés}
@@ -244,9 +274,13 @@ Un des problèmes principaux s'étant posé à nous au cours de ce projet est la
 
 Le blocage du code se réalise au niveau du cadencement des lectures/écritures sur la SRAM. Dans la mesure ou l'écran impose une lecture à 25Mhz, lecture et écriture disposent chacune d'une période temporelle de 20ns pour s'effectuer. On se trouve ici particulièrement proche des valeurs minimales présentes dans la datasheet de la mémoire (de l'ordre de 15ns). De plus la commutation imposée sur le bus entrée/sortie par ce processus est également particulièrement rapide : de l'ordre de la nanoseconde entre la présence des données d'entrée et celles de sortie. C'est ce bus qui pose donc les problèmes principaux, et qui se révèlent physiquement, dans la mesure ou l'écran réplique les données qui sont écrites sur la SDRAM au moment de leur écriture: au lieu de lire le contenu de la SDRAM qui lui est adressé, l'écran se sert dans le contenu qui le moteur 3D est entrain d'inscrire sur le Bus, signe d'un mauvais cadencement de ces opérations ou d'une erreur sur la conception de ce bus.
 
-\begin{center}
+\begin{figure}[!h]
+\centering
 \includegraphics[width=300pt]{gfx/sram.png}
-\end{center}
+\caption{Connexion au bus d'écriture/lecture de la SRAM}
+\end{figure}
+
+\newpage
 
 \section{Développement d'un "Pong" de test}
 
