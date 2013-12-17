@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  16 DEC 2013 18:11
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  17 DEC 2013 18:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -320,13 +320,12 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2009/06/22 v3.00
 )
-(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/pdflscape.sty
+Package: pdflscape 2008/08/11 v0.10 Display of landscape pages in PDF (HO)
 
-(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
-\KV@toks@=\toks21
-)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+
 (/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
@@ -348,7 +347,23 @@ Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count100
+)))
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 80.
+
+(/usr/local/texlive/2012/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 ))
+(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks21
+)
 \Gin@req@height=\dimen112
 \Gin@req@width=\dimen113
 )
@@ -380,18 +395,18 @@ Package babel Info: Making ? an active character on input line 237.
 (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
 
 (/usr/local/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -413,10 +428,6 @@ Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 (/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifluatex.sty
 Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
-)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
@@ -454,20 +465,20 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Info: Redefining \degres on input line 10.
-LaTeX Info: Redefining \dots on input line 10.
-LaTeX Info: Redefining \up on input line 10.
+LaTeX Info: Redefining \degres on input line 11.
+LaTeX Info: Redefining \dots on input line 11.
+LaTeX Info: Redefining \up on input line 11.
 
 
 Package frenchb.ldf Warning: OT1 encoding should not be used for French. 
 (frenchb.ldf)                Add \usepackage[T1]{fontenc} to the preamble
-(frenchb.ldf)                of your document, on input line 10.
+(frenchb.ldf)                of your document, on input line 11.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 11.
+LaTeX Font Info:    Try loading font information for U+msa on input line 12.
 (/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 11.
+LaTeX Font Info:    Try loading font information for U+msb on input line 12.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
@@ -490,7 +501,7 @@ Chapitre 2.
 <gfx/vga_out.png, id=20, 803.0pt x 602.25pt>
 File: gfx/vga_out.png Graphic file (type png)
  <use gfx/vga_out.png>
-Package pdftex.def Info: gfx/vga_out.png used on input line 32.
+Package pdftex.def Info: gfx/vga_out.png used on input line 33.
 (pdftex.def)             Requested size: 300.0pt x 225.00694pt.
  [3
 
@@ -498,72 +509,97 @@ Package pdftex.def Info: gfx/vga_out.png used on input line 32.
 File: gfx/cmos_la.png Graphic file (type png)
 
 <use gfx/cmos_la.png>
-Package pdftex.def Info: gfx/cmos_la.png used on input line 47.
+Package pdftex.def Info: gfx/cmos_la.png used on input line 48.
 (pdftex.def)             Requested size: 300.0pt x 225.00694pt.
  [4 <./gfx/cmos_la.png (PNG copy)>] [5]
 <gfx/clock.png, id=38, 767.86874pt x 301.125pt>
 File: gfx/clock.png Graphic file (type png)
  <use gfx/clock.png>
-Package pdftex.def Info: gfx/clock.png used on input line 132.
+Package pdftex.def Info: gfx/clock.png used on input line 133.
 (pdftex.def)             Requested size: 300.0pt x 117.64963pt.
  [6]
 <gfx/proj.png, id=43, 1204.5pt x 1204.5pt>
 File: gfx/proj.png Graphic file (type png)
  <use gfx/proj.png>
-Package pdftex.def Info: gfx/proj.png used on input line 159.
+Package pdftex.def Info: gfx/proj.png used on input line 160.
 (pdftex.def)             Requested size: 300.0pt x 300.00313pt.
  [7 <./gfx/clock.png (PNG copy)>] <gfx/engine.png, id=48, 803.0pt x 602.25pt>
 File: gfx/engine.png Graphic file (type png)
 
 <use gfx/engine.png>
-Package pdftex.def Info: gfx/engine.png used on input line 174.
+Package pdftex.def Info: gfx/engine.png used on input line 175.
 (pdftex.def)             Requested size: 300.0pt x 225.00694pt.
- [8 <./gfx/proj.png (PNG copy)>]
-<gfx/caract_VJ.png, id=52, 2007.5pt x 652.4375pt>
+ [8 <./gfx/proj.png (PNG copy)>] [9 <./gfx/engine.png (PNG copy)>] <gfx/caract_
+VJ.png, id=55, 2007.5pt x 652.4375pt>
 File: gfx/caract_VJ.png Graphic file (type png)
- <use gfx/caract_VJ.png>
+
+<use gfx/caract_VJ.png>
 Package pdftex.def Info: gfx/caract_VJ.png used on input line 190.
 (pdftex.def)             Requested size: 200.0pt x 64.99867pt.
 
-[9 <./gfx/engine.png (PNG copy)>]
 <gfx/schema_motion_sensing.png, id=57, 455.7025pt x 341.275pt>
 File: gfx/schema_motion_sensing.png Graphic file (type png)
 
 <use gfx/schema_motion_sensing.png>
 Package pdftex.def Info: gfx/schema_motion_sensing.png used on input line 202.
 (pdftex.def)             Requested size: 310.0pt x 232.16286pt.
- [10 <./gfx/caract_VJ.png> <./gfx/schema_motion_sensing.png>] [11]
-Chapitre 3.
-[12
+ [10 <./gfx/caract_VJ.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 217--218
 
+ []
+
+<gfx/motionsensing.png, id=63, 803.0pt x 602.25pt>
+File: gfx/motionsensing.png Graphic file (type png)
+ <use gfx/motionsensing.png>
+Package pdftex.def Info: gfx/motionsensing.png used on input line 226.
+(pdftex.def)             Requested size: 300.0pt x 225.00694pt.
+
+[11 <./gfx/schema_motion_sensing.png>] [12 <./gfx/motionsensing.png (PNG copy)>
 ]
+Chapitre 3.
+[13
+
+] <gfx/whole.png, id=74, 2726.185pt x 1481.535pt>
+File: gfx/whole.png Graphic file (type png)
+ <use gfx/whole.png>
+Package pdftex.def Info: gfx/whole.png used on input line 236.
+(pdftex.def)             Requested size: 590.0pt x 320.6262pt.
+
+[14
+
+ <./gfx/whole.png (PNG copy)>]
 Chapitre 4.
-<gfx/sram.png, id=70, 803.0pt x 602.25pt>
+<gfx/sram.png, id=78, 803.0pt x 602.25pt>
 File: gfx/sram.png Graphic file (type png)
  <use gfx/sram.png>
-Package pdftex.def Info: gfx/sram.png used on input line 234.
+Package pdftex.def Info: gfx/sram.png used on input line 248.
 (pdftex.def)             Requested size: 300.0pt x 225.00694pt.
- [13
+ [15
+
 
 ]
-<gfx/pong.png, id=74, 803.0pt x 602.25pt>
+<gfx/pong.png, id=82, 803.0pt x 602.25pt>
 File: gfx/pong.png Graphic file (type png)
  <use gfx/pong.png>
-Package pdftex.def Info: gfx/pong.png used on input line 244.
+Package pdftex.def Info: gfx/pong.png used on input line 258.
 (pdftex.def)             Requested size: 300.0pt x 225.00694pt.
- [14 <./gfx/sram.png (PNG copy)>] [15 <./gfx/pong.png (PNG copy)>]
+ [16 <./gfx/sram.png (PNG copy)>] [17 <./gfx/pong.png (PNG copy)>]
 Chapitre 5.
-[16
+[18
+
+]
+Chapitre 6.
+[19
 
 ] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 3358 strings out of 493488
- 44121 string characters out of 3141326
- 108056 words of memory out of 3000000
- 6592 multiletter control sequences out of 15000+200000
+ 3408 strings out of 493488
+ 45174 string characters out of 3141326
+ 110395 words of memory out of 3000000
+ 6631 multiletter control sequences out of 15000+200000
  13721 words of font info for 52 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,10n,24p,1049b,289s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,10n,24p,1048b,289s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmbx10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmbx12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts
@@ -579,10 +615,10 @@ pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.p
 fb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
 ></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
 
-Output written on report.pdf (18 pages, 384480 bytes).
+Output written on report.pdf (21 pages, 522935 bytes).
 PDF statistics:
- 129 PDF objects out of 1000 (max. 8388607)
- 84 compressed objects within 1 object stream
+ 141 PDF objects out of 1000 (max. 8388607)
+ 91 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 

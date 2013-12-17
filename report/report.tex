@@ -179,16 +179,11 @@ Ceci donne un composant chargé des calculs de la forme ci-dessous, avec une sor
 
 Le programme de détection de mouvement est assez simpliste comparé à ce qui existe déjà mais l'idée principale était de faire quelque chose d'assez léger qui puisse tourner en temps réel et sans trop utiliser de mémoire (La SRAM et les M4K étant déjà mises à rude épreuves par le moteur 3D). 
 
-\begin{center}
-\includegraphics[width=300pt]{gfx/motionsensing.png}
-\end{center}
-
 Nous nous sommes principalement inspirés de l'algorithme de Viola et Jones de détection d'objet dans une image numérique. Cette méthode est l'une des plus connues et plus utilisées dans la détection de visages et de personnes. 
 
 Elle consiste au parcours de l'ensemble d'une image en calculant un certain nombre de caractéristiques dans des zones rectangulaires qui se chevauchent. Pour calculer rapidement et efficacement ces caractéristiques sur une image, les auteurs proposent également une nouvelle méthode, qu'ils appellent "image intégrale. C'est une représentation sous la forme d'une image de même taille que l'image d'origine, qui en chacun de ses points contient la somme des pixels situés au-dessus de lui et à sa gauche.
 
-
-Les caractéristiques sont calculées à toutes les positions et à toutes les échelles dans une fenêtre de détection de petite taille, typiquement de 24 x 24 pixels. En phase de détection, l'ensemble de l'image est parcouru en déplaçant la fenêtre de détection d'un certain pas dans le sens horizontal et vertical. Les changements d'échelle se font en modifiant successivement la taille de la fenêtre de détection. Viola et Jones utilisent un facteur multiplicatif de 1,25, jusqu'à ce que la fenêtre couvre la totalité de l'image. Les caractéristiques étant ensuite définies par machine learning sur le type d'image considéré (visage, personnes, etc.).
+Les caractéristiques sont calculées à toutes les positions et à toutes les échelles dans une fenêtre de détection de petite taille, typiquement de 24 x 24 pixels. En phase de détection, l'ensemble de l'image est parcouru en déplaçant la fenêtre de détection d'un certain pas dans le sens horizontal et vertical. Les changements d'échelle se font en modifiant successivement la taille de la fenêtre de détection. Viola et Jones utilisent un facteur multiplicatif de 1,25, jusqu'à ce que la fenêtre couvre la totalité de l'image. Les caractéristiques étant ensuite définies par machine learning sur le type d'image considéré (visage, personnes, etc.).\newpage
 
 \begin{figure}
 \centering
@@ -197,9 +192,9 @@ Les caractéristiques sont calculées à toutes les positions et à toutes les �
 \label{VJ}
 \end{figure}
 
-Dans notre cas, étant donné que nous ne voulions pas stocker l'intégralité de l'image et que les caractéristiques cherchées étaient moins complexes que pour la détection de visage, nous avons agi différemment : Tout d'abord nous avons simplifié le problème en se disant que l'objet à trouver serait deux mains sur un fond noir. Donc la caractéristique à trouver est une simple caractéristique de contraste. 
+Dans notre cas, étant donné que nous ne voulions pas stocker l'intégralité de l'image (sa taille est de 1280x960x10 = 12 Mbits, il n'est donc pas concevable de stocker une image complète en utilisant simplement les bascules) et que les caractéristiques cherchées étaient moins complexes que pour la détection de visage, nous avons agi différemment : Tout d'abord nous avons simplifié le problème en se disant que l'objet à trouver serait deux mains sur un fond noir. Donc la caractéristique à trouver est une simple caractéristique de contraste. 
 
-Ensuite, le concept de parcours d'une image par une fenêtre de taille définie devait être revu car cela impliquait de sauvegarder en mémoire une image, de la traiter, puis de faire la même chose pour l'image suivante et par différence des deux de définir un mouvement. Mais comme nous ne voulions pas utiliser la mémoire et tout faire en temps réel, nous avons défini un quadrillage fixe de l'image qui contenait dans chaque fenêtre, la somme des pixels présents à l'intérieur. L'avantage étant qu'à la lecture d'un pixel, étant donné que la position était connue, il suffisait d'incrémenter les fenêtres correspondantes.
+Ensuite, le concept de parcours d'une image par une fenêtre de taille croissante devait être revu car cela impliquait de sauvegarder en mémoire une image, de la traiter, puis de faire la même chose pour l'image suivante et par différence des deux de définir un mouvement. Mais comme nous ne voulions pas utiliser la mémoire et tout faire en temps réel, nous avons donc défini un quadrillage fixe de l'image qui contenait dans chaque fenêtre, la somme des pixels présents à l'intérieur. L'avantage étant qu'à la lecture d'un pixel, étant donné que la position était connue, il suffisait d'incrémenter les fenêtres correspondantes.
 
 Le quadrillage fut définit par une taille de fenêtre fixe de 160x160 pixels et un pas de 80 pixels, ce qui donnait 35 fenêtre à analyser sur l'image. Ce quadrillage était largement suffisant au vu des commandes à envoyer au moteur 3D : rotation du rubik's cube et rotation d'une couronne du rubik's cube soit un total de 12 commandes possibles.
 
@@ -219,14 +214,23 @@ Le quadrillage fut définit par une taille de fenêtre fixe de 160x160 pixels et
 \item rotation de la couronne du bas vers la gauche
 \item rotation de la couronne du bas vers la droite
 \item rotation de la couronne du haut vers la gauche
-\item rotation de la couronne du haut vers la droite
+\item rotation de la couronne du haut vers la droite\\
 \end{enumerate}
+
+
+Une fois l'image entièrement parcourue, les mains sont repérées comme étant dans les deux carrés les plus lumineux, soit les deux plus grandes valeurs du tableau de 7x5 en excluant les fenêtres pouvant se recouper car une main peut recouvrir deux carrés. Enfin le déplacement est réalisé en comparant avec l'image précédente. Les déplacements s'incrémentent à chaque nouvelle image et le déplacement moyen est envoyé sous la forme d'une commande au fichier principal.
+
+Finalement le bloc général s'organise de la manière suivante :
+
+\begin{center}
+\includegraphics[width=300pt]{gfx/motionsensing.png}
+\end{center}
 
 \chapter{Connexion des blocs}
 
 Maintenant que les différents modules du projet ont été présentés, leur agencement et leurs connexions réciproques s'effectuent de la manière suivante:
 
--\begin{landscape}
+\begin{landscape}
 
 \begin{center}
 \includegraphics[width=590pt]{gfx/whole.png}
@@ -236,15 +240,15 @@ Maintenant que les différents modules du projet ont été présentés, leur age
 \chapter{Difficultés}
 
 \section{Bus SRAM}
-Un des problèmes principaux s'étant posé à nous au court de ce projet est la communication avec les mémoires et leur choix. Le projet était certainement trop ambitieux de ce point de vue, dans la mesure ou l'écriture sur le Bus Entrée/Sortie de la SDRAM n'a été fonctionnel que dans la dernière demi-heure de la dernière séance. Le code sous-jacent étant fondé sur des principes mathématiques relativement simplistes, il est suposé fonctionnel, mais sans la brique de la Mémoire intermédiaire pour le stockage de l'écran, il n'est malheureusement pas possible de le tester.
+Un des problèmes principaux s'étant posé à nous au cours de ce projet est la communication avec les mémoires et leur choix. Le projet était certainement trop ambitieux de ce point de vue, dans la mesure ou l'écriture sur le Bus Entrée/Sortie de la SDRAM n'a été fonctionnel que dans la dernière demi-heure de la dernière séance. Le code sous-jacent étant fondé sur des principes mathématiques relativement simplistes, il est supposé fonctionnel, mais sans la brique de la Mémoire intermédiaire pour le stockage de l'écran, il n'est malheureusement pas possible de le tester.
 
-Le blocage du code se réalise au niveau du cadencement des lectures/écritures sur la SRAM. Dans la mesure ou l'écran impose une lecture à 25Mhz, lecture et écriture disposent chacune d'une période temporelle de 20ns pour s'effectuer. On se trouve ici particulièrement proche des valeurs minimales présentes dans la datasheet de la mémoire (de l'ordre de 15ns). De plus la commutation imposée sur le bus entrée/sortie par ce processus est également particulièrement rapide : de l'ordre de la nanoseconde entre la présence des données d'entrée et celles de sortie. C'est ce bus qui pose donc les problèmes principaux, et qui se révèlent physiquement, dans la mesure ou l'écran réplique les données qui sont écrites sur la SDRAM au moment de leur écriture: au lieu de lire le contenu de la SDRAM qui lui est addressé, l'écran se sert dans le contenu qui le moteur 3D est entrain d'inscrire sur le Bus, signe d'un mauvais cadencement de ces opérations ou d'une erreur sur la conception de ce bus.
+Le blocage du code se réalise au niveau du cadencement des lectures/écritures sur la SRAM. Dans la mesure ou l'écran impose une lecture à 25Mhz, lecture et écriture disposent chacune d'une période temporelle de 20ns pour s'effectuer. On se trouve ici particulièrement proche des valeurs minimales présentes dans la datasheet de la mémoire (de l'ordre de 15ns). De plus la commutation imposée sur le bus entrée/sortie par ce processus est également particulièrement rapide : de l'ordre de la nanoseconde entre la présence des données d'entrée et celles de sortie. C'est ce bus qui pose donc les problèmes principaux, et qui se révèlent physiquement, dans la mesure ou l'écran réplique les données qui sont écrites sur la SDRAM au moment de leur écriture: au lieu de lire le contenu de la SDRAM qui lui est adressé, l'écran se sert dans le contenu qui le moteur 3D est entrain d'inscrire sur le Bus, signe d'un mauvais cadencement de ces opérations ou d'une erreur sur la conception de ce bus.
 
 \begin{center}
 \includegraphics[width=300pt]{gfx/sram.png}
 \end{center}
 
-\section{Developpement d'un "Pong" de test}
+\section{Développement d'un "Pong" de test}
 
 C'est pour cette raison qu'un exemple rapide de Pong à deux joueurs à été réalisé sous la forme d'un composant annexe prenant la place de ENGINE.vhd, pour permettre d'avoir une présentation fonctionnelle dans le cas d'une incapacité à avoir une lecture / écriture correctement cadencée sur la SRAM.
 
@@ -255,6 +259,8 @@ Ce Pong est situé dans Pong.vhd est suit le même principe que Engine.vhd : on 
 \end{center}
 
 Ce composant réalise de simple opérations de comparaison pour obtenir la couleur du pixel courant affiché à l'écran, et garde en mémoire dans des registres locaux les informations importantes, telles que la position de la balle, celle des deux joueurs et le nombre de vies restantes. Il reste paramétrable par des entrées de position, permettant au composant d'acquisition d'influencer l'état de l'affichage et du processus en cours.
+
+Nous l'avons rapidement connecté au composant motion\_sensing afin de tester la validité de l'algorithme de détection de mouvement. Les effets ne furent pas extrêmement concluants mais la technique adoptée pour la résolution du rubik's cube n'était pas vraiment transposable au contrôle des pads du pong puisqu'ils nécessitent un repérage beaucoup plus fin de la position de la main. 
 
 \chapter{Possibilités d'amélioration}
 
@@ -269,6 +275,10 @@ Ce composant réalise de simple opérations de comparaison pour obtenir la coule
 On pourrait se pencher plus en profondeur sur le paramétrage fin de la caméra, et réaliser des tests voir de l'apprentissage pour que l'acquisition se fasse plus finement. Actuellement, l'exposition est réglée manuellement à l'aide de la bande d'interrupteurs de la carte DE2. On pourrait donc rechercher une valeur idéale pour ce paramètre afin de maximiser les résultats pour l'objectif nous intéressant.
 
 \section{Reconnaissance des formes}
+
+Dans le cas où nous pouvons utiliser la SRAM, il aurait été plus efficace de stocker une frame, puis de réaliser un traitement plus lourd à cette image afin de faire des comparaisons plus justes entre image. Rien que de faire la différence entre deux frames et repérer la zone qui a bougé aurait permis des résultats plus justes.
+
+\chapter{Conclusion}
 
 
 \end{document}
